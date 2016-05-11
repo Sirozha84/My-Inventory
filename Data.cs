@@ -12,6 +12,7 @@ namespace My_Inventory
         public static List<Item> Items = new List<Item>();
         public static List<User> Users = new List<User>();
         const string fileName = "DB.txt";
+
         /// <summary>
         /// Загрузка базы данных
         /// </summary>
@@ -26,7 +27,8 @@ namespace My_Inventory
                     file.ReadLine();
                     int c = Convert.ToInt32(file.ReadLine());
                     for (int i = 0; i < c; i++)
-                        Items.Add(new Item(file.ReadLine(), file.ReadLine()));
+                        Items.Add(new Item(file.ReadLine(), file.ReadLine(),
+                            file.ReadLine(), file.ReadLine(), file.ReadLine()));
                     //Загрузка пользователей
                     file.ReadLine();
                     c = Convert.ToInt32(file.ReadLine());
@@ -50,14 +52,17 @@ namespace My_Inventory
             {
                 using (StreamWriter file = File.CreateText(fileName))
                 {
-                    file.WriteLine("Items-----------------------------------");
+                    file.WriteLine("----------------Items----------------");
                     file.WriteLine(Items.Count);
                     foreach (Item item in Items)
                     {
                         file.WriteLine(item.Number);
                         file.WriteLine(item.Name);
+                        file.WriteLine(item.User);
+                        file.WriteLine(item.Date);
+                        file.WriteLine(item.Discription);
                     }
-                    file.WriteLine("Users-----------------------------------");
+                    file.WriteLine("----------------Users----------------");
                     file.WriteLine(Users.Count);
                     foreach (User user in Users)
                     {

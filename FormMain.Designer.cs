@@ -39,45 +39,45 @@
             this.listViewInventory = new System.Windows.Forms.ListView();
             this.columnHeaderNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderDep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDiscription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.splitter2 = new System.Windows.Forms.Splitter();
+            this.panelItem = new System.Windows.Forms.Panel();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.textBoxDiscription = new System.Windows.Forms.TextBox();
+            this.labelDiscription = new System.Windows.Forms.Label();
+            this.labelDate = new System.Windows.Forms.Label();
+            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
+            this.comboBoxUsers = new System.Windows.Forms.ComboBox();
+            this.labelDep = new System.Windows.Forms.Label();
+            this.textBoxName = new System.Windows.Forms.TextBox();
+            this.labelName = new System.Windows.Forms.Label();
+            this.textBoxNum = new System.Windows.Forms.TextBox();
+            this.labelNum = new System.Windows.Forms.Label();
             this.toolStripNewItem = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNewItem = new System.Windows.Forms.ToolStripButton();
             this.tabPageUsers = new System.Windows.Forms.TabPage();
             this.listViewUserItems = new System.Windows.Forms.ListView();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.toolStripUsers = new System.Windows.Forms.ToolStrip();
-            this.toolStripButtonNewUser = new System.Windows.Forms.ToolStripButton();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.listViewUsers = new System.Windows.Forms.ListView();
-            this.splitter2 = new System.Windows.Forms.Splitter();
-            this.panelItem = new System.Windows.Forms.Panel();
-            this.panelUser = new System.Windows.Forms.Panel();
-            this.splitter3 = new System.Windows.Forms.Splitter();
             this.columnHeaderINum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderIName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderIDiscription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderIDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.labelNum = new System.Windows.Forms.Label();
-            this.textBoxNum = new System.Windows.Forms.TextBox();
-            this.textBoxName = new System.Windows.Forms.TextBox();
-            this.labelName = new System.Windows.Forms.Label();
-            this.labelDep = new System.Windows.Forms.Label();
-            this.comboBoxUsers = new System.Windows.Forms.ComboBox();
-            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
-            this.labelDate = new System.Windows.Forms.Label();
-            this.labelDiscription = new System.Windows.Forms.Label();
-            this.textBoxDiscription = new System.Windows.Forms.TextBox();
-            this.buttonSave = new System.Windows.Forms.Button();
+            this.splitter3 = new System.Windows.Forms.Splitter();
+            this.panelUser = new System.Windows.Forms.Panel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.listViewUsers = new System.Windows.Forms.ListView();
+            this.toolStripUsers = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonNewUser = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.menuStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
+            this.panelItem.SuspendLayout();
             this.toolStripNewItem.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
             this.toolStripUsers.SuspendLayout();
-            this.panelItem.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -178,28 +178,180 @@
             this.columnHeaderName.Text = "Наименование";
             this.columnHeaderName.Width = 116;
             // 
+            // columnHeaderUser
+            // 
+            this.columnHeaderUser.Text = "Сотрудник";
+            this.columnHeaderUser.Width = 118;
+            // 
             // columnHeaderDep
             // 
             this.columnHeaderDep.Text = "Подразделение";
             this.columnHeaderDep.Width = 130;
             // 
-            // columnHeaderUser
+            // columnHeaderDate
             // 
-            this.columnHeaderUser.Text = "Сотрудник";
-            this.columnHeaderUser.Width = 118;
+            this.columnHeaderDate.Text = "Дата выдачи";
+            this.columnHeaderDate.Width = 82;
             // 
             // columnHeaderDiscription
             // 
             this.columnHeaderDiscription.Text = "Примечание";
             this.columnHeaderDiscription.Width = 102;
             // 
+            // splitter2
+            // 
+            this.splitter2.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitter2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.splitter2.Location = new System.Drawing.Point(695, 28);
+            this.splitter2.Name = "splitter2";
+            this.splitter2.Size = new System.Drawing.Size(5, 442);
+            this.splitter2.TabIndex = 2;
+            this.splitter2.TabStop = false;
+            // 
+            // panelItem
+            // 
+            this.panelItem.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelItem.Controls.Add(this.buttonSave);
+            this.panelItem.Controls.Add(this.textBoxDiscription);
+            this.panelItem.Controls.Add(this.labelDiscription);
+            this.panelItem.Controls.Add(this.labelDate);
+            this.panelItem.Controls.Add(this.dateTimePickerDate);
+            this.panelItem.Controls.Add(this.comboBoxUsers);
+            this.panelItem.Controls.Add(this.labelDep);
+            this.panelItem.Controls.Add(this.textBoxName);
+            this.panelItem.Controls.Add(this.labelName);
+            this.panelItem.Controls.Add(this.textBoxNum);
+            this.panelItem.Controls.Add(this.labelNum);
+            this.panelItem.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panelItem.Location = new System.Drawing.Point(700, 28);
+            this.panelItem.Name = "panelItem";
+            this.panelItem.Size = new System.Drawing.Size(170, 442);
+            this.panelItem.TabIndex = 3;
+            // 
+            // buttonSave
+            // 
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.Enabled = false;
+            this.buttonSave.Location = new System.Drawing.Point(78, 416);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(87, 23);
+            this.buttonSave.TabIndex = 10;
+            this.buttonSave.Text = "Сохранить";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // textBoxDiscription
+            // 
+            this.textBoxDiscription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxDiscription.Enabled = false;
+            this.textBoxDiscription.Location = new System.Drawing.Point(6, 175);
+            this.textBoxDiscription.Multiline = true;
+            this.textBoxDiscription.Name = "textBoxDiscription";
+            this.textBoxDiscription.Size = new System.Drawing.Size(159, 235);
+            this.textBoxDiscription.TabIndex = 9;
+            this.textBoxDiscription.TextChanged += new System.EventHandler(this.textBoxDiscription_TextChanged);
+            // 
+            // labelDiscription
+            // 
+            this.labelDiscription.AutoSize = true;
+            this.labelDiscription.Location = new System.Drawing.Point(6, 159);
+            this.labelDiscription.Name = "labelDiscription";
+            this.labelDiscription.Size = new System.Drawing.Size(73, 13);
+            this.labelDiscription.TabIndex = 8;
+            this.labelDiscription.Text = "Примечание:";
+            // 
+            // labelDate
+            // 
+            this.labelDate.AutoSize = true;
+            this.labelDate.Location = new System.Drawing.Point(6, 120);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(76, 13);
+            this.labelDate.TabIndex = 7;
+            this.labelDate.Text = "Дата выдачи:";
+            // 
+            // dateTimePickerDate
+            // 
+            this.dateTimePickerDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dateTimePickerDate.Enabled = false;
+            this.dateTimePickerDate.Location = new System.Drawing.Point(6, 136);
+            this.dateTimePickerDate.Name = "dateTimePickerDate";
+            this.dateTimePickerDate.Size = new System.Drawing.Size(159, 20);
+            this.dateTimePickerDate.TabIndex = 6;
+            this.dateTimePickerDate.ValueChanged += new System.EventHandler(this.dateTimePickerDate_ValueChanged);
+            // 
+            // comboBoxUsers
+            // 
+            this.comboBoxUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxUsers.Enabled = false;
+            this.comboBoxUsers.FormattingEnabled = true;
+            this.comboBoxUsers.Location = new System.Drawing.Point(6, 96);
+            this.comboBoxUsers.Name = "comboBoxUsers";
+            this.comboBoxUsers.Size = new System.Drawing.Size(159, 21);
+            this.comboBoxUsers.TabIndex = 5;
+            this.comboBoxUsers.TextChanged += new System.EventHandler(this.comboBoxUsers_TextChanged);
+            // 
+            // labelDep
+            // 
+            this.labelDep.AutoSize = true;
+            this.labelDep.Location = new System.Drawing.Point(6, 80);
+            this.labelDep.Name = "labelDep";
+            this.labelDep.Size = new System.Drawing.Size(63, 13);
+            this.labelDep.TabIndex = 4;
+            this.labelDep.Text = "Сотрудник:";
+            // 
+            // textBoxName
+            // 
+            this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxName.Enabled = false;
+            this.textBoxName.Location = new System.Drawing.Point(6, 56);
+            this.textBoxName.Name = "textBoxName";
+            this.textBoxName.Size = new System.Drawing.Size(159, 20);
+            this.textBoxName.TabIndex = 3;
+            this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
+            // 
+            // labelName
+            // 
+            this.labelName.AutoSize = true;
+            this.labelName.Location = new System.Drawing.Point(6, 40);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(86, 13);
+            this.labelName.TabIndex = 2;
+            this.labelName.Text = "Наименование:";
+            // 
+            // textBoxNum
+            // 
+            this.textBoxNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxNum.Enabled = false;
+            this.textBoxNum.Location = new System.Drawing.Point(6, 17);
+            this.textBoxNum.Name = "textBoxNum";
+            this.textBoxNum.Size = new System.Drawing.Size(159, 20);
+            this.textBoxNum.TabIndex = 1;
+            this.textBoxNum.TextChanged += new System.EventHandler(this.textBoxNum_TextChanged);
+            // 
+            // labelNum
+            // 
+            this.labelNum.AutoSize = true;
+            this.labelNum.Location = new System.Drawing.Point(6, 0);
+            this.labelNum.Name = "labelNum";
+            this.labelNum.Size = new System.Drawing.Size(114, 13);
+            this.labelNum.TabIndex = 0;
+            this.labelNum.Text = "Инвентарный номер:";
+            // 
             // toolStripNewItem
             // 
+            this.toolStripNewItem.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.toolStripNewItem.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripNewItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonNewItem});
             this.toolStripNewItem.Location = new System.Drawing.Point(3, 3);
             this.toolStripNewItem.Name = "toolStripNewItem";
+            this.toolStripNewItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
             this.toolStripNewItem.Size = new System.Drawing.Size(867, 25);
             this.toolStripNewItem.TabIndex = 1;
             // 
@@ -245,98 +397,6 @@
             this.listViewUserItems.UseCompatibleStateImageBehavior = false;
             this.listViewUserItems.View = System.Windows.Forms.View.Details;
             // 
-            // splitter1
-            // 
-            this.splitter1.Location = new System.Drawing.Point(124, 28);
-            this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(5, 442);
-            this.splitter1.TabIndex = 2;
-            this.splitter1.TabStop = false;
-            // 
-            // toolStripUsers
-            // 
-            this.toolStripUsers.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStripUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonNewUser});
-            this.toolStripUsers.Location = new System.Drawing.Point(3, 3);
-            this.toolStripUsers.Name = "toolStripUsers";
-            this.toolStripUsers.Size = new System.Drawing.Size(867, 25);
-            this.toolStripUsers.TabIndex = 0;
-            this.toolStripUsers.Text = "toolStrip2";
-            // 
-            // toolStripButtonNewUser
-            // 
-            this.toolStripButtonNewUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonNewUser.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNewUser.Image")));
-            this.toolStripButtonNewUser.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonNewUser.Name = "toolStripButtonNewUser";
-            this.toolStripButtonNewUser.Size = new System.Drawing.Size(109, 22);
-            this.toolStripButtonNewUser.Text = "Новый сотрудник";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 523);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(881, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // listViewUsers
-            // 
-            this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Left;
-            this.listViewUsers.Location = new System.Drawing.Point(3, 28);
-            this.listViewUsers.Name = "listViewUsers";
-            this.listViewUsers.Size = new System.Drawing.Size(121, 442);
-            this.listViewUsers.TabIndex = 4;
-            this.listViewUsers.UseCompatibleStateImageBehavior = false;
-            // 
-            // splitter2
-            // 
-            this.splitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter2.Location = new System.Drawing.Point(695, 28);
-            this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(5, 442);
-            this.splitter2.TabIndex = 2;
-            this.splitter2.TabStop = false;
-            // 
-            // panelItem
-            // 
-            this.panelItem.BackColor = System.Drawing.SystemColors.Control;
-            this.panelItem.Controls.Add(this.buttonSave);
-            this.panelItem.Controls.Add(this.textBoxDiscription);
-            this.panelItem.Controls.Add(this.labelDiscription);
-            this.panelItem.Controls.Add(this.labelDate);
-            this.panelItem.Controls.Add(this.dateTimePickerDate);
-            this.panelItem.Controls.Add(this.comboBoxUsers);
-            this.panelItem.Controls.Add(this.labelDep);
-            this.panelItem.Controls.Add(this.textBoxName);
-            this.panelItem.Controls.Add(this.labelName);
-            this.panelItem.Controls.Add(this.textBoxNum);
-            this.panelItem.Controls.Add(this.labelNum);
-            this.panelItem.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelItem.Location = new System.Drawing.Point(700, 28);
-            this.panelItem.Name = "panelItem";
-            this.panelItem.Size = new System.Drawing.Size(170, 442);
-            this.panelItem.TabIndex = 3;
-            // 
-            // panelUser
-            // 
-            this.panelUser.BackColor = System.Drawing.SystemColors.Control;
-            this.panelUser.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUser.Location = new System.Drawing.Point(129, 28);
-            this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(741, 100);
-            this.panelUser.TabIndex = 5;
-            // 
-            // splitter3
-            // 
-            this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter3.Location = new System.Drawing.Point(129, 128);
-            this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(741, 5);
-            this.splitter3.TabIndex = 6;
-            this.splitter3.TabStop = false;
-            // 
             // columnHeaderINum
             // 
             this.columnHeaderINum.Text = "Номер";
@@ -357,119 +417,72 @@
             this.columnHeaderIDate.Text = "Дата выдачи";
             this.columnHeaderIDate.Width = 91;
             // 
-            // columnHeaderDate
+            // splitter3
             // 
-            this.columnHeaderDate.Text = "Дата выдачи";
-            this.columnHeaderDate.Width = 82;
+            this.splitter3.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
+            this.splitter3.Location = new System.Drawing.Point(129, 128);
+            this.splitter3.Name = "splitter3";
+            this.splitter3.Size = new System.Drawing.Size(741, 5);
+            this.splitter3.TabIndex = 6;
+            this.splitter3.TabStop = false;
             // 
-            // labelNum
+            // panelUser
             // 
-            this.labelNum.AutoSize = true;
-            this.labelNum.Location = new System.Drawing.Point(6, 0);
-            this.labelNum.Name = "labelNum";
-            this.labelNum.Size = new System.Drawing.Size(114, 13);
-            this.labelNum.TabIndex = 0;
-            this.labelNum.Text = "Инвентарный номер:";
+            this.panelUser.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panelUser.Location = new System.Drawing.Point(129, 28);
+            this.panelUser.Name = "panelUser";
+            this.panelUser.Size = new System.Drawing.Size(741, 100);
+            this.panelUser.TabIndex = 5;
             // 
-            // textBoxNum
+            // splitter1
             // 
-            this.textBoxNum.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxNum.Enabled = false;
-            this.textBoxNum.Location = new System.Drawing.Point(6, 17);
-            this.textBoxNum.Name = "textBoxNum";
-            this.textBoxNum.Size = new System.Drawing.Size(159, 20);
-            this.textBoxNum.TabIndex = 1;
+            this.splitter1.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.splitter1.Location = new System.Drawing.Point(124, 28);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(5, 442);
+            this.splitter1.TabIndex = 2;
+            this.splitter1.TabStop = false;
             // 
-            // textBoxName
+            // listViewUsers
             // 
-            this.textBoxName.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxName.Enabled = false;
-            this.textBoxName.Location = new System.Drawing.Point(6, 56);
-            this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(159, 20);
-            this.textBoxName.TabIndex = 3;
+            this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listViewUsers.Location = new System.Drawing.Point(3, 28);
+            this.listViewUsers.Name = "listViewUsers";
+            this.listViewUsers.Size = new System.Drawing.Size(121, 442);
+            this.listViewUsers.TabIndex = 4;
+            this.listViewUsers.UseCompatibleStateImageBehavior = false;
             // 
-            // labelName
+            // toolStripUsers
             // 
-            this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(6, 40);
-            this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(86, 13);
-            this.labelName.TabIndex = 2;
-            this.labelName.Text = "Наименование:";
+            this.toolStripUsers.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.toolStripUsers.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonNewUser});
+            this.toolStripUsers.Location = new System.Drawing.Point(3, 3);
+            this.toolStripUsers.Name = "toolStripUsers";
+            this.toolStripUsers.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
+            this.toolStripUsers.Size = new System.Drawing.Size(867, 25);
+            this.toolStripUsers.TabIndex = 0;
+            this.toolStripUsers.Text = "toolStrip2";
             // 
-            // labelDep
+            // toolStripButtonNewUser
             // 
-            this.labelDep.AutoSize = true;
-            this.labelDep.Location = new System.Drawing.Point(6, 80);
-            this.labelDep.Name = "labelDep";
-            this.labelDep.Size = new System.Drawing.Size(63, 13);
-            this.labelDep.TabIndex = 4;
-            this.labelDep.Text = "Сотрудник:";
+            this.toolStripButtonNewUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonNewUser.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonNewUser.Image")));
+            this.toolStripButtonNewUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonNewUser.Name = "toolStripButtonNewUser";
+            this.toolStripButtonNewUser.Size = new System.Drawing.Size(109, 22);
+            this.toolStripButtonNewUser.Text = "Новый сотрудник";
             // 
-            // comboBoxUsers
+            // statusStrip1
             // 
-            this.comboBoxUsers.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.comboBoxUsers.Enabled = false;
-            this.comboBoxUsers.FormattingEnabled = true;
-            this.comboBoxUsers.Location = new System.Drawing.Point(6, 96);
-            this.comboBoxUsers.Name = "comboBoxUsers";
-            this.comboBoxUsers.Size = new System.Drawing.Size(159, 21);
-            this.comboBoxUsers.TabIndex = 5;
-            // 
-            // dateTimePickerDate
-            // 
-            this.dateTimePickerDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dateTimePickerDate.Enabled = false;
-            this.dateTimePickerDate.Location = new System.Drawing.Point(6, 136);
-            this.dateTimePickerDate.Name = "dateTimePickerDate";
-            this.dateTimePickerDate.Size = new System.Drawing.Size(159, 20);
-            this.dateTimePickerDate.TabIndex = 6;
-            // 
-            // labelDate
-            // 
-            this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(6, 120);
-            this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(76, 13);
-            this.labelDate.TabIndex = 7;
-            this.labelDate.Text = "Дата выдачи:";
-            // 
-            // labelDiscription
-            // 
-            this.labelDiscription.AutoSize = true;
-            this.labelDiscription.Location = new System.Drawing.Point(6, 159);
-            this.labelDiscription.Name = "labelDiscription";
-            this.labelDiscription.Size = new System.Drawing.Size(73, 13);
-            this.labelDiscription.TabIndex = 8;
-            this.labelDiscription.Text = "Примечание:";
-            // 
-            // textBoxDiscription
-            // 
-            this.textBoxDiscription.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.textBoxDiscription.Enabled = false;
-            this.textBoxDiscription.Location = new System.Drawing.Point(6, 175);
-            this.textBoxDiscription.Multiline = true;
-            this.textBoxDiscription.Name = "textBoxDiscription";
-            this.textBoxDiscription.Size = new System.Drawing.Size(159, 235);
-            this.textBoxDiscription.TabIndex = 9;
-            // 
-            // buttonSave
-            // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonSave.Enabled = false;
-            this.buttonSave.Location = new System.Drawing.Point(66, 416);
-            this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(99, 23);
-            this.buttonSave.TabIndex = 10;
-            this.buttonSave.Text = "Сохранить";
-            this.buttonSave.UseVisualStyleBackColor = true;
+            this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.statusStrip1.Location = new System.Drawing.Point(0, 523);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(881, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
             // 
             // FormMain
             // 
@@ -488,14 +501,14 @@
             this.tabControlMain.ResumeLayout(false);
             this.tabPageInventory.ResumeLayout(false);
             this.tabPageInventory.PerformLayout();
+            this.panelItem.ResumeLayout(false);
+            this.panelItem.PerformLayout();
             this.toolStripNewItem.ResumeLayout(false);
             this.toolStripNewItem.PerformLayout();
             this.tabPageUsers.ResumeLayout(false);
             this.tabPageUsers.PerformLayout();
             this.toolStripUsers.ResumeLayout(false);
             this.toolStripUsers.PerformLayout();
-            this.panelItem.ResumeLayout(false);
-            this.panelItem.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

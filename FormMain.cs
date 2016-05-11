@@ -11,6 +11,11 @@ namespace My_Inventory
 {
     public partial class FormMain : Form
     {
+        //Флаги изменений
+        bool ChangeUser;
+        bool ChangeDate;
+        bool ChangeDiscription;
+
         public FormMain()
         {
             InitializeComponent();
@@ -34,10 +39,7 @@ namespace My_Inventory
         {
             listViewInventory.Items.Clear();
             foreach (Item item in Data.Items)
-            {
-                string[] str = { item.Number, item.Name };
-                listViewInventory.Items.Add(new ListViewItem(str));
-            }
+                listViewInventory.Items.Add(item.GetListItem());
         }
 
         private void FormMain_Load(object sender, EventArgs e)
@@ -47,14 +49,15 @@ namespace My_Inventory
 
         private void toolStripButtonNewItem_Click(object sender, EventArgs e)
         {
-            Data.Items.Add(new Item("", ""));
-            string[] str = { "", "" };
-            listViewInventory.Items.Add(new ListViewItem(str));
+            Item item = new Item("", "", "", "", "");
+            Data.Items.Add(item);
+            listViewInventory.Items.Add(item.GetListItem());
             listViewInventory.Items[listViewInventory.Items.Count - 1].Selected = true;
         }
 
         private void listViewInventory_SelectedIndexChanged(object sender, EventArgs e)
         {
+            //В соответствии от того сколько строк выделено делаем активными нужные поля
             if (listViewInventory.SelectedIndices.Count == 0)
             {
                 textBoxNum.Text = "";
@@ -70,15 +73,17 @@ namespace My_Inventory
             }
             if (listViewInventory.SelectedIndices.Count == 1)
             {
-                textBoxNum.Text = "";
+                Item item = (Item)listViewInventory.Items[listViewInventory.SelectedIndices[0]].Tag;
+                textBoxNum.Text = item.Number;
                 textBoxNum.Enabled = true;
-                textBoxName.Text = "";
+                textBoxName.Text = item.Name;
                 textBoxName.Enabled = true;
-                comboBoxUsers.Text = "";
+                comboBoxUsers.Text = item.User;
                 comboBoxUsers.Enabled = true;
-                dateTimePickerDate.Text = "";
+                try { dateTimePickerDate.Text = item.Date; }
+                catch { dateTimePickerDate.Text = "01.01.1970"; };
                 dateTimePickerDate.Enabled = true;
-                textBoxDiscription.Text = "";
+                textBoxDiscription.Text = item.Discription;
                 textBoxDiscription.Enabled = true;
             }
             if (listViewInventory.SelectedIndices.Count > 1)
@@ -87,13 +92,73 @@ namespace My_Inventory
                 textBoxNum.Enabled = false;
                 textBoxName.Text = "Несколько позиций";
                 textBoxName.Enabled = false;
-                comboBoxUsers.Text = "Несколько";
+                comboBoxUsers.Text = "";
                 comboBoxUsers.Enabled = true;
                 dateTimePickerDate.Text = "";
                 dateTimePickerDate.Enabled = true;
                 textBoxDiscription.Text = "";
                 textBoxDiscription.Enabled = true;
             }
+            //Сбрасываем флаги изменений
+            ChangeUser = false;
+            ChangeDate = false;
+            ChangeDiscription = false;
+            buttonSave.Enabled = false;
+        }
+
+
+        private void textBoxNum_TextChanged(object sender, EventArgs e)
+        {
+            buttonSave.Enabled = true;
+        }
+
+        private void textBoxName_TextChanged(object sender, EventArgs e)
+        {
+            buttonSave.Enabled = true;
+        }
+
+        private void comboBoxUsers_TextChanged(object sender, EventArgs e)
+        {
+            ChangeUser = true;
+            buttonSave.Enabled = true;
+        }
+
+        private void dateTimePickerDate_ValueChanged(object sender, EventArgs e)
+        {
+            ChangeDate = true;
+            buttonSave.Enabled = true;
+        }
+
+        private void textBoxDiscription_TextChanged(object sender, EventArgs e)
+        {
+            ChangeDiscription = true;
+            buttonSave.Enabled = true;
+        }
+
+        //Кнопка сохранения параметров предметов
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            bool Many = listViewInventory.SelectedIndices.Count > 1;
+            foreach (ListViewItem lItem in listViewInventory.SelectedItems)
+            {
+                Item item = (Item)lItem.Tag;
+                if (Many)
+                {
+                    if (ChangeUser) item.User = comboBoxUsers.Text;
+                    if (ChangeDate) item.Date = dateTimePickerDate.Text;
+                    if (ChangeDiscription) item.Discription = textBoxDiscription.Text;
+                }
+                else
+                {
+                    item.Number = textBoxNum.Text;
+                    item.Name = textBoxName.Text;
+                    item.User = comboBoxUsers.Text;
+                    item.Date = dateTimePickerDate.Text;
+                    item.Discription = textBoxDiscription.Text;
+                }
+            }
+            DrawItems();
+            listViewInventory_SelectedIndexChanged(null, null);
         }
     }
 }
