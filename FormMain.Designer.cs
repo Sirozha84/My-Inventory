@@ -71,12 +71,18 @@
             this.toolStripUsers = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNewUser = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.labelUser = new System.Windows.Forms.Label();
+            this.textBoxUUser = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.columnHeaderUUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderUDep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
             this.panelItem.SuspendLayout();
             this.toolStripNewItem.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
+            this.panelUser.SuspendLayout();
             this.toolStripUsers.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -389,10 +395,11 @@
             this.columnHeaderIDiscription,
             this.columnHeaderIDate});
             this.listViewUserItems.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewUserItems.Enabled = false;
             this.listViewUserItems.GridLines = true;
-            this.listViewUserItems.Location = new System.Drawing.Point(129, 133);
+            this.listViewUserItems.Location = new System.Drawing.Point(237, 103);
             this.listViewUserItems.Name = "listViewUserItems";
-            this.listViewUserItems.Size = new System.Drawing.Size(741, 337);
+            this.listViewUserItems.Size = new System.Drawing.Size(633, 367);
             this.listViewUserItems.TabIndex = 3;
             this.listViewUserItems.UseCompatibleStateImageBehavior = false;
             this.listViewUserItems.View = System.Windows.Forms.View.Details;
@@ -421,24 +428,28 @@
             // 
             this.splitter3.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter3.Location = new System.Drawing.Point(129, 128);
+            this.splitter3.Enabled = false;
+            this.splitter3.Location = new System.Drawing.Point(237, 98);
             this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(741, 5);
+            this.splitter3.Size = new System.Drawing.Size(633, 5);
             this.splitter3.TabIndex = 6;
             this.splitter3.TabStop = false;
             // 
             // panelUser
             // 
+            this.panelUser.Controls.Add(this.label1);
+            this.panelUser.Controls.Add(this.textBoxUUser);
+            this.panelUser.Controls.Add(this.labelUser);
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUser.Location = new System.Drawing.Point(129, 28);
+            this.panelUser.Location = new System.Drawing.Point(237, 28);
             this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(741, 100);
+            this.panelUser.Size = new System.Drawing.Size(633, 70);
             this.panelUser.TabIndex = 5;
             // 
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.splitter1.Location = new System.Drawing.Point(124, 28);
+            this.splitter1.Location = new System.Drawing.Point(232, 28);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(5, 442);
             this.splitter1.TabIndex = 2;
@@ -446,12 +457,21 @@
             // 
             // listViewUsers
             // 
+            this.listViewUsers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderUUser,
+            this.columnHeaderUDep});
             this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Left;
+            this.listViewUsers.FullRowSelect = true;
+            this.listViewUsers.GridLines = true;
+            this.listViewUsers.HideSelection = false;
             this.listViewUsers.Location = new System.Drawing.Point(3, 28);
+            this.listViewUsers.MultiSelect = false;
             this.listViewUsers.Name = "listViewUsers";
-            this.listViewUsers.Size = new System.Drawing.Size(121, 442);
+            this.listViewUsers.Size = new System.Drawing.Size(229, 442);
             this.listViewUsers.TabIndex = 4;
             this.listViewUsers.UseCompatibleStateImageBehavior = false;
+            this.listViewUsers.View = System.Windows.Forms.View.Details;
+            this.listViewUsers.SelectedIndexChanged += new System.EventHandler(this.listViewUsers_SelectedIndexChanged);
             // 
             // toolStripUsers
             // 
@@ -474,6 +494,7 @@
             this.toolStripButtonNewUser.Name = "toolStripButtonNewUser";
             this.toolStripButtonNewUser.Size = new System.Drawing.Size(109, 22);
             this.toolStripButtonNewUser.Text = "Новый сотрудник";
+            this.toolStripButtonNewUser.Click += new System.EventHandler(this.toolStripButtonNewUser_Click);
             // 
             // statusStrip1
             // 
@@ -483,6 +504,42 @@
             this.statusStrip1.Size = new System.Drawing.Size(881, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // labelUser
+            // 
+            this.labelUser.AutoSize = true;
+            this.labelUser.Location = new System.Drawing.Point(6, 12);
+            this.labelUser.Name = "labelUser";
+            this.labelUser.Size = new System.Drawing.Size(87, 13);
+            this.labelUser.TabIndex = 0;
+            this.labelUser.Text = "Фамилия И. О.:";
+            // 
+            // textBoxUUser
+            // 
+            this.textBoxUUser.Enabled = false;
+            this.textBoxUUser.Location = new System.Drawing.Point(99, 9);
+            this.textBoxUUser.Name = "textBoxUUser";
+            this.textBoxUUser.Size = new System.Drawing.Size(124, 20);
+            this.textBoxUUser.TabIndex = 1;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 54);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(148, 13);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Прикреплённый инвентарь:";
+            // 
+            // columnHeaderUUser
+            // 
+            this.columnHeaderUUser.Text = "Сотрудник";
+            this.columnHeaderUUser.Width = 94;
+            // 
+            // columnHeaderUDep
+            // 
+            this.columnHeaderUDep.Text = "Подразделение";
+            this.columnHeaderUDep.Width = 100;
             // 
             // FormMain
             // 
@@ -507,6 +564,8 @@
             this.toolStripNewItem.PerformLayout();
             this.tabPageUsers.ResumeLayout(false);
             this.tabPageUsers.PerformLayout();
+            this.panelUser.ResumeLayout(false);
+            this.panelUser.PerformLayout();
             this.toolStripUsers.ResumeLayout(false);
             this.toolStripUsers.PerformLayout();
             this.ResumeLayout(false);
@@ -558,6 +617,11 @@
         private System.Windows.Forms.Label labelDiscription;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.TextBox textBoxDiscription;
+        private System.Windows.Forms.TextBox textBoxUUser;
+        private System.Windows.Forms.Label labelUser;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ColumnHeader columnHeaderUUser;
+        private System.Windows.Forms.ColumnHeader columnHeaderUDep;
     }
 }
 

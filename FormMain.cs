@@ -35,6 +35,24 @@ namespace My_Inventory
                 MessageBoxIcon.Information);
         }
 
+        private void FormMain_Load(object sender, EventArgs e)
+        {
+            DrawItems();
+            DrawUsers();
+        }
+
+        /// <summary>
+        /// Выделение только последнего элемента в списке ListView
+        /// </summary>
+        /// <param name="listView"></param>
+        void SelectOnliLastItem(ListView listView)
+        {
+            foreach (ListViewItem item in listView.SelectedItems)
+                item.Selected = false;
+            listView.Items[listView.Items.Count - 1].Selected = true;
+        }
+
+        #region Вкладка "Инвентарь"
         void DrawItems()
         {
             listViewInventory.Items.Clear();
@@ -42,17 +60,11 @@ namespace My_Inventory
                 listViewInventory.Items.Add(item.GetListItem());
         }
 
-        private void FormMain_Load(object sender, EventArgs e)
-        {
-            DrawItems();
-        }
-
         private void toolStripButtonNewItem_Click(object sender, EventArgs e)
         {
             Item item = new Item("", "", "", "", "");
             Data.Items.Add(item);
-            listViewInventory.Items.Add(item.GetListItem());
-            listViewInventory.Items[listViewInventory.Items.Count - 1].Selected = true;
+            SelectOnliLastItem(listViewInventory);
         }
 
         private void listViewInventory_SelectedIndexChanged(object sender, EventArgs e)
@@ -88,9 +100,9 @@ namespace My_Inventory
             }
             if (listViewInventory.SelectedIndices.Count > 1)
             {
-                textBoxNum.Text = "Несколько позиций";
+                textBoxNum.Text = "";
                 textBoxNum.Enabled = false;
-                textBoxName.Text = "Несколько позиций";
+                textBoxName.Text = "";
                 textBoxName.Enabled = false;
                 comboBoxUsers.Text = "";
                 comboBoxUsers.Enabled = true;
@@ -151,7 +163,7 @@ namespace My_Inventory
                 else
                 {
                     item.Number = textBoxNum.Text;
-                    item.Name = textBoxName.Text;
+                    item.Name = textBoxName.Text; 
                     item.User = comboBoxUsers.Text;
                     item.Date = dateTimePickerDate.Text;
                     item.Discription = textBoxDiscription.Text;
@@ -160,5 +172,48 @@ namespace My_Inventory
             DrawItems();
             listViewInventory_SelectedIndexChanged(null, null);
         }
+        #endregion
+
+        #region Вкладка "Сотрудники"
+        void DrawUsers()
+        {
+            listViewUsers.Items.Clear();
+            foreach (User user in Data.Users)
+                listViewUsers.Items.Add(user.GetListVievItem());
+        }
+
+        //Кнопка создания нового сотрудника
+        private void toolStripButtonNewUser_Click(object sender, EventArgs e)
+        {
+            User user = new User("", "");
+            Data.Users.Add(user);
+            listViewUsers.Items.Add(user.GetListVievItem());
+            SelectOnliLastItem(listViewUsers);
+        }
+
+        //Изменение выделения списка сотрудников
+        private void listViewUsers_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (listViewUsers.SelectedIndices.Count == 1)
+            {
+                User user = (User)listViewUsers.SelectedItems[0].Tag;
+                textBoxUUser.Enabled = true;
+                textBoxUUser.Text = user.Name;
+            }
+            else
+            {
+                textBoxUUser.Enabled = false;
+                textBoxUUser.Text = "";
+
+
+
+
+
+
+
+
+            }
+        }
+        #endregion
     }
 }

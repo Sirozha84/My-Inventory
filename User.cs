@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace My_Inventory
 {
@@ -14,6 +15,13 @@ namespace My_Inventory
         {
             this.Name = Name;
             this.Departament = Departament;
+        }
+
+        public ListViewItem GetListVievItem()
+        {
+            ListViewItem item = new ListViewItem(Name);
+            item.Tag = this;
+            return item;
         }
     }
 }
