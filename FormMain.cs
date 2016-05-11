@@ -194,25 +194,37 @@ namespace My_Inventory
         //Изменение выделения списка сотрудников
         private void listViewUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listViewUsers.SelectedIndices.Count == 1)
+            bool sel = listViewUsers.SelectedIndices.Count == 1;
+            listViewUserItems.Items.Clear();
+            if (sel)
             {
                 User user = (User)listViewUsers.SelectedItems[0].Tag;
-                textBoxUUser.Enabled = true;
                 textBoxUUser.Text = user.Name;
+                textBoxDepartament.Text = user.Departament;
+                Data.Items.FindAll(o => o.User == user.Name).ForEach(o =>
+                {
+                    listViewUserItems.Items.Add(o.GetListItemForUser());
+                });
             }
             else
             {
-                textBoxUUser.Enabled = false;
                 textBoxUUser.Text = "";
-
-
-
-
-
-
-
-
+                textBoxDepartament.Text = "";
             }
+            textBoxUUser.Enabled = sel;
+            textBoxDepartament.Enabled = sel;
+            buttonUSave.Enabled = sel;
+            listViewUserItems.Enabled = sel;
+        }
+        
+        //Кнопка сохранения сотрудника
+        private void buttonUSave_Click(object sender, EventArgs e)
+        {
+            User user = (User)listViewUsers.SelectedItems[0].Tag;
+            user.Name = textBoxUUser.Text;
+            user.Departament = textBoxDepartament.Text;
+            DrawUsers();
+            listViewUsers_SelectedIndexChanged(null, null);
         }
         #endregion
     }

@@ -19,7 +19,8 @@ namespace My_Inventory
 
         public ListViewItem GetListVievItem()
         {
-            ListViewItem item = new ListViewItem(Name);
+            string[] str = { Name, Departament };
+            ListViewItem item = new ListViewItem(str);
             item.Tag = this;
             return item;
         }

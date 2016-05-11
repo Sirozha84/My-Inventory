@@ -29,7 +29,23 @@ namespace My_Inventory
         /// <returns></returns>
         public ListViewItem GetListItem()
         {
-            string[] str = { Number, Name, User, "---", Date, Discription };
+            User user = Data.Users.Find(o => o.Name == User);
+            string dep = user == null ? "" : user.Departament;
+            string[] str = { Number, Name, User, dep, Date, Discription };
+            ListViewItem listItem = new ListViewItem(str);
+            listItem.Tag = this;
+            return listItem;
+        }
+
+        /// <summary>
+        /// Подготовка эдемента таблицы ListViewItem для списка предметов сотрудника
+        /// </summary>
+        /// <returns></returns>
+        public ListViewItem GetListItemForUser()
+        {
+            User user = Data.Users.Find(o => o.Name == User);
+            string dep = user == null ? "" : user.Departament;
+            string[] str = { Number, Name, Date, Discription };
             ListViewItem listItem = new ListViewItem(str);
             listItem.Tag = this;
             return listItem;
