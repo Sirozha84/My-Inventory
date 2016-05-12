@@ -12,9 +12,11 @@ namespace My_Inventory
     public partial class FormMain : Form
     {
         //Флаги изменений
+        bool ChangeNum;
         bool ChangeUser;
         bool ChangeDate;
         bool ChangeDiscription;
+        bool ChangeUserName;
 
         public FormMain()
         {
@@ -64,9 +66,12 @@ namespace My_Inventory
             listViewInventory_SelectedIndexChanged(null, null);
             listViewUsers_SelectedIndexChanged(null, null);
         }
+
         #region Вкладка "Инвентарь"
-        //Кнопка создания нового предмета
-        private void toolStripButtonNewItem_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Добавление нового предмета
+        /// </summary>
+        void NewItem()
         {
             int max = 1;
             foreach (Item itm in Data.Items)
@@ -81,6 +86,23 @@ namespace My_Inventory
             Data.Items.Add(item);
             DrawBase();
             SelectOnliLastItem(listViewInventory);
+        }
+
+        /// <summary>
+        /// Удаление предметов
+        /// </summary>
+        void DelItem()
+        {
+            string ask = "Уверены, что хотите удалить выделенный предмет?";
+            if (listViewInventory.SelectedIndices.Count > 1)
+                ask = "Уверены, что хотите удалить выделенные предметы (" +
+                    listViewInventory.SelectedIndices.Count + ")?";
+            if (MessageBox.Show(ask, "Удаление инвентаря", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                for (int i = 0; i < listViewInventory.SelectedItems.Count; i++)
+                    Data.Items.Remove((Item)listViewInventory.SelectedItems[i].Tag);
+                DrawBase();
+            }
         }
 
         private void listViewInventory_SelectedIndexChanged(object sender, EventArgs e)
@@ -128,15 +150,20 @@ namespace My_Inventory
                 textBoxDiscription.Enabled = true;
             }
             //Сбрасываем флаги изменений
+            ChangeNum = false;
             ChangeUser = false;
             ChangeDate = false;
             ChangeDiscription = false;
+            //Изменение доступностей кнопок
             buttonSave.Enabled = false;
+            bool sel = listViewInventory.SelectedIndices.Count > 0;
+            toolStripButtonDelItem.Enabled = sel;
+            toolStripMenuItemDel.Enabled = sel;
         }
-
 
         private void textBoxNum_TextChanged(object sender, EventArgs e)
         {
+            ChangeNum = true;
             buttonSave.Enabled = true;
         }
 
@@ -168,13 +195,11 @@ namespace My_Inventory
         {
             bool Many = listViewInventory.SelectedIndices.Count > 1;
             //Надо сделать проверку на то, нет ли такого номера уже в базе
-            if (!Many && Data.Items.Find(o => o.Number == textBoxNum.Text) != null)
+            if (!Many && ChangeNum && Data.Items.Find(o => o.Number == textBoxNum.Text) != null)
             {
                 MessageBox.Show("В базе уже есть предмет с таким номером");
                 return;
             }
-
-
             foreach (ListViewItem lItem in listViewInventory.SelectedItems)
             {
                 Item item = (Item)lItem.Tag;
@@ -195,18 +220,40 @@ namespace My_Inventory
             }
             DrawBase();
         }
+
+        private void toolStripButtonNewItem_Click(object sender, EventArgs e) { NewItem(); }
+        private void toolStripMenuItemNewItem_Click(object sender, EventArgs e) { NewItem(); }
+        private void toolStripButtonDelItem_Click(object sender, EventArgs e) { DelItem(); }
+        private void toolStripMenuItemDel_Click(object sender, EventArgs e) { DelItem(); }
         #endregion
 
         #region Вкладка "Сотрудники"
-
-
-        //Кнопка создания нового сотрудника
-        private void toolStripButtonNewUser_Click(object sender, EventArgs e)
+        /// <summary>
+        /// Новый сотрудник
+        /// </summary>
+        void NewUser()
         {
             User user = new User("", "");
             Data.Users.Add(user);
             listViewUsers.Items.Add(user.GetListVievItem());
             SelectOnliLastItem(listViewUsers);
+        }
+
+        /// <summary>
+        /// Удаление сотрудника
+        /// </summary>
+        void DelUser()
+        {
+            if (MessageBox.Show("Уверены, что хотите удалить выбранного сотрудника?",
+                "Удаление сотрудника", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+            User user = (User)listViewUsers.SelectedItems[0].Tag;
+            string name = user.Name;
+            Data.Users.Remove(user);
+            //А теперь пометим предметы, которые были прикреплены ничьими
+            foreach (Item item in Data.Items)
+                if (item.User == name) item.User = "";
+            DrawBase();
         }
 
         //Изменение выделения списка сотрудников
@@ -229,17 +276,22 @@ namespace My_Inventory
                 textBoxUUser.Text = "";
                 textBoxDepartament.Text = "";
             }
+            //Сброс флагов
+            ChangeUserName = false;
+            //Установка доступности кнопок
             textBoxUUser.Enabled = sel;
             textBoxDepartament.Enabled = sel;
             buttonUSave.Enabled = sel;
             listViewUserItems.Enabled = sel;
+            toolStripButtonDelUser.Enabled = sel;
+            ToolStripMenuItemDelUser.Enabled = sel;
         }
         
         //Кнопка сохранения сотрудника
         private void buttonUSave_Click(object sender, EventArgs e)
         {
             //Надо сделать проверку на то, нет ли такого имени уже
-            if (Data.Users.Find(o => o.Name == textBoxUUser.Text) != null)
+            if (ChangeUserName && Data.Users.Find(o => o.Name == textBoxUUser.Text) != null)
             {
                 MessageBox.Show("Сотрудник с такими Фамилией И. О. уже существует в базе.");
                 return;
@@ -253,6 +305,17 @@ namespace My_Inventory
                 if (item.User == oldName) item.User = user.Name;
             DrawBase();
         }
+
+        private void textBoxUUser_TextChanged(object sender, EventArgs e)
+        {
+            ChangeUserName = true;
+        }
+
+        private void toolStripButtonNewUser_Click(object sender, EventArgs e) { NewUser(); }
+        private void ToolStripMenuItemNewUser_Click(object sender, EventArgs e) { NewUser(); }
+        private void toolStripButtonDelUser_Click(object sender, EventArgs e) { DelUser(); }
+        private void ToolStripMenuItemDelUser_Click(object sender, EventArgs e) { DelUser(); }
         #endregion
+
     }
 }

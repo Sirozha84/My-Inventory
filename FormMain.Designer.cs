@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.файлToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,9 @@
             this.columnHeaderDep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDiscription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.contextMenuStripItems = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripMenuItemNewItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItemDel = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panelItem = new System.Windows.Forms.Panel();
             this.buttonSave = new System.Windows.Forms.Button();
@@ -58,6 +62,7 @@
             this.labelNum = new System.Windows.Forms.Label();
             this.toolStripNewItem = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNewItem = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonDelItem = new System.Windows.Forms.ToolStripButton();
             this.tabPageUsers = new System.Windows.Forms.TabPage();
             this.listViewUserItems = new System.Windows.Forms.ListView();
             this.columnHeaderINum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -78,15 +83,21 @@
             this.columnHeaderUDep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStripUsers = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNewUser = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonDelUser = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.contextMenuStripUsers = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.ToolStripMenuItemNewUser = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItemDelUser = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
+            this.contextMenuStripItems.SuspendLayout();
             this.panelItem.SuspendLayout();
             this.toolStripNewItem.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
             this.panelUser.SuspendLayout();
             this.toolStripUsers.SuspendLayout();
+            this.contextMenuStripUsers.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -165,6 +176,7 @@
             this.columnHeaderDep,
             this.columnHeaderDate,
             this.columnHeaderDiscription});
+            this.listViewInventory.ContextMenuStrip = this.contextMenuStripItems;
             this.listViewInventory.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewInventory.FullRowSelect = true;
             this.listViewInventory.GridLines = true;
@@ -206,6 +218,29 @@
             // 
             this.columnHeaderDiscription.Text = "Примечание";
             this.columnHeaderDiscription.Width = 102;
+            // 
+            // contextMenuStripItems
+            // 
+            this.contextMenuStripItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItemNewItem,
+            this.toolStripMenuItemDel});
+            this.contextMenuStripItems.Name = "contextMenuStripItems";
+            this.contextMenuStripItems.Size = new System.Drawing.Size(162, 48);
+            // 
+            // toolStripMenuItemNewItem
+            // 
+            this.toolStripMenuItemNewItem.Name = "toolStripMenuItemNewItem";
+            this.toolStripMenuItemNewItem.Size = new System.Drawing.Size(161, 22);
+            this.toolStripMenuItemNewItem.Text = "Новый предмет";
+            this.toolStripMenuItemNewItem.Click += new System.EventHandler(this.toolStripMenuItemNewItem_Click);
+            // 
+            // toolStripMenuItemDel
+            // 
+            this.toolStripMenuItemDel.Enabled = false;
+            this.toolStripMenuItemDel.Name = "toolStripMenuItemDel";
+            this.toolStripMenuItemDel.Size = new System.Drawing.Size(161, 22);
+            this.toolStripMenuItemDel.Text = "Удалить";
+            this.toolStripMenuItemDel.Click += new System.EventHandler(this.toolStripMenuItemDel_Click);
             // 
             // splitter2
             // 
@@ -357,7 +392,8 @@
             this.toolStripNewItem.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.toolStripNewItem.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripNewItem.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonNewItem});
+            this.toolStripButtonNewItem,
+            this.toolStripButtonDelItem});
             this.toolStripNewItem.Location = new System.Drawing.Point(3, 3);
             this.toolStripNewItem.Name = "toolStripNewItem";
             this.toolStripNewItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -372,7 +408,20 @@
             this.toolStripButtonNewItem.Name = "toolStripButtonNewItem";
             this.toolStripButtonNewItem.Size = new System.Drawing.Size(98, 22);
             this.toolStripButtonNewItem.Text = "Новый предмет";
+            this.toolStripButtonNewItem.ToolTipText = "Создать новый предмет";
             this.toolStripButtonNewItem.Click += new System.EventHandler(this.toolStripButtonNewItem_Click);
+            // 
+            // toolStripButtonDelItem
+            // 
+            this.toolStripButtonDelItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonDelItem.Enabled = false;
+            this.toolStripButtonDelItem.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDelItem.Image")));
+            this.toolStripButtonDelItem.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDelItem.Name = "toolStripButtonDelItem";
+            this.toolStripButtonDelItem.Size = new System.Drawing.Size(55, 22);
+            this.toolStripButtonDelItem.Text = "Удалить";
+            this.toolStripButtonDelItem.ToolTipText = "Удалить выбранные предметы";
+            this.toolStripButtonDelItem.Click += new System.EventHandler(this.toolStripButtonDelItem_Click);
             // 
             // tabPageUsers
             // 
@@ -498,6 +547,7 @@
             this.textBoxUUser.Name = "textBoxUUser";
             this.textBoxUUser.Size = new System.Drawing.Size(162, 20);
             this.textBoxUUser.TabIndex = 1;
+            this.textBoxUUser.TextChanged += new System.EventHandler(this.textBoxUUser_TextChanged);
             // 
             // labelUser
             // 
@@ -522,6 +572,7 @@
             this.listViewUsers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnHeaderUUser,
             this.columnHeaderUDep});
+            this.listViewUsers.ContextMenuStrip = this.contextMenuStripUsers;
             this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Left;
             this.listViewUsers.FullRowSelect = true;
             this.listViewUsers.GridLines = true;
@@ -550,7 +601,8 @@
             this.toolStripUsers.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.toolStripUsers.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripButtonNewUser});
+            this.toolStripButtonNewUser,
+            this.toolStripButtonDelUser});
             this.toolStripUsers.Location = new System.Drawing.Point(3, 3);
             this.toolStripUsers.Name = "toolStripUsers";
             this.toolStripUsers.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -566,7 +618,20 @@
             this.toolStripButtonNewUser.Name = "toolStripButtonNewUser";
             this.toolStripButtonNewUser.Size = new System.Drawing.Size(109, 22);
             this.toolStripButtonNewUser.Text = "Новый сотрудник";
+            this.toolStripButtonNewUser.ToolTipText = "Создать нового сотрудника";
             this.toolStripButtonNewUser.Click += new System.EventHandler(this.toolStripButtonNewUser_Click);
+            // 
+            // toolStripButtonDelUser
+            // 
+            this.toolStripButtonDelUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonDelUser.Enabled = false;
+            this.toolStripButtonDelUser.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDelUser.Image")));
+            this.toolStripButtonDelUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDelUser.Name = "toolStripButtonDelUser";
+            this.toolStripButtonDelUser.Size = new System.Drawing.Size(55, 22);
+            this.toolStripButtonDelUser.Text = "Удалить";
+            this.toolStripButtonDelUser.ToolTipText = "Удалить выбранного пользователя";
+            this.toolStripButtonDelUser.Click += new System.EventHandler(this.toolStripButtonDelUser_Click);
             // 
             // statusStrip1
             // 
@@ -576,6 +641,29 @@
             this.statusStrip1.Size = new System.Drawing.Size(841, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // contextMenuStripUsers
+            // 
+            this.contextMenuStripUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.ToolStripMenuItemNewUser,
+            this.ToolStripMenuItemDelUser});
+            this.contextMenuStripUsers.Name = "contextMenuStripUsers";
+            this.contextMenuStripUsers.Size = new System.Drawing.Size(173, 70);
+            // 
+            // ToolStripMenuItemNewUser
+            // 
+            this.ToolStripMenuItemNewUser.Name = "ToolStripMenuItemNewUser";
+            this.ToolStripMenuItemNewUser.Size = new System.Drawing.Size(172, 22);
+            this.ToolStripMenuItemNewUser.Text = "Новый сотрудник";
+            this.ToolStripMenuItemNewUser.Click += new System.EventHandler(this.ToolStripMenuItemNewUser_Click);
+            // 
+            // ToolStripMenuItemDelUser
+            // 
+            this.ToolStripMenuItemDelUser.Enabled = false;
+            this.ToolStripMenuItemDelUser.Name = "ToolStripMenuItemDelUser";
+            this.ToolStripMenuItemDelUser.Size = new System.Drawing.Size(172, 22);
+            this.ToolStripMenuItemDelUser.Text = "Удалить";
+            this.ToolStripMenuItemDelUser.Click += new System.EventHandler(this.ToolStripMenuItemDelUser_Click);
             // 
             // FormMain
             // 
@@ -594,6 +682,7 @@
             this.tabControlMain.ResumeLayout(false);
             this.tabPageInventory.ResumeLayout(false);
             this.tabPageInventory.PerformLayout();
+            this.contextMenuStripItems.ResumeLayout(false);
             this.panelItem.ResumeLayout(false);
             this.panelItem.PerformLayout();
             this.toolStripNewItem.ResumeLayout(false);
@@ -604,6 +693,7 @@
             this.panelUser.PerformLayout();
             this.toolStripUsers.ResumeLayout(false);
             this.toolStripUsers.PerformLayout();
+            this.contextMenuStripUsers.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -661,6 +751,14 @@
         private System.Windows.Forms.Button buttonUSave;
         private System.Windows.Forms.TextBox textBoxDepartament;
         private System.Windows.Forms.Label labelDepartament;
+        private System.Windows.Forms.ToolStripButton toolStripButtonDelItem;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripItems;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemNewItem;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItemDel;
+        private System.Windows.Forms.ToolStripButton toolStripButtonDelUser;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStripUsers;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemNewUser;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDelUser;
     }
 }
 
