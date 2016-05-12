@@ -62,8 +62,8 @@
             this.listViewUserItems = new System.Windows.Forms.ListView();
             this.columnHeaderINum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderIName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderIDiscription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderIDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderIDiscription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panelUser = new System.Windows.Forms.Panel();
             this.textBoxDepartament = new System.Windows.Forms.TextBox();
@@ -418,15 +418,15 @@
             this.columnHeaderIName.Text = "Наименование";
             this.columnHeaderIName.Width = 142;
             // 
-            // columnHeaderIDiscription
-            // 
-            this.columnHeaderIDiscription.Text = "Примечание";
-            this.columnHeaderIDiscription.Width = 134;
-            // 
             // columnHeaderIDate
             // 
             this.columnHeaderIDate.Text = "Дата выдачи";
             this.columnHeaderIDate.Width = 150;
+            // 
+            // columnHeaderIDiscription
+            // 
+            this.columnHeaderIDiscription.Text = "Примечание";
+            this.columnHeaderIDiscription.Width = 134;
             // 
             // splitter3
             // 
@@ -487,9 +487,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(148, 13);
+            this.label1.Size = new System.Drawing.Size(141, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Прикреплённый инвентарь:";
+            this.label1.Text = "Закреплённый инвентарь:";
             // 
             // textBoxUUser
             // 

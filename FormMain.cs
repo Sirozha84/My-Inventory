@@ -37,8 +37,7 @@ namespace My_Inventory
 
         private void FormMain_Load(object sender, EventArgs e)
         {
-            DrawItems();
-            DrawUsers();
+            DrawBase();
         }
 
         /// <summary>
@@ -51,19 +50,36 @@ namespace My_Inventory
                 item.Selected = false;
             listView.Items[listView.Items.Count - 1].Selected = true;
         }
-
-        #region Вкладка "Инвентарь"
-        void DrawItems()
+        void DrawBase()
         {
+            //Рисование инвентаря
             listViewInventory.Items.Clear();
             foreach (Item item in Data.Items)
                 listViewInventory.Items.Add(item.GetListItem());
+            //Рисование пользователей
+            listViewUsers.Items.Clear();
+            foreach (User user in Data.Users)
+                listViewUsers.Items.Add(user.GetListVievItem());
+            //Проверка выделений
+            listViewInventory_SelectedIndexChanged(null, null);
+            listViewUsers_SelectedIndexChanged(null, null);
         }
-
+        #region Вкладка "Инвентарь"
+        //Кнопка создания нового предмета
         private void toolStripButtonNewItem_Click(object sender, EventArgs e)
         {
-            Item item = new Item("", "", "", "", "");
+            int max = 1;
+            foreach (Item itm in Data.Items)
+            {
+                int c = 0;
+                try { c = Convert.ToInt32(itm.Number); } catch { }
+                if (c > max) max = c;
+            }
+            max++;
+
+            Item item = new Item(max.ToString(), "", "", "", "");
             Data.Items.Add(item);
+            DrawBase();
             SelectOnliLastItem(listViewInventory);
         }
 
@@ -151,6 +167,14 @@ namespace My_Inventory
         private void buttonSave_Click(object sender, EventArgs e)
         {
             bool Many = listViewInventory.SelectedIndices.Count > 1;
+            //Надо сделать проверку на то, нет ли такого номера уже в базе
+            if (!Many && Data.Items.Find(o => o.Number == textBoxNum.Text) != null)
+            {
+                MessageBox.Show("В базе уже есть предмет с таким номером");
+                return;
+            }
+
+
             foreach (ListViewItem lItem in listViewInventory.SelectedItems)
             {
                 Item item = (Item)lItem.Tag;
@@ -169,18 +193,12 @@ namespace My_Inventory
                     item.Discription = textBoxDiscription.Text;
                 }
             }
-            DrawItems();
-            listViewInventory_SelectedIndexChanged(null, null);
+            DrawBase();
         }
         #endregion
 
         #region Вкладка "Сотрудники"
-        void DrawUsers()
-        {
-            listViewUsers.Items.Clear();
-            foreach (User user in Data.Users)
-                listViewUsers.Items.Add(user.GetListVievItem());
-        }
+
 
         //Кнопка создания нового сотрудника
         private void toolStripButtonNewUser_Click(object sender, EventArgs e)
@@ -220,11 +238,20 @@ namespace My_Inventory
         //Кнопка сохранения сотрудника
         private void buttonUSave_Click(object sender, EventArgs e)
         {
+            //Надо сделать проверку на то, нет ли такого имени уже
+            if (Data.Users.Find(o => o.Name == textBoxUUser.Text) != null)
+            {
+                MessageBox.Show("Сотрудник с такими Фамилией И. О. уже существует в базе.");
+                return;
+            }
             User user = (User)listViewUsers.SelectedItems[0].Tag;
+            string oldName = user.Name;
             user.Name = textBoxUUser.Text;
             user.Departament = textBoxDepartament.Text;
-            DrawUsers();
-            listViewUsers_SelectedIndexChanged(null, null);
+            //Надо изменить записи в инвентаре при переименовании
+            foreach (Item item in Data.Items)
+                if (item.User == oldName) item.User = user.Name;
+            DrawBase();
         }
         #endregion
     }
