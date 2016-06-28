@@ -30,9 +30,9 @@ namespace My_Inventory
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Application.ProductName + "\nВерсия:" +
+            MessageBox.Show(Application.ProductName + "\nВерсия: " +
                 Application.ProductVersion + "\nАвтор: Сергей Гордеев\n" +
-                "Сайт автора: www.sg-software.ru",
+                "Сайт: www.sg-software.ru",
                 "О " + Application.ProductName, MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
         }
@@ -60,8 +60,12 @@ namespace My_Inventory
                 listViewInventory.Items.Add(item.GetListItem());
             //Рисование пользователей
             listViewUsers.Items.Clear();
+            comboBoxUsers.Items.Clear();
             foreach (User user in Data.Users)
+            {
                 listViewUsers.Items.Add(user.GetListVievItem());
+                comboBoxUsers.Items.Add(user.Name);
+            }
             //Проверка выделений
             listViewInventory_SelectedIndexChanged(null, null);
             listViewUsers_SelectedIndexChanged(null, null);
@@ -73,6 +77,7 @@ namespace My_Inventory
         /// </summary>
         void NewItem()
         {
+            //Ищем доступный номер
             int max = 1;
             foreach (Item itm in Data.Items)
             {
@@ -81,11 +86,12 @@ namespace My_Inventory
                 if (c > max) max = c;
             }
             max++;
-
+            //Создаём предмет
             Item item = new Item(max.ToString(), "", "", "", "");
             Data.Items.Add(item);
             DrawBase();
             SelectOnliLastItem(listViewInventory);
+            textBoxNum.Focus();
         }
 
         /// <summary>
@@ -219,6 +225,7 @@ namespace My_Inventory
                 }
             }
             DrawBase();
+            Data.Save();
         }
 
         private void toolStripButtonNewItem_Click(object sender, EventArgs e) { NewItem(); }
@@ -233,10 +240,11 @@ namespace My_Inventory
         /// </summary>
         void NewUser()
         {
-            User user = new User("", "");
+            User user = new User("Сотрудник", "");
             Data.Users.Add(user);
             listViewUsers.Items.Add(user.GetListVievItem());
             SelectOnliLastItem(listViewUsers);
+            textBoxUUser.Focus();
         }
 
         /// <summary>
@@ -304,6 +312,7 @@ namespace My_Inventory
             foreach (Item item in Data.Items)
                 if (item.User == oldName) item.User = user.Name;
             DrawBase();
+            Data.Save();
         }
 
         private void textBoxUUser_TextChanged(object sender, EventArgs e)
