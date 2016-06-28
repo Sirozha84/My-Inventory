@@ -77,5 +77,14 @@ namespace My_Inventory
                     MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /// <summary>
+        /// Сортировка базы
+        /// </summary>
+        public static void Sort()
+        {
+            Items.Sort();
+            Users.Sort();
+        }
     }
 }

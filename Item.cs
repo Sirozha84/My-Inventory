@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace My_Inventory
 {
-    class Item
+    class Item : IComparable
     {
         public string Number;
         public string Name;
@@ -49,6 +49,15 @@ namespace My_Inventory
             ListViewItem listItem = new ListViewItem(str);
             listItem.Tag = this;
             return listItem;
+        }
+
+        public int CompareTo(object obj)
+        {
+            try
+            {
+                return Convert.ToInt16(Number) > Convert.ToInt16(((Item)obj).Number) ? 1 : -1;
+            }
+            catch { return 1; }
         }
     }
 }

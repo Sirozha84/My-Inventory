@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace My_Inventory
 {
-    class User
+    class User : IComparable
     {
         public string Name;
         public string Departament;
@@ -23,6 +23,14 @@ namespace My_Inventory
             ListViewItem item = new ListViewItem(str);
             item.Tag = this;
             return item;
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (obj == null)
+                return 1;
+            else
+                return Name.CompareTo(((User)obj).Name);
         }
     }
 }

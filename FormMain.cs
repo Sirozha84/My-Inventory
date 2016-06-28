@@ -54,21 +54,28 @@ namespace My_Inventory
         }
         void DrawBase()
         {
+            Data.Sort();
             //Рисование инвентаря
             listViewInventory.Items.Clear();
             foreach (Item item in Data.Items)
                 listViewInventory.Items.Add(item.GetListItem());
-            //Рисование пользователей
+            //Рисование сотрудников, выпадающие списки сотрудников и подразделений! Очень круто!
             listViewUsers.Items.Clear();
             comboBoxUsers.Items.Clear();
+            List<string> Deps = new List<string>();
             foreach (User user in Data.Users)
             {
                 listViewUsers.Items.Add(user.GetListVievItem());
                 comboBoxUsers.Items.Add(user.Name);
+                if (Deps.Find(o => o == user.Departament) == null)
+                    Deps.Add(user.Departament);
             }
+            Deps.Sort();
+            comboBoxDepartament.DataSource = Deps;
             //Проверка выделений
             listViewInventory_SelectedIndexChanged(null, null);
             listViewUsers_SelectedIndexChanged(null, null);
+            buttonUSave.Enabled = false;
         }
 
         #region Вкладка "Инвентарь"
@@ -273,7 +280,7 @@ namespace My_Inventory
             {
                 User user = (User)listViewUsers.SelectedItems[0].Tag;
                 textBoxUUser.Text = user.Name;
-                textBoxDepartament.Text = user.Departament;
+                comboBoxDepartament.Text = user.Departament;
                 Data.Items.FindAll(o => o.User == user.Name).ForEach(o =>
                 {
                     listViewUserItems.Items.Add(o.GetListItemForUser());
@@ -282,19 +289,19 @@ namespace My_Inventory
             else
             {
                 textBoxUUser.Text = "";
-                textBoxDepartament.Text = "";
+                comboBoxDepartament.Text = "";
             }
             //Сброс флагов
             ChangeUserName = false;
             //Установка доступности кнопок
             textBoxUUser.Enabled = sel;
-            textBoxDepartament.Enabled = sel;
-            buttonUSave.Enabled = sel;
+            comboBoxDepartament.Enabled = sel;
             listViewUserItems.Enabled = sel;
             toolStripButtonDelUser.Enabled = sel;
             ToolStripMenuItemDelUser.Enabled = sel;
+            buttonUSave.Enabled = false;
         }
-        
+
         //Кнопка сохранения сотрудника
         private void buttonUSave_Click(object sender, EventArgs e)
         {
@@ -307,7 +314,7 @@ namespace My_Inventory
             User user = (User)listViewUsers.SelectedItems[0].Tag;
             string oldName = user.Name;
             user.Name = textBoxUUser.Text;
-            user.Departament = textBoxDepartament.Text;
+            user.Departament = comboBoxDepartament.Text;
             //Надо изменить записи в инвентаре при переименовании
             foreach (Item item in Data.Items)
                 if (item.User == oldName) item.User = user.Name;
@@ -318,6 +325,17 @@ namespace My_Inventory
         private void textBoxUUser_TextChanged(object sender, EventArgs e)
         {
             ChangeUserName = true;
+            buttonUSave.Enabled = true;
+        }
+
+        private void comboBoxDepartament_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            buttonUSave.Enabled = true;
+        }
+
+        private void comboBoxDepartament_TextChanged(object sender, EventArgs e)
+        {
+            buttonUSave.Enabled = true;
         }
 
         private void toolStripButtonNewUser_Click(object sender, EventArgs e) { NewUser(); }

@@ -71,7 +71,6 @@
             this.columnHeaderIDiscription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.splitter3 = new System.Windows.Forms.Splitter();
             this.panelUser = new System.Windows.Forms.Panel();
-            this.textBoxDepartament = new System.Windows.Forms.TextBox();
             this.labelDepartament = new System.Windows.Forms.Label();
             this.buttonUSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -88,6 +87,7 @@
             this.toolStripButtonNewUser = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelUser = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.comboBoxDepartament = new System.Windows.Forms.ComboBox();
             this.menuStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
@@ -490,7 +490,7 @@
             // 
             // panelUser
             // 
-            this.panelUser.Controls.Add(this.textBoxDepartament);
+            this.panelUser.Controls.Add(this.comboBoxDepartament);
             this.panelUser.Controls.Add(this.labelDepartament);
             this.panelUser.Controls.Add(this.buttonUSave);
             this.panelUser.Controls.Add(this.label1);
@@ -501,14 +501,6 @@
             this.panelUser.Name = "panelUser";
             this.panelUser.Size = new System.Drawing.Size(593, 70);
             this.panelUser.TabIndex = 5;
-            // 
-            // textBoxDepartament
-            // 
-            this.textBoxDepartament.Enabled = false;
-            this.textBoxDepartament.Location = new System.Drawing.Point(363, 9);
-            this.textBoxDepartament.Name = "textBoxDepartament";
-            this.textBoxDepartament.Size = new System.Drawing.Size(162, 20);
-            this.textBoxDepartament.TabIndex = 13;
             // 
             // labelDepartament
             // 
@@ -602,7 +594,7 @@
             this.ToolStripMenuItemNewUser,
             this.ToolStripMenuItemDelUser});
             this.contextMenuStripUsers.Name = "contextMenuStripUsers";
-            this.contextMenuStripUsers.Size = new System.Drawing.Size(173, 70);
+            this.contextMenuStripUsers.Size = new System.Drawing.Size(173, 48);
             // 
             // ToolStripMenuItemNewUser
             // 
@@ -664,6 +656,19 @@
             this.statusStrip1.Size = new System.Drawing.Size(841, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // comboBoxDepartament
+            // 
+            this.comboBoxDepartament.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxDepartament.Enabled = false;
+            this.comboBoxDepartament.FormattingEnabled = true;
+            this.comboBoxDepartament.Location = new System.Drawing.Point(363, 9);
+            this.comboBoxDepartament.Name = "comboBoxDepartament";
+            this.comboBoxDepartament.Size = new System.Drawing.Size(162, 21);
+            this.comboBoxDepartament.TabIndex = 13;
+            this.comboBoxDepartament.SelectedIndexChanged += new System.EventHandler(this.comboBoxDepartament_SelectedIndexChanged);
+            this.comboBoxDepartament.TextChanged += new System.EventHandler(this.comboBoxDepartament_TextChanged);
             // 
             // FormMain
             // 
@@ -750,7 +755,6 @@
         private System.Windows.Forms.ColumnHeader columnHeaderUUser;
         private System.Windows.Forms.ColumnHeader columnHeaderUDep;
         private System.Windows.Forms.Button buttonUSave;
-        private System.Windows.Forms.TextBox textBoxDepartament;
         private System.Windows.Forms.Label labelDepartament;
         private System.Windows.Forms.ToolStripButton toolStripButtonDelItem;
         private System.Windows.Forms.ContextMenuStrip contextMenuStripItems;
@@ -760,6 +764,7 @@
         private System.Windows.Forms.ContextMenuStrip contextMenuStripUsers;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemNewUser;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDelUser;
+        private System.Windows.Forms.ComboBox comboBoxDepartament;
     }
 }
 
