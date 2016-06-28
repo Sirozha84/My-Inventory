@@ -69,7 +69,6 @@
             this.columnHeaderIName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderIDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderIDiscription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.splitter3 = new System.Windows.Forms.Splitter();
             this.panelUser = new System.Windows.Forms.Panel();
             this.labelDepartament = new System.Windows.Forms.Label();
             this.buttonUSave = new System.Windows.Forms.Button();
@@ -183,7 +182,7 @@
             this.listViewInventory.HideSelection = false;
             this.listViewInventory.Location = new System.Drawing.Point(3, 28);
             this.listViewInventory.Name = "listViewInventory";
-            this.listViewInventory.Size = new System.Drawing.Size(652, 417);
+            this.listViewInventory.Size = new System.Drawing.Size(647, 417);
             this.listViewInventory.TabIndex = 0;
             this.listViewInventory.UseCompatibleStateImageBehavior = false;
             this.listViewInventory.View = System.Windows.Forms.View.Details;
@@ -248,7 +247,7 @@
             // 
             this.splitter2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter2.Location = new System.Drawing.Point(655, 28);
+            this.splitter2.Location = new System.Drawing.Point(650, 28);
             this.splitter2.Name = "splitter2";
             this.splitter2.Size = new System.Drawing.Size(5, 417);
             this.splitter2.TabIndex = 2;
@@ -269,16 +268,16 @@
             this.panelItem.Controls.Add(this.textBoxNum);
             this.panelItem.Controls.Add(this.labelNum);
             this.panelItem.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelItem.Location = new System.Drawing.Point(660, 28);
+            this.panelItem.Location = new System.Drawing.Point(655, 28);
             this.panelItem.Name = "panelItem";
-            this.panelItem.Size = new System.Drawing.Size(170, 417);
+            this.panelItem.Size = new System.Drawing.Size(175, 417);
             this.panelItem.TabIndex = 3;
             // 
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.Enabled = false;
-            this.buttonSave.Location = new System.Drawing.Point(78, 391);
+            this.buttonSave.Location = new System.Drawing.Point(83, 391);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(87, 23);
             this.buttonSave.TabIndex = 10;
@@ -295,7 +294,7 @@
             this.textBoxDiscription.Location = new System.Drawing.Point(6, 175);
             this.textBoxDiscription.Multiline = true;
             this.textBoxDiscription.Name = "textBoxDiscription";
-            this.textBoxDiscription.Size = new System.Drawing.Size(159, 210);
+            this.textBoxDiscription.Size = new System.Drawing.Size(164, 210);
             this.textBoxDiscription.TabIndex = 9;
             this.textBoxDiscription.TextChanged += new System.EventHandler(this.textBoxDiscription_TextChanged);
             // 
@@ -324,7 +323,7 @@
             this.dateTimePickerDate.Enabled = false;
             this.dateTimePickerDate.Location = new System.Drawing.Point(6, 136);
             this.dateTimePickerDate.Name = "dateTimePickerDate";
-            this.dateTimePickerDate.Size = new System.Drawing.Size(159, 20);
+            this.dateTimePickerDate.Size = new System.Drawing.Size(164, 20);
             this.dateTimePickerDate.TabIndex = 6;
             this.dateTimePickerDate.ValueChanged += new System.EventHandler(this.dateTimePickerDate_ValueChanged);
             // 
@@ -336,7 +335,7 @@
             this.comboBoxUsers.FormattingEnabled = true;
             this.comboBoxUsers.Location = new System.Drawing.Point(6, 96);
             this.comboBoxUsers.Name = "comboBoxUsers";
-            this.comboBoxUsers.Size = new System.Drawing.Size(159, 21);
+            this.comboBoxUsers.Size = new System.Drawing.Size(164, 21);
             this.comboBoxUsers.TabIndex = 5;
             this.comboBoxUsers.TextChanged += new System.EventHandler(this.comboBoxUsers_TextChanged);
             // 
@@ -356,7 +355,7 @@
             this.textBoxName.Enabled = false;
             this.textBoxName.Location = new System.Drawing.Point(6, 56);
             this.textBoxName.Name = "textBoxName";
-            this.textBoxName.Size = new System.Drawing.Size(159, 20);
+            this.textBoxName.Size = new System.Drawing.Size(164, 20);
             this.textBoxName.TabIndex = 3;
             this.textBoxName.TextChanged += new System.EventHandler(this.textBoxName_TextChanged);
             // 
@@ -376,7 +375,7 @@
             this.textBoxNum.Enabled = false;
             this.textBoxNum.Location = new System.Drawing.Point(6, 17);
             this.textBoxNum.Name = "textBoxNum";
-            this.textBoxNum.Size = new System.Drawing.Size(159, 20);
+            this.textBoxNum.Size = new System.Drawing.Size(164, 20);
             this.textBoxNum.TabIndex = 1;
             this.textBoxNum.TextChanged += new System.EventHandler(this.textBoxNum_TextChanged);
             // 
@@ -426,7 +425,6 @@
             // tabPageUsers
             // 
             this.tabPageUsers.Controls.Add(this.listViewUserItems);
-            this.tabPageUsers.Controls.Add(this.splitter3);
             this.tabPageUsers.Controls.Add(this.panelUser);
             this.tabPageUsers.Controls.Add(this.splitter1);
             this.tabPageUsers.Controls.Add(this.listViewUsers);
@@ -450,9 +448,9 @@
             this.listViewUserItems.Enabled = false;
             this.listViewUserItems.FullRowSelect = true;
             this.listViewUserItems.GridLines = true;
-            this.listViewUserItems.Location = new System.Drawing.Point(237, 103);
+            this.listViewUserItems.Location = new System.Drawing.Point(236, 98);
             this.listViewUserItems.Name = "listViewUserItems";
-            this.listViewUserItems.Size = new System.Drawing.Size(593, 342);
+            this.listViewUserItems.Size = new System.Drawing.Size(594, 347);
             this.listViewUserItems.TabIndex = 3;
             this.listViewUserItems.UseCompatibleStateImageBehavior = false;
             this.listViewUserItems.View = System.Windows.Forms.View.Details;
@@ -477,17 +475,6 @@
             this.columnHeaderIDiscription.Text = "Примечание";
             this.columnHeaderIDiscription.Width = 134;
             // 
-            // splitter3
-            // 
-            this.splitter3.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.splitter3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.splitter3.Enabled = false;
-            this.splitter3.Location = new System.Drawing.Point(237, 98);
-            this.splitter3.Name = "splitter3";
-            this.splitter3.Size = new System.Drawing.Size(593, 5);
-            this.splitter3.TabIndex = 6;
-            this.splitter3.TabStop = false;
-            // 
             // panelUser
             // 
             this.panelUser.Controls.Add(this.comboBoxDepartament);
@@ -497,9 +484,9 @@
             this.panelUser.Controls.Add(this.textBoxUUser);
             this.panelUser.Controls.Add(this.labelUser);
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUser.Location = new System.Drawing.Point(237, 28);
+            this.panelUser.Location = new System.Drawing.Point(236, 28);
             this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(593, 70);
+            this.panelUser.Size = new System.Drawing.Size(594, 70);
             this.panelUser.TabIndex = 5;
             // 
             // labelDepartament
@@ -515,7 +502,7 @@
             // 
             this.buttonUSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonUSave.Enabled = false;
-            this.buttonUSave.Location = new System.Drawing.Point(501, 41);
+            this.buttonUSave.Location = new System.Drawing.Point(502, 41);
             this.buttonUSave.Name = "buttonUSave";
             this.buttonUSave.Size = new System.Drawing.Size(87, 23);
             this.buttonUSave.TabIndex = 11;
@@ -528,9 +515,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(6, 54);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(141, 13);
+            this.label1.Size = new System.Drawing.Size(138, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Закреплённый инвентарь:";
+            this.label1.Text = "Закреплённый инвентарь";
             // 
             // textBoxUUser
             // 
@@ -553,7 +540,7 @@
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.splitter1.Location = new System.Drawing.Point(232, 28);
+            this.splitter1.Location = new System.Drawing.Point(231, 28);
             this.splitter1.Name = "splitter1";
             this.splitter1.Size = new System.Drawing.Size(5, 417);
             this.splitter1.TabIndex = 2;
@@ -572,7 +559,7 @@
             this.listViewUsers.Location = new System.Drawing.Point(3, 28);
             this.listViewUsers.MultiSelect = false;
             this.listViewUsers.Name = "listViewUsers";
-            this.listViewUsers.Size = new System.Drawing.Size(229, 417);
+            this.listViewUsers.Size = new System.Drawing.Size(228, 417);
             this.listViewUsers.TabIndex = 4;
             this.listViewUsers.UseCompatibleStateImageBehavior = false;
             this.listViewUsers.View = System.Windows.Forms.View.Details;
@@ -665,7 +652,7 @@
             this.comboBoxDepartament.FormattingEnabled = true;
             this.comboBoxDepartament.Location = new System.Drawing.Point(363, 9);
             this.comboBoxDepartament.Name = "comboBoxDepartament";
-            this.comboBoxDepartament.Size = new System.Drawing.Size(162, 21);
+            this.comboBoxDepartament.Size = new System.Drawing.Size(163, 21);
             this.comboBoxDepartament.TabIndex = 13;
             this.comboBoxDepartament.SelectedIndexChanged += new System.EventHandler(this.comboBoxDepartament_SelectedIndexChanged);
             this.comboBoxDepartament.TextChanged += new System.EventHandler(this.comboBoxDepartament_TextChanged);
@@ -682,6 +669,7 @@
             this.MainMenuStrip = this.menuStripMain;
             this.Name = "FormMain";
             this.Text = "My Inventory";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
@@ -731,7 +719,6 @@
         private System.Windows.Forms.ListView listViewUsers;
         private System.Windows.Forms.Splitter splitter2;
         private System.Windows.Forms.Panel panelItem;
-        private System.Windows.Forms.Splitter splitter3;
         private System.Windows.Forms.Panel panelUser;
         private System.Windows.Forms.ColumnHeader columnHeaderDate;
         private System.Windows.Forms.ColumnHeader columnHeaderINum;

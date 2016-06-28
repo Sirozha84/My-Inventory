@@ -37,9 +37,53 @@ namespace My_Inventory
                 MessageBoxIcon.Information);
         }
 
+        //Загрузка приложения
         private void FormMain_Load(object sender, EventArgs e)
         {
+            Left = Properties.Settings.Default.WindowLeft;
+            Top = Properties.Settings.Default.WindowTop;
+            Width = Properties.Settings.Default.WindowsWidth;
+            Height = Properties.Settings.Default.WindowsHeight;
+            panelItem.Width = Properties.Settings.Default.Splitter1;
+            listViewUsers.Width = Properties.Settings.Default.Splitter2;
+            listViewInventory.Columns[0].Width = Properties.Settings.Default.Column00;
+            listViewInventory.Columns[1].Width = Properties.Settings.Default.Column01;
+            listViewInventory.Columns[2].Width = Properties.Settings.Default.Column02;
+            listViewInventory.Columns[3].Width = Properties.Settings.Default.Column03;
+            listViewInventory.Columns[4].Width = Properties.Settings.Default.Column04;
+            listViewInventory.Columns[5].Width = Properties.Settings.Default.Column05;
+            listViewUsers.Columns[0].Width = Properties.Settings.Default.Column10;
+            listViewUsers.Columns[1].Width = Properties.Settings.Default.Column11;
+            listViewUserItems.Columns[0].Width = Properties.Settings.Default.Column20;
+            listViewUserItems.Columns[1].Width = Properties.Settings.Default.Column21;
+            listViewUserItems.Columns[2].Width = Properties.Settings.Default.Column22;
+            listViewUserItems.Columns[3].Width = Properties.Settings.Default.Column23;
+            Data.Load();
             DrawBase();
+        }
+
+        //Выгрузка приложения
+        private void FormMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Properties.Settings.Default.WindowLeft = Left;
+            Properties.Settings.Default.WindowTop = Top;
+            Properties.Settings.Default.WindowsWidth = Width;
+            Properties.Settings.Default.WindowsHeight = Height;
+            Properties.Settings.Default.Splitter1 = panelItem.Width;
+            Properties.Settings.Default.Splitter2 = listViewUsers.Width;
+            Properties.Settings.Default.Column00 = listViewInventory.Columns[0].Width;
+            Properties.Settings.Default.Column01 = listViewInventory.Columns[1].Width;
+            Properties.Settings.Default.Column02 = listViewInventory.Columns[2].Width;
+            Properties.Settings.Default.Column03 = listViewInventory.Columns[3].Width;
+            Properties.Settings.Default.Column04 = listViewInventory.Columns[4].Width;
+            Properties.Settings.Default.Column05 = listViewInventory.Columns[5].Width;
+            Properties.Settings.Default.Column10 = listViewUsers.Columns[0].Width;
+            Properties.Settings.Default.Column11 = listViewUsers.Columns[1].Width;
+            Properties.Settings.Default.Column20 = listViewUserItems.Columns[0].Width;
+            Properties.Settings.Default.Column21 = listViewUserItems.Columns[1].Width;
+            Properties.Settings.Default.Column22 = listViewUserItems.Columns[2].Width;
+            Properties.Settings.Default.Column23 = listViewUserItems.Columns[3].Width;
+            Properties.Settings.Default.Save();
         }
 
         /// <summary>
@@ -52,6 +96,10 @@ namespace My_Inventory
                 item.Selected = false;
             listView.Items[listView.Items.Count - 1].Selected = true;
         }
+
+        /// <summary>
+        /// Рисование данных на форме
+        /// </summary>
         void DrawBase()
         {
             Data.Sort();

@@ -15,9 +15,7 @@ namespace My_Inventory
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Data.Load();
             Application.Run(new FormMain());
-            Data.Save();
             Properties.Settings.Default.Save();
         }
     }
