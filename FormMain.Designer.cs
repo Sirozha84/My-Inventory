@@ -87,6 +87,12 @@
             this.toolStripButtonDelUser = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.comboBoxDepartament = new System.Windows.Forms.ComboBox();
+            this.textBoxModel = new System.Windows.Forms.TextBox();
+            this.labelModel = new System.Windows.Forms.Label();
+            this.textBoxSerial = new System.Windows.Forms.TextBox();
+            this.labelSerial = new System.Windows.Forms.Label();
+            this.comboBoxOrg = new System.Windows.Forms.ComboBox();
+            this.labelOrg = new System.Windows.Forms.Label();
             this.menuStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
@@ -106,7 +112,7 @@
             this.справкаToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(841, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(917, 24);
             this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStripMain";
             // 
@@ -149,7 +155,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(0, 24);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(841, 474);
+            this.tabControlMain.Size = new System.Drawing.Size(917, 482);
             this.tabControlMain.TabIndex = 1;
             // 
             // tabPageInventory
@@ -161,7 +167,7 @@
             this.tabPageInventory.Location = new System.Drawing.Point(4, 22);
             this.tabPageInventory.Name = "tabPageInventory";
             this.tabPageInventory.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageInventory.Size = new System.Drawing.Size(833, 448);
+            this.tabPageInventory.Size = new System.Drawing.Size(878, 474);
             this.tabPageInventory.TabIndex = 0;
             this.tabPageInventory.Text = "Инвентарь";
             this.tabPageInventory.UseVisualStyleBackColor = true;
@@ -182,7 +188,7 @@
             this.listViewInventory.HideSelection = false;
             this.listViewInventory.Location = new System.Drawing.Point(3, 28);
             this.listViewInventory.Name = "listViewInventory";
-            this.listViewInventory.Size = new System.Drawing.Size(647, 417);
+            this.listViewInventory.Size = new System.Drawing.Size(692, 443);
             this.listViewInventory.TabIndex = 0;
             this.listViewInventory.UseCompatibleStateImageBehavior = false;
             this.listViewInventory.View = System.Windows.Forms.View.Details;
@@ -247,15 +253,19 @@
             // 
             this.splitter2.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.splitter2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter2.Location = new System.Drawing.Point(650, 28);
+            this.splitter2.Location = new System.Drawing.Point(695, 28);
             this.splitter2.Name = "splitter2";
-            this.splitter2.Size = new System.Drawing.Size(5, 417);
+            this.splitter2.Size = new System.Drawing.Size(5, 443);
             this.splitter2.TabIndex = 2;
             this.splitter2.TabStop = false;
             // 
             // panelItem
             // 
             this.panelItem.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelItem.Controls.Add(this.textBoxSerial);
+            this.panelItem.Controls.Add(this.labelSerial);
+            this.panelItem.Controls.Add(this.textBoxModel);
+            this.panelItem.Controls.Add(this.labelModel);
             this.panelItem.Controls.Add(this.buttonSave);
             this.panelItem.Controls.Add(this.textBoxDiscription);
             this.panelItem.Controls.Add(this.labelDiscription);
@@ -268,16 +278,16 @@
             this.panelItem.Controls.Add(this.textBoxNum);
             this.panelItem.Controls.Add(this.labelNum);
             this.panelItem.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panelItem.Location = new System.Drawing.Point(655, 28);
+            this.panelItem.Location = new System.Drawing.Point(700, 28);
             this.panelItem.Name = "panelItem";
-            this.panelItem.Size = new System.Drawing.Size(175, 417);
+            this.panelItem.Size = new System.Drawing.Size(175, 443);
             this.panelItem.TabIndex = 3;
             // 
             // buttonSave
             // 
             this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.Enabled = false;
-            this.buttonSave.Location = new System.Drawing.Point(83, 391);
+            this.buttonSave.Location = new System.Drawing.Point(83, 417);
             this.buttonSave.Name = "buttonSave";
             this.buttonSave.Size = new System.Drawing.Size(87, 23);
             this.buttonSave.TabIndex = 10;
@@ -291,37 +301,36 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDiscription.Enabled = false;
-            this.textBoxDiscription.Location = new System.Drawing.Point(6, 175);
-            this.textBoxDiscription.Multiline = true;
+            this.textBoxDiscription.Location = new System.Drawing.Point(6, 252);
             this.textBoxDiscription.Name = "textBoxDiscription";
-            this.textBoxDiscription.Size = new System.Drawing.Size(164, 210);
+            this.textBoxDiscription.Size = new System.Drawing.Size(164, 20);
             this.textBoxDiscription.TabIndex = 9;
             this.textBoxDiscription.TextChanged += new System.EventHandler(this.textBoxDiscription_TextChanged);
             // 
             // labelDiscription
             // 
             this.labelDiscription.AutoSize = true;
-            this.labelDiscription.Location = new System.Drawing.Point(6, 159);
+            this.labelDiscription.Location = new System.Drawing.Point(6, 236);
             this.labelDiscription.Name = "labelDiscription";
-            this.labelDiscription.Size = new System.Drawing.Size(73, 13);
+            this.labelDiscription.Size = new System.Drawing.Size(70, 13);
             this.labelDiscription.TabIndex = 8;
-            this.labelDiscription.Text = "Примечание:";
+            this.labelDiscription.Text = "Примечание";
             // 
             // labelDate
             // 
             this.labelDate.AutoSize = true;
-            this.labelDate.Location = new System.Drawing.Point(6, 120);
+            this.labelDate.Location = new System.Drawing.Point(6, 197);
             this.labelDate.Name = "labelDate";
-            this.labelDate.Size = new System.Drawing.Size(76, 13);
+            this.labelDate.Size = new System.Drawing.Size(73, 13);
             this.labelDate.TabIndex = 7;
-            this.labelDate.Text = "Дата выдачи:";
+            this.labelDate.Text = "Дата выдачи";
             // 
             // dateTimePickerDate
             // 
             this.dateTimePickerDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerDate.Enabled = false;
-            this.dateTimePickerDate.Location = new System.Drawing.Point(6, 136);
+            this.dateTimePickerDate.Location = new System.Drawing.Point(6, 213);
             this.dateTimePickerDate.Name = "dateTimePickerDate";
             this.dateTimePickerDate.Size = new System.Drawing.Size(164, 20);
             this.dateTimePickerDate.TabIndex = 6;
@@ -333,7 +342,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxUsers.Enabled = false;
             this.comboBoxUsers.FormattingEnabled = true;
-            this.comboBoxUsers.Location = new System.Drawing.Point(6, 96);
+            this.comboBoxUsers.Location = new System.Drawing.Point(6, 173);
             this.comboBoxUsers.Name = "comboBoxUsers";
             this.comboBoxUsers.Size = new System.Drawing.Size(164, 21);
             this.comboBoxUsers.TabIndex = 5;
@@ -342,11 +351,11 @@
             // labelDep
             // 
             this.labelDep.AutoSize = true;
-            this.labelDep.Location = new System.Drawing.Point(6, 80);
+            this.labelDep.Location = new System.Drawing.Point(6, 157);
             this.labelDep.Name = "labelDep";
-            this.labelDep.Size = new System.Drawing.Size(63, 13);
+            this.labelDep.Size = new System.Drawing.Size(60, 13);
             this.labelDep.TabIndex = 4;
-            this.labelDep.Text = "Сотрудник:";
+            this.labelDep.Text = "Сотрудник";
             // 
             // textBoxName
             // 
@@ -364,9 +373,9 @@
             this.labelName.AutoSize = true;
             this.labelName.Location = new System.Drawing.Point(6, 40);
             this.labelName.Name = "labelName";
-            this.labelName.Size = new System.Drawing.Size(86, 13);
+            this.labelName.Size = new System.Drawing.Size(83, 13);
             this.labelName.TabIndex = 2;
-            this.labelName.Text = "Наименование:";
+            this.labelName.Text = "Наименование";
             // 
             // textBoxNum
             // 
@@ -384,9 +393,9 @@
             this.labelNum.AutoSize = true;
             this.labelNum.Location = new System.Drawing.Point(6, 0);
             this.labelNum.Name = "labelNum";
-            this.labelNum.Size = new System.Drawing.Size(114, 13);
+            this.labelNum.Size = new System.Drawing.Size(111, 13);
             this.labelNum.TabIndex = 0;
-            this.labelNum.Text = "Инвентарный номер:";
+            this.labelNum.Text = "Инвентарный номер";
             // 
             // toolStripNewItem
             // 
@@ -398,7 +407,7 @@
             this.toolStripNewItem.Location = new System.Drawing.Point(3, 3);
             this.toolStripNewItem.Name = "toolStripNewItem";
             this.toolStripNewItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripNewItem.Size = new System.Drawing.Size(827, 25);
+            this.toolStripNewItem.Size = new System.Drawing.Size(872, 25);
             this.toolStripNewItem.TabIndex = 1;
             // 
             // toolStripButtonNewItem
@@ -432,7 +441,7 @@
             this.tabPageUsers.Location = new System.Drawing.Point(4, 22);
             this.tabPageUsers.Name = "tabPageUsers";
             this.tabPageUsers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUsers.Size = new System.Drawing.Size(833, 448);
+            this.tabPageUsers.Size = new System.Drawing.Size(909, 456);
             this.tabPageUsers.TabIndex = 2;
             this.tabPageUsers.Text = "Сотрудники";
             this.tabPageUsers.UseVisualStyleBackColor = true;
@@ -448,9 +457,9 @@
             this.listViewUserItems.Enabled = false;
             this.listViewUserItems.FullRowSelect = true;
             this.listViewUserItems.GridLines = true;
-            this.listViewUserItems.Location = new System.Drawing.Point(236, 98);
+            this.listViewUserItems.Location = new System.Drawing.Point(241, 139);
             this.listViewUserItems.Name = "listViewUserItems";
-            this.listViewUserItems.Size = new System.Drawing.Size(594, 347);
+            this.listViewUserItems.Size = new System.Drawing.Size(665, 314);
             this.listViewUserItems.TabIndex = 3;
             this.listViewUserItems.UseCompatibleStateImageBehavior = false;
             this.listViewUserItems.View = System.Windows.Forms.View.Details;
@@ -477,6 +486,8 @@
             // 
             // panelUser
             // 
+            this.panelUser.Controls.Add(this.comboBoxOrg);
+            this.panelUser.Controls.Add(this.labelOrg);
             this.panelUser.Controls.Add(this.comboBoxDepartament);
             this.panelUser.Controls.Add(this.labelDepartament);
             this.panelUser.Controls.Add(this.buttonUSave);
@@ -484,25 +495,25 @@
             this.panelUser.Controls.Add(this.textBoxUUser);
             this.panelUser.Controls.Add(this.labelUser);
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panelUser.Location = new System.Drawing.Point(236, 28);
+            this.panelUser.Location = new System.Drawing.Point(241, 28);
             this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(594, 70);
+            this.panelUser.Size = new System.Drawing.Size(665, 111);
             this.panelUser.TabIndex = 5;
             // 
             // labelDepartament
             // 
             this.labelDepartament.AutoSize = true;
-            this.labelDepartament.Location = new System.Drawing.Point(267, 12);
+            this.labelDepartament.Location = new System.Drawing.Point(15, 59);
             this.labelDepartament.Name = "labelDepartament";
-            this.labelDepartament.Size = new System.Drawing.Size(90, 13);
+            this.labelDepartament.Size = new System.Drawing.Size(87, 13);
             this.labelDepartament.TabIndex = 12;
-            this.labelDepartament.Text = "Подразделение:";
+            this.labelDepartament.Text = "Подразделение";
             // 
             // buttonUSave
             // 
             this.buttonUSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonUSave.Enabled = false;
-            this.buttonUSave.Location = new System.Drawing.Point(502, 41);
+            this.buttonUSave.Location = new System.Drawing.Point(573, 82);
             this.buttonUSave.Name = "buttonUSave";
             this.buttonUSave.Size = new System.Drawing.Size(87, 23);
             this.buttonUSave.TabIndex = 11;
@@ -512,8 +523,9 @@
             // 
             // label1
             // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 54);
+            this.label1.Location = new System.Drawing.Point(6, 92);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 13);
             this.label1.TabIndex = 2;
@@ -522,27 +534,27 @@
             // textBoxUUser
             // 
             this.textBoxUUser.Enabled = false;
-            this.textBoxUUser.Location = new System.Drawing.Point(99, 9);
+            this.textBoxUUser.Location = new System.Drawing.Point(111, 3);
             this.textBoxUUser.Name = "textBoxUUser";
-            this.textBoxUUser.Size = new System.Drawing.Size(162, 20);
+            this.textBoxUUser.Size = new System.Drawing.Size(228, 20);
             this.textBoxUUser.TabIndex = 1;
             this.textBoxUUser.TextChanged += new System.EventHandler(this.textBoxUUser_TextChanged);
             // 
             // labelUser
             // 
             this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(6, 12);
+            this.labelUser.Location = new System.Drawing.Point(18, 6);
             this.labelUser.Name = "labelUser";
-            this.labelUser.Size = new System.Drawing.Size(87, 13);
+            this.labelUser.Size = new System.Drawing.Size(84, 13);
             this.labelUser.TabIndex = 0;
-            this.labelUser.Text = "Фамилия И. О.:";
+            this.labelUser.Text = "Фамилия И. О.";
             // 
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.SystemColors.ControlLightLight;
-            this.splitter1.Location = new System.Drawing.Point(231, 28);
+            this.splitter1.Location = new System.Drawing.Point(236, 28);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(5, 417);
+            this.splitter1.Size = new System.Drawing.Size(5, 425);
             this.splitter1.TabIndex = 2;
             this.splitter1.TabStop = false;
             // 
@@ -559,7 +571,7 @@
             this.listViewUsers.Location = new System.Drawing.Point(3, 28);
             this.listViewUsers.MultiSelect = false;
             this.listViewUsers.Name = "listViewUsers";
-            this.listViewUsers.Size = new System.Drawing.Size(228, 417);
+            this.listViewUsers.Size = new System.Drawing.Size(233, 425);
             this.listViewUsers.TabIndex = 4;
             this.listViewUsers.UseCompatibleStateImageBehavior = false;
             this.listViewUsers.View = System.Windows.Forms.View.Details;
@@ -610,7 +622,7 @@
             this.toolStripUsers.Location = new System.Drawing.Point(3, 3);
             this.toolStripUsers.Name = "toolStripUsers";
             this.toolStripUsers.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripUsers.Size = new System.Drawing.Size(827, 25);
+            this.toolStripUsers.Size = new System.Drawing.Size(903, 25);
             this.toolStripUsers.TabIndex = 0;
             this.toolStripUsers.Text = "toolStrip2";
             // 
@@ -638,35 +650,94 @@
             // statusStrip1
             // 
             this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.statusStrip1.Location = new System.Drawing.Point(0, 498);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 506);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(841, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(917, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // comboBoxDepartament
             // 
-            this.comboBoxDepartament.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.comboBoxDepartament.Enabled = false;
             this.comboBoxDepartament.FormattingEnabled = true;
-            this.comboBoxDepartament.Location = new System.Drawing.Point(363, 9);
+            this.comboBoxDepartament.Location = new System.Drawing.Point(111, 56);
             this.comboBoxDepartament.Name = "comboBoxDepartament";
-            this.comboBoxDepartament.Size = new System.Drawing.Size(163, 21);
+            this.comboBoxDepartament.Size = new System.Drawing.Size(228, 21);
             this.comboBoxDepartament.TabIndex = 13;
             this.comboBoxDepartament.SelectedIndexChanged += new System.EventHandler(this.comboBoxDepartament_SelectedIndexChanged);
             this.comboBoxDepartament.TextChanged += new System.EventHandler(this.comboBoxDepartament_TextChanged);
+            // 
+            // textBoxModel
+            // 
+            this.textBoxModel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxModel.Enabled = false;
+            this.textBoxModel.Location = new System.Drawing.Point(6, 95);
+            this.textBoxModel.Name = "textBoxModel";
+            this.textBoxModel.Size = new System.Drawing.Size(164, 20);
+            this.textBoxModel.TabIndex = 12;
+            this.textBoxModel.TextChanged += new System.EventHandler(this.textBoxModel_TextChanged);
+            // 
+            // labelModel
+            // 
+            this.labelModel.AutoSize = true;
+            this.labelModel.Location = new System.Drawing.Point(6, 79);
+            this.labelModel.Name = "labelModel";
+            this.labelModel.Size = new System.Drawing.Size(46, 13);
+            this.labelModel.TabIndex = 11;
+            this.labelModel.Text = "Модель";
+            // 
+            // textBoxSerial
+            // 
+            this.textBoxSerial.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.textBoxSerial.Enabled = false;
+            this.textBoxSerial.Location = new System.Drawing.Point(6, 134);
+            this.textBoxSerial.Name = "textBoxSerial";
+            this.textBoxSerial.Size = new System.Drawing.Size(164, 20);
+            this.textBoxSerial.TabIndex = 14;
+            this.textBoxSerial.TextChanged += new System.EventHandler(this.textBoxSerial_TextChanged);
+            // 
+            // labelSerial
+            // 
+            this.labelSerial.AutoSize = true;
+            this.labelSerial.Location = new System.Drawing.Point(6, 118);
+            this.labelSerial.Name = "labelSerial";
+            this.labelSerial.Size = new System.Drawing.Size(93, 13);
+            this.labelSerial.TabIndex = 13;
+            this.labelSerial.Text = "Серийный номер";
+            // 
+            // comboBoxOrg
+            // 
+            this.comboBoxOrg.Enabled = false;
+            this.comboBoxOrg.FormattingEnabled = true;
+            this.comboBoxOrg.Location = new System.Drawing.Point(111, 29);
+            this.comboBoxOrg.Name = "comboBoxOrg";
+            this.comboBoxOrg.Size = new System.Drawing.Size(228, 21);
+            this.comboBoxOrg.TabIndex = 15;
+            this.comboBoxOrg.SelectedIndexChanged += new System.EventHandler(this.comboBoxOrg_SelectedIndexChanged);
+            this.comboBoxOrg.TextChanged += new System.EventHandler(this.comboBoxOrg_TextChanged);
+            // 
+            // labelOrg
+            // 
+            this.labelOrg.AutoSize = true;
+            this.labelOrg.Location = new System.Drawing.Point(31, 32);
+            this.labelOrg.Name = "labelOrg";
+            this.labelOrg.Size = new System.Drawing.Size(74, 13);
+            this.labelOrg.TabIndex = 14;
+            this.labelOrg.Text = "Организация";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(841, 520);
+            this.ClientSize = new System.Drawing.Size(917, 528);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.menuStripMain);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
+            this.MinimumSize = new System.Drawing.Size(600, 450);
             this.Name = "FormMain";
             this.Text = "My Inventory";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
@@ -752,6 +823,12 @@
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemNewUser;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemDelUser;
         private System.Windows.Forms.ComboBox comboBoxDepartament;
+        private System.Windows.Forms.TextBox textBoxSerial;
+        private System.Windows.Forms.Label labelSerial;
+        private System.Windows.Forms.TextBox textBoxModel;
+        private System.Windows.Forms.Label labelModel;
+        private System.Windows.Forms.ComboBox comboBoxOrg;
+        private System.Windows.Forms.Label labelOrg;
     }
 }
 

@@ -9,11 +9,13 @@ namespace My_Inventory
     class User : IComparable
     {
         public string Name;
+        public string Organisation;
         public string Departament;
 
-        public User(string Name, string Departament)
+        public User(string Name, string Organisation, string Departament)
         {
             this.Name = Name;
+            this.Organisation = Organisation;
             this.Departament = Departament;
         }
 

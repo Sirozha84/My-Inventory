@@ -27,13 +27,13 @@ namespace My_Inventory
                     file.ReadLine();
                     int c = Convert.ToInt32(file.ReadLine());
                     for (int i = 0; i < c; i++)
-                        Items.Add(new Item(file.ReadLine(), file.ReadLine(),
-                            file.ReadLine(), file.ReadLine(), file.ReadLine()));
+                        Items.Add(new Item(file.ReadLine(), file.ReadLine(), file.ReadLine(),
+                            file.ReadLine(), file.ReadLine(), file.ReadLine(), file.ReadLine()));
                     //Загрузка пользователей
                     file.ReadLine();
                     c = Convert.ToInt32(file.ReadLine());
                     for (int i = 0; i < c; i++)
-                        Users.Add(new User(file.ReadLine(), file.ReadLine()));
+                        Users.Add(new User(file.ReadLine(), file.ReadLine(), file.ReadLine()));
                 }
             }
             catch
@@ -58,6 +58,8 @@ namespace My_Inventory
                     {
                         file.WriteLine(item.Number);
                         file.WriteLine(item.Name);
+                        file.WriteLine(item.Model);
+                        file.WriteLine(item.Serial);
                         file.WriteLine(item.User);
                         file.WriteLine(item.Date);
                         file.WriteLine(item.Discription);
@@ -67,6 +69,7 @@ namespace My_Inventory
                     foreach (User user in Users)
                     {
                         file.WriteLine(user.Name);
+                        file.WriteLine(user.Organisation);
                         file.WriteLine(user.Departament);
                     }
                 }

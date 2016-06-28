@@ -10,14 +10,19 @@ namespace My_Inventory
     {
         public string Number;
         public string Name;
+        public string Model;
+        public string Serial;
         public string User;
         public string Date;
         public string Discription;
 
-        public Item(string Number, string Name, string User, string Date, string Discription)
+        public Item(string Number, string Name, string Model, string Serial, string User,
+            string Date, string Discription)
         {
             this.Number = Number;
             this.Name = Name;
+            this.Model = Model;
+
             this.User = User;
             this.Date = Date;
             this.Discription = Discription;

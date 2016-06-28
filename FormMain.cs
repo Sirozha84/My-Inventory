@@ -110,15 +110,19 @@ namespace My_Inventory
             //Рисование сотрудников, выпадающие списки сотрудников и подразделений! Очень круто!
             listViewUsers.Items.Clear();
             comboBoxUsers.Items.Clear();
+            List<string> Orgs = new List<string>();
             List<string> Deps = new List<string>();
             foreach (User user in Data.Users)
             {
                 listViewUsers.Items.Add(user.GetListVievItem());
                 comboBoxUsers.Items.Add(user.Name);
-                if (Deps.Find(o => o == user.Departament) == null)
+                if (user.Organisation != "" && Orgs.Find(o => o == user.Organisation) == null)
+                    Orgs.Add(user.Organisation);
+                if (user.Departament != "" && Deps.Find(o => o == user.Departament) == null)
                     Deps.Add(user.Departament);
             }
             Deps.Sort();
+            comboBoxOrg.DataSource = Orgs;
             comboBoxDepartament.DataSource = Deps;
             //Проверка выделений
             listViewInventory_SelectedIndexChanged(null, null);
@@ -142,7 +146,7 @@ namespace My_Inventory
             }
             max++;
             //Создаём предмет
-            Item item = new Item(max.ToString(), "", "", "", "");
+            Item item = new Item(max.ToString(), "", "", "", "", "", "");
             Data.Items.Add(item);
             DrawBase();
             SelectOnliLastItem(listViewInventory);
@@ -175,6 +179,10 @@ namespace My_Inventory
                 textBoxNum.Enabled = false;
                 textBoxName.Text = "";
                 textBoxName.Enabled = false;
+                textBoxModel.Text = "";
+                textBoxModel.Enabled = false;
+                textBoxSerial.Text = "";
+                textBoxSerial.Enabled = false;
                 comboBoxUsers.Text = "";
                 comboBoxUsers.Enabled = false;
                 dateTimePickerDate.Text = "";
@@ -189,6 +197,10 @@ namespace My_Inventory
                 textBoxNum.Enabled = true;
                 textBoxName.Text = item.Name;
                 textBoxName.Enabled = true;
+                textBoxModel.Text = item.Model;
+                textBoxModel.Enabled = true;
+                textBoxSerial.Text = item.Serial;
+                textBoxSerial.Enabled = true;
                 comboBoxUsers.Text = item.User;
                 comboBoxUsers.Enabled = true;
                 try { dateTimePickerDate.Text = item.Date; }
@@ -203,6 +215,10 @@ namespace My_Inventory
                 textBoxNum.Enabled = false;
                 textBoxName.Text = "";
                 textBoxName.Enabled = false;
+                textBoxModel.Text = "";
+                textBoxModel.Enabled = false;
+                textBoxSerial.Text = "";
+                textBoxSerial.Enabled = false;
                 comboBoxUsers.Text = "";
                 comboBoxUsers.Enabled = true;
                 dateTimePickerDate.Text = "";
@@ -228,10 +244,9 @@ namespace My_Inventory
             buttonSave.Enabled = true;
         }
 
-        private void textBoxName_TextChanged(object sender, EventArgs e)
-        {
-            buttonSave.Enabled = true;
-        }
+        private void textBoxName_TextChanged(object sender, EventArgs e) { buttonSave.Enabled = true; }
+        private void textBoxModel_TextChanged(object sender, EventArgs e) { buttonSave.Enabled = true; }
+        private void textBoxSerial_TextChanged(object sender, EventArgs e) { buttonSave.Enabled = true; }
 
         private void comboBoxUsers_TextChanged(object sender, EventArgs e)
         {
@@ -273,7 +288,9 @@ namespace My_Inventory
                 else
                 {
                     item.Number = textBoxNum.Text;
-                    item.Name = textBoxName.Text; 
+                    item.Name = textBoxName.Text;
+                    item.Model = textBoxModel.Text;
+                    item.Serial = textBoxSerial.Text;
                     item.User = comboBoxUsers.Text;
                     item.Date = dateTimePickerDate.Text;
                     item.Discription = textBoxDiscription.Text;
@@ -295,7 +312,7 @@ namespace My_Inventory
         /// </summary>
         void NewUser()
         {
-            User user = new User("Сотрудник", "");
+            User user = new User("Сотрудник", "", "");
             Data.Users.Add(user);
             listViewUsers.Items.Add(user.GetListVievItem());
             SelectOnliLastItem(listViewUsers);
@@ -326,9 +343,12 @@ namespace My_Inventory
             listViewUserItems.Items.Clear();
             if (sel)
             {
+                //Заполнение списка прикреплённого инвентаря
                 User user = (User)listViewUsers.SelectedItems[0].Tag;
                 textBoxUUser.Text = user.Name;
+                comboBoxOrg.Text = user.Organisation;
                 comboBoxDepartament.Text = user.Departament;
+                //comboBoxOrg.Text = user;
                 Data.Items.FindAll(o => o.User == user.Name).ForEach(o =>
                 {
                     listViewUserItems.Items.Add(o.GetListItemForUser());
@@ -338,12 +358,14 @@ namespace My_Inventory
             {
                 textBoxUUser.Text = "";
                 comboBoxDepartament.Text = "";
+                comboBoxOrg.Text = "";
             }
             //Сброс флагов
             ChangeUserName = false;
             //Установка доступности кнопок
             textBoxUUser.Enabled = sel;
             comboBoxDepartament.Enabled = sel;
+            comboBoxOrg.Enabled = sel;
             listViewUserItems.Enabled = sel;
             toolStripButtonDelUser.Enabled = sel;
             ToolStripMenuItemDelUser.Enabled = sel;
@@ -362,6 +384,7 @@ namespace My_Inventory
             User user = (User)listViewUsers.SelectedItems[0].Tag;
             string oldName = user.Name;
             user.Name = textBoxUUser.Text;
+            user.Organisation = comboBoxOrg.Text;
             user.Departament = comboBoxDepartament.Text;
             //Надо изменить записи в инвентаре при переименовании
             foreach (Item item in Data.Items)
@@ -376,15 +399,10 @@ namespace My_Inventory
             buttonUSave.Enabled = true;
         }
 
-        private void comboBoxDepartament_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            buttonUSave.Enabled = true;
-        }
-
-        private void comboBoxDepartament_TextChanged(object sender, EventArgs e)
-        {
-            buttonUSave.Enabled = true;
-        }
+        private void comboBoxDepartament_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
+        private void comboBoxDepartament_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
+        private void comboBoxOrg_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
+        private void comboBoxOrg_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
 
         private void toolStripButtonNewUser_Click(object sender, EventArgs e) { NewUser(); }
         private void ToolStripMenuItemNewUser_Click(object sender, EventArgs e) { NewUser(); }
