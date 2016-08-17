@@ -125,6 +125,7 @@ namespace My_Inventory
                 if (user.Departament != "" && Deps.Find(o => o == user.Departament) == null)
                     Deps.Add(user.Departament);
             }
+            Posts.Sort();
             Orgs.Sort();
             Deps.Sort();
             comboBoxPost.DataSource = Posts;
@@ -142,6 +143,7 @@ namespace My_Inventory
         /// </summary>
         void NewItem()
         {
+            tabControlMain.SelectedIndex = 0;
             //Ищем доступный номер
             int max = 1;
             foreach (Item itm in Data.Items)
@@ -242,6 +244,7 @@ namespace My_Inventory
             bool sel = listViewInventory.SelectedIndices.Count > 0;
             toolStripButtonDelItem.Enabled = sel;
             toolStripMenuItemDel.Enabled = sel;
+            удалитьToolStripMenuItem.Enabled = sel;
         }
 
         private void textBoxNum_TextChanged(object sender, EventArgs e)
@@ -310,6 +313,7 @@ namespace My_Inventory
         private void toolStripMenuItemNewItem_Click(object sender, EventArgs e) { NewItem(); }
         private void toolStripButtonDelItem_Click(object sender, EventArgs e) { DelItem(); }
         private void toolStripMenuItemDel_Click(object sender, EventArgs e) { DelItem(); }
+        private void новыйПредметToolStripMenuItem_Click(object sender, EventArgs e) { NewItem(); }
         #endregion
 
         #region Вкладка "Сотрудники"
@@ -318,6 +322,7 @@ namespace My_Inventory
         /// </summary>
         void NewUser()
         {
+            tabControlMain.SelectedIndex = 1;
             User user = new User("Сотрудник", "", "", "");
             Data.Users.Add(user);
             listViewUsers.Items.Add(user.GetListVievItem());
@@ -378,6 +383,7 @@ namespace My_Inventory
             listViewUserItems.Enabled = sel;
             toolStripButtonDelUser.Enabled = sel;
             ToolStripMenuItemDelUser.Enabled = sel;
+            удалитьToolStripMenuItem.Enabled = sel;
             buttonUSave.Enabled = false;
         }
 
@@ -415,12 +421,25 @@ namespace My_Inventory
         private void comboBoxDepartament_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxOrg_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxOrg_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
-
         private void toolStripButtonNewUser_Click(object sender, EventArgs e) { NewUser(); }
         private void ToolStripMenuItemNewUser_Click(object sender, EventArgs e) { NewUser(); }
         private void toolStripButtonDelUser_Click(object sender, EventArgs e) { DelUser(); }
         private void ToolStripMenuItemDelUser_Click(object sender, EventArgs e) { DelUser(); }
+        private void новыйСотрудникToolStripMenuItem1_Click(object sender, EventArgs e) { NewUser(); }
         #endregion
 
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tabControlMain.SelectedIndex == 0) DelItem();
+            if (tabControlMain.SelectedIndex == 1) DelUser();
+        }
+
+        private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlMain.SelectedIndex == 0)
+                удалитьToolStripMenuItem.Enabled = listViewInventory.SelectedItems.Count > 0;                
+            if (tabControlMain.SelectedIndex == 1)
+                удалитьToolStripMenuItem.Enabled = listViewUsers.SelectedItems.Count > 0;
+        }
     }
 }
