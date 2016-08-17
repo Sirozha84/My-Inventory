@@ -107,21 +107,27 @@ namespace My_Inventory
             listViewInventory.Items.Clear();
             foreach (Item item in Data.Items)
                 listViewInventory.Items.Add(item.GetListItem());
-            //Рисование сотрудников, выпадающие списки сотрудников и подразделений! Очень круто!
+            //Рисование сотрудников, выпадающие списки сотрудников, должностей,
+            //организаций и подразделений! Очень круто!!!
             listViewUsers.Items.Clear();
             comboBoxUsers.Items.Clear();
+            List<string> Posts = new List<string>();
             List<string> Orgs = new List<string>();
             List<string> Deps = new List<string>();
             foreach (User user in Data.Users)
             {
                 listViewUsers.Items.Add(user.GetListVievItem());
                 comboBoxUsers.Items.Add(user.Name);
+                if (user.Post != "" && Posts.Find(o => o == user.Post) == null)
+                    Posts.Add(user.Post);
                 if (user.Organisation != "" && Orgs.Find(o => o == user.Organisation) == null)
                     Orgs.Add(user.Organisation);
                 if (user.Departament != "" && Deps.Find(o => o == user.Departament) == null)
                     Deps.Add(user.Departament);
             }
+            Orgs.Sort();
             Deps.Sort();
+            comboBoxPost.DataSource = Posts;
             comboBoxOrg.DataSource = Orgs;
             comboBoxDepartament.DataSource = Deps;
             //Проверка выделений
@@ -312,7 +318,7 @@ namespace My_Inventory
         /// </summary>
         void NewUser()
         {
-            User user = new User("Сотрудник", "", "");
+            User user = new User("Сотрудник", "", "", "");
             Data.Users.Add(user);
             listViewUsers.Items.Add(user.GetListVievItem());
             SelectOnliLastItem(listViewUsers);
@@ -346,6 +352,7 @@ namespace My_Inventory
                 //Заполнение списка прикреплённого инвентаря
                 User user = (User)listViewUsers.SelectedItems[0].Tag;
                 textBoxUUser.Text = user.Name;
+                comboBoxPost.Text = user.Post;
                 comboBoxOrg.Text = user.Organisation;
                 comboBoxDepartament.Text = user.Departament;
                 //comboBoxOrg.Text = user;
@@ -357,6 +364,7 @@ namespace My_Inventory
             else
             {
                 textBoxUUser.Text = "";
+                comboBoxPost.Text = "";
                 comboBoxDepartament.Text = "";
                 comboBoxOrg.Text = "";
             }
@@ -364,6 +372,7 @@ namespace My_Inventory
             ChangeUserName = false;
             //Установка доступности кнопок
             textBoxUUser.Enabled = sel;
+            comboBoxPost.Enabled = sel;
             comboBoxDepartament.Enabled = sel;
             comboBoxOrg.Enabled = sel;
             listViewUserItems.Enabled = sel;
@@ -384,6 +393,7 @@ namespace My_Inventory
             User user = (User)listViewUsers.SelectedItems[0].Tag;
             string oldName = user.Name;
             user.Name = textBoxUUser.Text;
+            user.Post = comboBoxPost.Text;
             user.Organisation = comboBoxOrg.Text;
             user.Departament = comboBoxDepartament.Text;
             //Надо изменить записи в инвентаре при переименовании
@@ -399,6 +409,8 @@ namespace My_Inventory
             buttonUSave.Enabled = true;
         }
 
+        private void comboBoxPost_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
+        private void comboBoxPost_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxDepartament_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxDepartament_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxOrg_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }

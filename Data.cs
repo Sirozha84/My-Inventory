@@ -33,7 +33,8 @@ namespace My_Inventory
                     file.ReadLine();
                     c = Convert.ToInt32(file.ReadLine());
                     for (int i = 0; i < c; i++)
-                        Users.Add(new User(file.ReadLine(), file.ReadLine(), file.ReadLine()));
+                        Users.Add(new User(file.ReadLine(), file.ReadLine(),
+                            file.ReadLine(), file.ReadLine()));
                 }
             }
             catch
@@ -69,6 +70,7 @@ namespace My_Inventory
                     foreach (User user in Users)
                     {
                         file.WriteLine(user.Name);
+                        file.WriteLine(user.Post);
                         file.WriteLine(user.Organisation);
                         file.WriteLine(user.Departament);
                     }
