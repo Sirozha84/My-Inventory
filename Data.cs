@@ -9,6 +9,9 @@ namespace My_Inventory
 {
     class Data
     {
+        public static string ResponsiblePerson;
+        public static string Post;
+
         public static List<Item> Items = new List<Item>();
         public static List<User> Users = new List<User>();
         const string fileName = "DB.txt";
@@ -23,11 +26,15 @@ namespace My_Inventory
             {
                 using (StreamReader file = File.OpenText(fileName))
                 {
+                    //Загрузка параметров предприятия
+                    file.ReadLine();
+                    ResponsiblePerson = file.ReadLine();
+                    Post = file.ReadLine();
                     //Загрузка предметов
                     file.ReadLine();
                     int c = Convert.ToInt32(file.ReadLine());
                     for (int i = 0; i < c; i++)
-                        Items.Add(new Item(file.ReadLine(), file.ReadLine(), file.ReadLine(),
+                        Items.Add(new Item(file.ReadLine(), file.ReadLine(), file.ReadLine(), file.ReadLine(),
                             file.ReadLine(), file.ReadLine(), file.ReadLine(), file.ReadLine()));
                     //Загрузка пользователей
                     file.ReadLine();
@@ -53,7 +60,10 @@ namespace My_Inventory
             {
                 using (StreamWriter file = File.CreateText(fileName))
                 {
-                    file.WriteLine("----------------Items----------------");
+                    file.WriteLine("-----------------------------------Options-----------------------------------");
+                    file.WriteLine(ResponsiblePerson);
+                    file.WriteLine(Post);
+                    file.WriteLine("------------------------------------Items------------------------------------");
                     file.WriteLine(Items.Count);
                     foreach (Item item in Items)
                     {
@@ -62,10 +72,11 @@ namespace My_Inventory
                         file.WriteLine(item.Model);
                         file.WriteLine(item.Serial);
                         file.WriteLine(item.User);
+                        file.WriteLine(item.Place);
                         file.WriteLine(item.Date);
                         file.WriteLine(item.Discription);
                     }
-                    file.WriteLine("----------------Users----------------");
+                    file.WriteLine("------------------------------------Users------------------------------------");
                     file.WriteLine(Users.Count);
                     foreach (User user in Users)
                     {

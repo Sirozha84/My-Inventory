@@ -154,7 +154,7 @@ namespace My_Inventory
             }
             max++;
             //Создаём предмет
-            Item item = new Item(max.ToString(), "", "", "", "", "", "");
+            Item item = new Item(max.ToString(), "", "", "", "", "", "", "");
             Data.Items.Add(item);
             DrawBase();
             SelectOnliLastItem(listViewInventory);
@@ -381,9 +381,12 @@ namespace My_Inventory
             comboBoxDepartament.Enabled = sel;
             comboBoxOrg.Enabled = sel;
             listViewUserItems.Enabled = sel;
+            toolStripButtonPrint.Enabled = sel;
             toolStripButtonDelUser.Enabled = sel;
             ToolStripMenuItemDelUser.Enabled = sel;
+            печатьКарточкиУчётаToolStripMenuItem.Enabled = sel;
             удалитьToolStripMenuItem.Enabled = sel;
+            ToolStripMenuItemPrint.Enabled = sel;
             buttonUSave.Enabled = false;
         }
 
@@ -415,6 +418,13 @@ namespace My_Inventory
             buttonUSave.Enabled = true;
         }
 
+        //Печать карточки учёта
+        void PrintRegistryCard()
+        {
+            Print.RegistryCard();
+        }
+
+        private void новыйСотрудникToolStripMenuItem1_Click(object sender, EventArgs e) { NewUser(); }
         private void comboBoxPost_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxPost_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxDepartament_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
@@ -425,7 +435,9 @@ namespace My_Inventory
         private void ToolStripMenuItemNewUser_Click(object sender, EventArgs e) { NewUser(); }
         private void toolStripButtonDelUser_Click(object sender, EventArgs e) { DelUser(); }
         private void ToolStripMenuItemDelUser_Click(object sender, EventArgs e) { DelUser(); }
-        private void новыйСотрудникToolStripMenuItem1_Click(object sender, EventArgs e) { NewUser(); }
+        private void печатьКарточкиУчётаToolStripMenuItem_Click(object sender, EventArgs e) { PrintRegistryCard(); }
+        private void toolStripButtonPrint_Click(object sender, EventArgs e) { PrintRegistryCard(); }
+        private void ToolStripMenuItemPrint_Click(object sender, EventArgs e) { PrintRegistryCard(); }
         #endregion
 
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -440,6 +452,12 @@ namespace My_Inventory
                 удалитьToolStripMenuItem.Enabled = listViewInventory.SelectedItems.Count > 0;                
             if (tabControlMain.SelectedIndex == 1)
                 удалитьToolStripMenuItem.Enabled = listViewUsers.SelectedItems.Count > 0;
+        }
+
+        private void параметрыПредприятияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCompanyOptions form = new FormCompanyOptions();
+            form.ShowDialog();
         }
     }
 }

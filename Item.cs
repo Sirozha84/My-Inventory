@@ -13,17 +13,19 @@ namespace My_Inventory
         public string Model;
         public string Serial;
         public string User;
+        public string Place;
         public string Date;
         public string Discription;
 
         public Item(string Number, string Name, string Model, string Serial, string User,
-            string Date, string Discription)
+            string Place, string Date, string Discription)
         {
             this.Number = Number;
             this.Name = Name;
             this.Model = Model;
-
+            this.Serial = Serial;
             this.User = User;
+            this.Place = Place;
             this.Date = Date;
             this.Discription = Discription;
         }
