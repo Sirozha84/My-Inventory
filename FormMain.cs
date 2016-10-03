@@ -421,7 +421,8 @@ namespace My_Inventory
         //Печать карточки учёта
         void PrintRegistryCard()
         {
-            Print.RegistryCard();
+            if (listViewUsers.SelectedIndices.Count == 1)
+                Print.RegistryCard((User)listViewUsers.SelectedItems[0].Tag);
         }
 
         private void новыйСотрудникToolStripMenuItem1_Click(object sender, EventArgs e) { NewUser(); }
