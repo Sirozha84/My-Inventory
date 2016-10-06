@@ -17,6 +17,7 @@ namespace My_Inventory
         bool ChangeDate;
         bool ChangeDiscription;
         bool ChangeUserName;
+        bool ChangePlace;
 
         public FormMain()
         {
@@ -111,6 +112,18 @@ namespace My_Inventory
             //организаций и подразделений! Очень круто!!!
             listViewUsers.Items.Clear();
             comboBoxUsers.Items.Clear();
+
+            //Выпадающие списки по данным инвентаря
+            List<string> Places = new List<string>();
+            foreach (Item item in Data.Items)
+            {
+                if (item.Place != "" && Places.Find(o => o == item.Place) == null)
+                    Places.Add(item.Place);
+            }
+            Places.Sort();
+            comboBoxPlace.DataSource = Places;
+
+            //Выпадающие списки по данным пользователей
             List<string> Posts = new List<string>();
             List<string> Orgs = new List<string>();
             List<string> Deps = new List<string>();
@@ -193,6 +206,8 @@ namespace My_Inventory
                 textBoxSerial.Enabled = false;
                 comboBoxUsers.Text = "";
                 comboBoxUsers.Enabled = false;
+                comboBoxPlace.Text = "";
+                comboBoxPlace.Enabled = false;
                 dateTimePickerDate.Text = "";
                 dateTimePickerDate.Enabled = false;
                 textBoxDiscription.Text = "";
@@ -211,6 +226,8 @@ namespace My_Inventory
                 textBoxSerial.Enabled = true;
                 comboBoxUsers.Text = item.User;
                 comboBoxUsers.Enabled = true;
+                comboBoxPlace.Text = item.Place;
+                comboBoxPlace.Enabled = true;
                 try { dateTimePickerDate.Text = item.Date; }
                 catch { dateTimePickerDate.Text = "01.01.1970"; };
                 dateTimePickerDate.Enabled = true;
@@ -229,6 +246,8 @@ namespace My_Inventory
                 textBoxSerial.Enabled = false;
                 comboBoxUsers.Text = "";
                 comboBoxUsers.Enabled = true;
+                comboBoxPlace.Text = "";
+                comboBoxPlace.Enabled = true;
                 dateTimePickerDate.Text = "";
                 dateTimePickerDate.Enabled = true;
                 textBoxDiscription.Text = "";
@@ -238,6 +257,7 @@ namespace My_Inventory
             ChangeNum = false;
             ChangeUser = false;
             ChangeDate = false;
+            ChangePlace = false;
             ChangeDiscription = false;
             //Изменение доступностей кнопок
             buttonSave.Enabled = false;
@@ -260,6 +280,12 @@ namespace My_Inventory
         private void comboBoxUsers_TextChanged(object sender, EventArgs e)
         {
             ChangeUser = true;
+            buttonSave.Enabled = true;
+        }
+
+        private void comboBoxPlace_TextChanged(object sender, EventArgs e)
+        {
+            ChangePlace = true;
             buttonSave.Enabled = true;
         }
 
@@ -291,6 +317,7 @@ namespace My_Inventory
                 if (Many)
                 {
                     if (ChangeUser) item.User = comboBoxUsers.Text;
+                    if (ChangePlace) item.Place = comboBoxPlace.Text; 
                     if (ChangeDate) item.Date = dateTimePickerDate.Text;
                     if (ChangeDiscription) item.Discription = textBoxDiscription.Text;
                 }
@@ -301,6 +328,7 @@ namespace My_Inventory
                     item.Model = textBoxModel.Text;
                     item.Serial = textBoxSerial.Text;
                     item.User = comboBoxUsers.Text;
+                    item.Place = comboBoxPlace.Text;
                     item.Date = dateTimePickerDate.Text;
                     item.Discription = textBoxDiscription.Text;
                 }

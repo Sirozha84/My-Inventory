@@ -376,6 +376,7 @@
             this.comboBoxPlace.Name = "comboBoxPlace";
             this.comboBoxPlace.Size = new System.Drawing.Size(164, 21);
             this.comboBoxPlace.TabIndex = 6;
+            this.comboBoxPlace.TextChanged += new System.EventHandler(this.comboBoxPlace_TextChanged);
             // 
             // labelPlace
             // 
