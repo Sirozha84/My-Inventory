@@ -37,8 +37,8 @@ namespace My_Inventory
         public ListViewItem GetListItem()
         {
             User user = Data.Users.Find(o => o.Name == User);
-            string dep = user == null ? "" : user.Departament;
-            string[] str = { Number, Name, User, dep, Date, Discription };
+            //string dep = user == null ? "" : user.Departament;
+            string[] str = { Number, Name, User, Place, Date, Discription };
             ListViewItem listItem = new ListViewItem(str);
             listItem.Tag = this;
             return listItem;

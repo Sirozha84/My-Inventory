@@ -55,7 +55,7 @@ namespace My_Inventory
             Label(340, 240, 200, 30, "Модель", Small, Centr, true, e);
             Label(540, 240, 60, 30, "Инв №", Small, Centr, true, e);
             Label(600, 240, 190, 30, "Дата", Small, Centr, true, e);
-            Label(790, 240, 200, 30, "Место", Small, Centr, true, e);
+            Label(790, 240, 200, 30, "Местоположение", Small, Centr, true, e);
             Label(990, 240, 100, 30, "Подпись", Small, Centr, true, e);
             //Поля таблицы
             for (int i = 0; i < 20; i++)

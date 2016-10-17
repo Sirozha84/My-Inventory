@@ -48,7 +48,7 @@
             this.columnHeaderNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeaderDep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderPlace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderDiscription = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStripItems = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -106,6 +106,9 @@
             this.toolStripButtonPrint = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelUser = new System.Windows.Forms.ToolStripButton();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripButtonToInventory = new System.Windows.Forms.ToolStripButton();
+            this.перейтиВИнвентарьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
@@ -116,6 +119,7 @@
             this.panelUser.SuspendLayout();
             this.contextMenuStripUsers.SuspendLayout();
             this.toolStripUsers.SuspendLayout();
+            this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -257,7 +261,7 @@
             this.columnHeaderNum,
             this.columnHeaderName,
             this.columnHeaderUser,
-            this.columnHeaderDep,
+            this.columnHeaderPlace,
             this.columnHeaderDate,
             this.columnHeaderDiscription});
             this.listViewInventory.ContextMenuStrip = this.contextMenuStripItems;
@@ -288,10 +292,10 @@
             this.columnHeaderUser.Text = "Сотрудник";
             this.columnHeaderUser.Width = 118;
             // 
-            // columnHeaderDep
+            // columnHeaderPlace
             // 
-            this.columnHeaderDep.Text = "Подразделение";
-            this.columnHeaderDep.Width = 130;
+            this.columnHeaderPlace.Text = "Местоположение";
+            this.columnHeaderPlace.Width = 130;
             // 
             // columnHeaderDate
             // 
@@ -383,9 +387,9 @@
             this.labelPlace.AutoSize = true;
             this.labelPlace.Location = new System.Drawing.Point(6, 197);
             this.labelPlace.Name = "labelPlace";
-            this.labelPlace.Size = new System.Drawing.Size(39, 13);
+            this.labelPlace.Size = new System.Drawing.Size(95, 13);
             this.labelPlace.TabIndex = 14;
-            this.labelPlace.Text = "Место";
+            this.labelPlace.Text = "Местоположение";
             // 
             // textBoxSerial
             // 
@@ -607,6 +611,7 @@
             this.listViewUserItems.TabIndex = 6;
             this.listViewUserItems.UseCompatibleStateImageBehavior = false;
             this.listViewUserItems.View = System.Windows.Forms.View.Details;
+            this.listViewUserItems.SelectedIndexChanged += new System.EventHandler(this.listViewUserItems_SelectedIndexChanged);
             // 
             // columnHeaderINum
             // 
@@ -789,9 +794,10 @@
             this.contextMenuStripUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.ToolStripMenuItemNewUser,
             this.ToolStripMenuItemPrint,
+            this.перейтиВИнвентарьToolStripMenuItem,
             this.ToolStripMenuItemDelUser});
             this.contextMenuStripUsers.Name = "contextMenuStripUsers";
-            this.contextMenuStripUsers.Size = new System.Drawing.Size(260, 70);
+            this.contextMenuStripUsers.Size = new System.Drawing.Size(260, 92);
             // 
             // ToolStripMenuItemNewUser
             // 
@@ -829,6 +835,7 @@
             this.toolStripUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonNewUser,
             this.toolStripButtonPrint,
+            this.toolStripButtonToInventory,
             this.toolStripButtonDelUser});
             this.toolStripUsers.Location = new System.Drawing.Point(3, 3);
             this.toolStripUsers.Name = "toolStripUsers";
@@ -871,11 +878,40 @@
             // statusStrip1
             // 
             this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 506);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(932, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
+            // 
+            // toolStripStatusLabel1
+            // 
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 17);
+            this.toolStripStatusLabel1.Text = "Выбрано элементов:";
+            // 
+            // toolStripButtonToInventory
+            // 
+            this.toolStripButtonToInventory.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonToInventory.Enabled = false;
+            this.toolStripButtonToInventory.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonToInventory.Image")));
+            this.toolStripButtonToInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonToInventory.Name = "toolStripButtonToInventory";
+            this.toolStripButtonToInventory.Size = new System.Drawing.Size(127, 22);
+            this.toolStripButtonToInventory.Text = "Перейти в инвентарь";
+            this.toolStripButtonToInventory.ToolTipText = "Показать все предметы сотрудника в общем списке инвентаря";
+            this.toolStripButtonToInventory.Click += new System.EventHandler(this.toolStripButtonToInventory_Click);
+            // 
+            // перейтиВИнвентарьToolStripMenuItem
+            // 
+            this.перейтиВИнвентарьToolStripMenuItem.Enabled = false;
+            this.перейтиВИнвентарьToolStripMenuItem.Name = "перейтиВИнвентарьToolStripMenuItem";
+            this.перейтиВИнвентарьToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.перейтиВИнвентарьToolStripMenuItem.Text = "Перейти в инвентарь";
+            this.перейтиВИнвентарьToolStripMenuItem.ToolTipText = "Показать все предметы сотрудника в общем списке инвентаря";
+            this.перейтиВИнвентарьToolStripMenuItem.Click += new System.EventHandler(this.перейтиВИнвентарьToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -909,6 +945,8 @@
             this.contextMenuStripUsers.ResumeLayout(false);
             this.toolStripUsers.ResumeLayout(false);
             this.toolStripUsers.PerformLayout();
+            this.statusStrip1.ResumeLayout(false);
+            this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -930,7 +968,7 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonNewItem;
         private System.Windows.Forms.ColumnHeader columnHeaderNum;
         private System.Windows.Forms.ColumnHeader columnHeaderName;
-        private System.Windows.Forms.ColumnHeader columnHeaderDep;
+        private System.Windows.Forms.ColumnHeader columnHeaderPlace;
         private System.Windows.Forms.ColumnHeader columnHeaderUser;
         private System.Windows.Forms.ColumnHeader columnHeaderDiscription;
         private System.Windows.Forms.ListView listViewUserItems;
@@ -992,6 +1030,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItemPrint;
         private System.Windows.Forms.ToolStripMenuItem параметрыПредприятияToolStripMenuItem;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonToInventory;
+        private System.Windows.Forms.ToolStripMenuItem перейтиВИнвентарьToolStripMenuItem;
     }
 }
 

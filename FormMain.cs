@@ -48,13 +48,13 @@ namespace My_Inventory
             panelItem.Width = Properties.Settings.Default.Splitter1;
             listViewUsers.Width = Properties.Settings.Default.Splitter2;
             listViewInventory.Columns[0].Width = Properties.Settings.Default.Column00;
-            listViewInventory.Columns[1].Width = Properties.Settings.Default.Column01;
-            listViewInventory.Columns[2].Width = Properties.Settings.Default.Column02;
-            listViewInventory.Columns[3].Width = Properties.Settings.Default.Column03;
-            listViewInventory.Columns[4].Width = Properties.Settings.Default.Column04;
-            listViewInventory.Columns[5].Width = Properties.Settings.Default.Column05;
+            listViewInventory.Columns[1].Width = Properties.Settings.Default.Column00;
+            listViewInventory.Columns[2].Width = Properties.Settings.Default.Column01;
+            listViewInventory.Columns[3].Width = Properties.Settings.Default.Column02;
+            listViewInventory.Columns[4].Width = Properties.Settings.Default.Column03;
+            listViewInventory.Columns[5].Width = Properties.Settings.Default.Column04;
             listViewUsers.Columns[0].Width = Properties.Settings.Default.Column10;
-            listViewUsers.Columns[1].Width = Properties.Settings.Default.Column11;
+            listViewUsers.Columns[1].Width = Properties.Settings.Default.Column07;
             listViewUserItems.Columns[0].Width = Properties.Settings.Default.Column20;
             listViewUserItems.Columns[1].Width = Properties.Settings.Default.Column21;
             listViewUserItems.Columns[2].Width = Properties.Settings.Default.Column22;
@@ -73,13 +73,13 @@ namespace My_Inventory
             Properties.Settings.Default.Splitter1 = panelItem.Width;
             Properties.Settings.Default.Splitter2 = listViewUsers.Width;
             Properties.Settings.Default.Column00 = listViewInventory.Columns[0].Width;
-            Properties.Settings.Default.Column01 = listViewInventory.Columns[1].Width;
-            Properties.Settings.Default.Column02 = listViewInventory.Columns[2].Width;
-            Properties.Settings.Default.Column03 = listViewInventory.Columns[3].Width;
-            Properties.Settings.Default.Column04 = listViewInventory.Columns[4].Width;
-            Properties.Settings.Default.Column05 = listViewInventory.Columns[5].Width;
+            Properties.Settings.Default.Column00 = listViewInventory.Columns[1].Width;
+            Properties.Settings.Default.Column01 = listViewInventory.Columns[2].Width;
+            Properties.Settings.Default.Column02 = listViewInventory.Columns[3].Width;
+            Properties.Settings.Default.Column03 = listViewInventory.Columns[4].Width;
+            Properties.Settings.Default.Column04 = listViewInventory.Columns[5].Width;
             Properties.Settings.Default.Column10 = listViewUsers.Columns[0].Width;
-            Properties.Settings.Default.Column11 = listViewUsers.Columns[1].Width;
+            Properties.Settings.Default.Column07 = listViewUsers.Columns[1].Width;
             Properties.Settings.Default.Column20 = listViewUserItems.Columns[0].Width;
             Properties.Settings.Default.Column21 = listViewUserItems.Columns[1].Width;
             Properties.Settings.Default.Column22 = listViewUserItems.Columns[2].Width;
@@ -150,6 +150,26 @@ namespace My_Inventory
             buttonUSave.Enabled = false;
         }
 
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (tabControlMain.SelectedIndex == 0) DelItem();
+            if (tabControlMain.SelectedIndex == 1) DelUser();
+        }
+
+        private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (tabControlMain.SelectedIndex == 0)
+                удалитьToolStripMenuItem.Enabled = listViewInventory.SelectedItems.Count > 0;                
+            if (tabControlMain.SelectedIndex == 1)
+                удалитьToolStripMenuItem.Enabled = listViewUsers.SelectedItems.Count > 0;
+        }
+
+        private void параметрыПредприятияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCompanyOptions form = new FormCompanyOptions();
+            form.ShowDialog();
+        }
+
         #region Вкладка "Инвентарь"
         /// <summary>
         /// Добавление нового предмета
@@ -212,6 +232,7 @@ namespace My_Inventory
                 dateTimePickerDate.Enabled = false;
                 textBoxDiscription.Text = "";
                 textBoxDiscription.Enabled = false;
+                toolStripStatusLabel1.Text = "";
             }
             if (listViewInventory.SelectedIndices.Count == 1)
             {
@@ -233,6 +254,7 @@ namespace My_Inventory
                 dateTimePickerDate.Enabled = true;
                 textBoxDiscription.Text = item.Discription;
                 textBoxDiscription.Enabled = true;
+                toolStripStatusLabel1.Text = "Выбран один элемент";
             }
             if (listViewInventory.SelectedIndices.Count > 1)
             {
@@ -252,6 +274,7 @@ namespace My_Inventory
                 dateTimePickerDate.Enabled = true;
                 textBoxDiscription.Text = "";
                 textBoxDiscription.Enabled = true;
+                toolStripStatusLabel1.Text = "Выбрано элементов: " + listViewInventory.SelectedIndices.Count;
             }
             //Сбрасываем флаги изменений
             ChangeNum = false;
@@ -416,6 +439,8 @@ namespace My_Inventory
             удалитьToolStripMenuItem.Enabled = sel;
             ToolStripMenuItemPrint.Enabled = sel;
             buttonUSave.Enabled = false;
+            toolStripButtonToInventory.Enabled = sel;
+            перейтиВИнвентарьToolStripMenuItem.Enabled = sel;
         }
 
         //Кнопка сохранения сотрудника
@@ -453,6 +478,22 @@ namespace My_Inventory
                 Print.RegistryCard((User)listViewUsers.SelectedItems[0].Tag);
         }
 
+        private void listViewUserItems_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //if (listViewInventory.SelectedIndices.Count == 0)
+        }
+
+        void ToInventory()
+        {
+            tabControlMain.SelectedIndex = 0;
+            User user = (User)listViewUsers.SelectedItems[0].Tag;
+            foreach (ListViewItem item in listViewInventory.Items)
+            {
+                Item i = (Item)(item.Tag);
+                item.Selected = i.User == user.Name;
+            }
+        }
+
         private void новыйСотрудникToolStripMenuItem1_Click(object sender, EventArgs e) { NewUser(); }
         private void comboBoxPost_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxPost_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
@@ -467,26 +508,8 @@ namespace My_Inventory
         private void печатьКарточкиУчётаToolStripMenuItem_Click(object sender, EventArgs e) { PrintRegistryCard(); }
         private void toolStripButtonPrint_Click(object sender, EventArgs e) { PrintRegistryCard(); }
         private void ToolStripMenuItemPrint_Click(object sender, EventArgs e) { PrintRegistryCard(); }
+        private void перейтиВИнвентарьToolStripMenuItem_Click(object sender, EventArgs e) { ToInventory(); }
+        private void toolStripButtonToInventory_Click(object sender, EventArgs e) { ToInventory(); }
         #endregion
-
-        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (tabControlMain.SelectedIndex == 0) DelItem();
-            if (tabControlMain.SelectedIndex == 1) DelUser();
-        }
-
-        private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            if (tabControlMain.SelectedIndex == 0)
-                удалитьToolStripMenuItem.Enabled = listViewInventory.SelectedItems.Count > 0;                
-            if (tabControlMain.SelectedIndex == 1)
-                удалитьToolStripMenuItem.Enabled = listViewUsers.SelectedItems.Count > 0;
-        }
-
-        private void параметрыПредприятияToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormCompanyOptions form = new FormCompanyOptions();
-            form.ShowDialog();
-        }
     }
 }
