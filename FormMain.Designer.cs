@@ -56,6 +56,7 @@
             this.toolStripMenuItemDel = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter2 = new System.Windows.Forms.Splitter();
             this.panelItem = new System.Windows.Forms.Panel();
+            this.buttonSaveToday = new System.Windows.Forms.Button();
             this.comboBoxPlace = new System.Windows.Forms.ComboBox();
             this.labelPlace = new System.Windows.Forms.Label();
             this.textBoxSerial = new System.Windows.Forms.TextBox();
@@ -100,15 +101,23 @@
             this.contextMenuStripUsers = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.ToolStripMenuItemNewUser = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemPrint = new System.Windows.Forms.ToolStripMenuItem();
+            this.перейтиВИнвентарьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.ToolStripMenuItemDelUser = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripUsers = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNewUser = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonPrint = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonToInventory = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelUser = new System.Windows.Forms.ToolStripButton();
+            this.tabPageLog = new System.Windows.Forms.TabPage();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripButtonToInventory = new System.Windows.Forms.ToolStripButton();
-            this.перейтиВИнвентарьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.listViewLog = new System.Windows.Forms.ListView();
+            this.columnHeaderLDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderLNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderLName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeaderLMove = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.очисткаЖурналаПеремещенийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
@@ -119,6 +128,7 @@
             this.panelUser.SuspendLayout();
             this.contextMenuStripUsers.SuspendLayout();
             this.toolStripUsers.SuspendLayout();
+            this.tabPageLog.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -127,6 +137,7 @@
             this.menuStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.файлToolStripMenuItem,
             this.инвентарьToolStripMenuItem,
+            this.сервисToolStripMenuItem,
             this.справкаToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
@@ -233,6 +244,7 @@
             // 
             this.tabControlMain.Controls.Add(this.tabPageInventory);
             this.tabControlMain.Controls.Add(this.tabPageUsers);
+            this.tabControlMain.Controls.Add(this.tabPageLog);
             this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControlMain.Location = new System.Drawing.Point(0, 24);
             this.tabControlMain.Name = "tabControlMain";
@@ -347,6 +359,7 @@
             // panelItem
             // 
             this.panelItem.BackColor = System.Drawing.SystemColors.ControlLightLight;
+            this.panelItem.Controls.Add(this.buttonSaveToday);
             this.panelItem.Controls.Add(this.comboBoxPlace);
             this.panelItem.Controls.Add(this.labelPlace);
             this.panelItem.Controls.Add(this.textBoxSerial);
@@ -369,6 +382,19 @@
             this.panelItem.Name = "panelItem";
             this.panelItem.Size = new System.Drawing.Size(175, 425);
             this.panelItem.TabIndex = 3;
+            // 
+            // buttonSaveToday
+            // 
+            this.buttonSaveToday.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveToday.Enabled = false;
+            this.buttonSaveToday.Location = new System.Drawing.Point(6, 374);
+            this.buttonSaveToday.Name = "buttonSaveToday";
+            this.buttonSaveToday.Size = new System.Drawing.Size(164, 48);
+            this.buttonSaveToday.TabIndex = 15;
+            this.buttonSaveToday.Text = "Переместить";
+            this.buttonSaveToday.UseVisualStyleBackColor = true;
+            this.buttonSaveToday.Click += new System.EventHandler(this.buttonSaveToday_Click);
             // 
             // comboBoxPlace
             // 
@@ -433,11 +459,12 @@
             // 
             // buttonSave
             // 
-            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonSave.Enabled = false;
-            this.buttonSave.Location = new System.Drawing.Point(83, 399);
+            this.buttonSave.Location = new System.Drawing.Point(6, 345);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(87, 23);
+            this.buttonSave.Size = new System.Drawing.Size(164, 23);
             this.buttonSave.TabIndex = 9;
             this.buttonSave.Text = "Сохранить";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -449,7 +476,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.textBoxDiscription.Enabled = false;
-            this.textBoxDiscription.Location = new System.Drawing.Point(3, 292);
+            this.textBoxDiscription.Location = new System.Drawing.Point(6, 292);
             this.textBoxDiscription.Name = "textBoxDiscription";
             this.textBoxDiscription.Size = new System.Drawing.Size(164, 20);
             this.textBoxDiscription.TabIndex = 8;
@@ -478,7 +505,7 @@
             this.dateTimePickerDate.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dateTimePickerDate.Enabled = false;
-            this.dateTimePickerDate.Location = new System.Drawing.Point(3, 253);
+            this.dateTimePickerDate.Location = new System.Drawing.Point(6, 253);
             this.dateTimePickerDate.Name = "dateTimePickerDate";
             this.dateTimePickerDate.Size = new System.Drawing.Size(164, 20);
             this.dateTimePickerDate.TabIndex = 7;
@@ -818,6 +845,15 @@
             this.ToolStripMenuItemPrint.Text = "Карточка учёта";
             this.ToolStripMenuItemPrint.Click += new System.EventHandler(this.ToolStripMenuItemPrint_Click);
             // 
+            // перейтиВИнвентарьToolStripMenuItem
+            // 
+            this.перейтиВИнвентарьToolStripMenuItem.Enabled = false;
+            this.перейтиВИнвентарьToolStripMenuItem.Name = "перейтиВИнвентарьToolStripMenuItem";
+            this.перейтиВИнвентарьToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
+            this.перейтиВИнвентарьToolStripMenuItem.Text = "Перейти в инвентарь";
+            this.перейтиВИнвентарьToolStripMenuItem.ToolTipText = "Показать все предметы сотрудника в общем списке инвентаря";
+            this.перейтиВИнвентарьToolStripMenuItem.Click += new System.EventHandler(this.перейтиВИнвентарьToolStripMenuItem_Click);
+            // 
             // ToolStripMenuItemDelUser
             // 
             this.ToolStripMenuItemDelUser.Enabled = false;
@@ -864,6 +900,18 @@
             this.toolStripButtonPrint.Text = "Карточка учёта";
             this.toolStripButtonPrint.Click += new System.EventHandler(this.toolStripButtonPrint_Click);
             // 
+            // toolStripButtonToInventory
+            // 
+            this.toolStripButtonToInventory.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonToInventory.Enabled = false;
+            this.toolStripButtonToInventory.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonToInventory.Image")));
+            this.toolStripButtonToInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonToInventory.Name = "toolStripButtonToInventory";
+            this.toolStripButtonToInventory.Size = new System.Drawing.Size(127, 22);
+            this.toolStripButtonToInventory.Text = "Перейти в инвентарь";
+            this.toolStripButtonToInventory.ToolTipText = "Показать все предметы сотрудника в общем списке инвентаря";
+            this.toolStripButtonToInventory.Click += new System.EventHandler(this.toolStripButtonToInventory_Click);
+            // 
             // toolStripButtonDelUser
             // 
             this.toolStripButtonDelUser.Enabled = false;
@@ -874,6 +922,17 @@
             this.toolStripButtonDelUser.Text = "Удалить";
             this.toolStripButtonDelUser.ToolTipText = "Удалить выбранного пользователя";
             this.toolStripButtonDelUser.Click += new System.EventHandler(this.toolStripButtonDelUser_Click);
+            // 
+            // tabPageLog
+            // 
+            this.tabPageLog.Controls.Add(this.listViewLog);
+            this.tabPageLog.Location = new System.Drawing.Point(4, 22);
+            this.tabPageLog.Name = "tabPageLog";
+            this.tabPageLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLog.Size = new System.Drawing.Size(924, 456);
+            this.tabPageLog.TabIndex = 3;
+            this.tabPageLog.Text = "Журнал перемещений";
+            this.tabPageLog.UseVisualStyleBackColor = true;
             // 
             // statusStrip1
             // 
@@ -892,26 +951,55 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 17);
             this.toolStripStatusLabel1.Text = "Выбрано элементов:";
             // 
-            // toolStripButtonToInventory
+            // listViewLog
             // 
-            this.toolStripButtonToInventory.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonToInventory.Enabled = false;
-            this.toolStripButtonToInventory.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonToInventory.Image")));
-            this.toolStripButtonToInventory.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonToInventory.Name = "toolStripButtonToInventory";
-            this.toolStripButtonToInventory.Size = new System.Drawing.Size(127, 22);
-            this.toolStripButtonToInventory.Text = "Перейти в инвентарь";
-            this.toolStripButtonToInventory.ToolTipText = "Показать все предметы сотрудника в общем списке инвентаря";
-            this.toolStripButtonToInventory.Click += new System.EventHandler(this.toolStripButtonToInventory_Click);
+            this.listViewLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeaderLDate,
+            this.columnHeaderLNum,
+            this.columnHeaderLName,
+            this.columnHeaderLMove});
+            this.listViewLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewLog.FullRowSelect = true;
+            this.listViewLog.GridLines = true;
+            this.listViewLog.Location = new System.Drawing.Point(3, 3);
+            this.listViewLog.Name = "listViewLog";
+            this.listViewLog.Size = new System.Drawing.Size(918, 450);
+            this.listViewLog.TabIndex = 0;
+            this.listViewLog.UseCompatibleStateImageBehavior = false;
+            this.listViewLog.View = System.Windows.Forms.View.Details;
             // 
-            // перейтиВИнвентарьToolStripMenuItem
+            // columnHeaderLDate
             // 
-            this.перейтиВИнвентарьToolStripMenuItem.Enabled = false;
-            this.перейтиВИнвентарьToolStripMenuItem.Name = "перейтиВИнвентарьToolStripMenuItem";
-            this.перейтиВИнвентарьToolStripMenuItem.Size = new System.Drawing.Size(259, 22);
-            this.перейтиВИнвентарьToolStripMenuItem.Text = "Перейти в инвентарь";
-            this.перейтиВИнвентарьToolStripMenuItem.ToolTipText = "Показать все предметы сотрудника в общем списке инвентаря";
-            this.перейтиВИнвентарьToolStripMenuItem.Click += new System.EventHandler(this.перейтиВИнвентарьToolStripMenuItem_Click);
+            this.columnHeaderLDate.Text = "Дата";
+            this.columnHeaderLDate.Width = 111;
+            // 
+            // columnHeaderLNum
+            // 
+            this.columnHeaderLNum.Text = "Ннв. №";
+            this.columnHeaderLNum.Width = 66;
+            // 
+            // columnHeaderLName
+            // 
+            this.columnHeaderLName.Text = "Наименование";
+            // 
+            // columnHeaderLMove
+            // 
+            this.columnHeaderLMove.Text = "Перемещение";
+            // 
+            // сервисToolStripMenuItem
+            // 
+            this.сервисToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.очисткаЖурналаПеремещенийToolStripMenuItem});
+            this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
+            this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.сервисToolStripMenuItem.Text = "Сервис";
+            // 
+            // очисткаЖурналаПеремещенийToolStripMenuItem
+            // 
+            this.очисткаЖурналаПеремещенийToolStripMenuItem.Name = "очисткаЖурналаПеремещенийToolStripMenuItem";
+            this.очисткаЖурналаПеремещенийToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.очисткаЖурналаПеремещенийToolStripMenuItem.Text = "Очистка журнала перемещений";
+            this.очисткаЖурналаПеремещенийToolStripMenuItem.Click += new System.EventHandler(this.очисткаЖурналаПеремещенийToolStripMenuItem_Click);
             // 
             // FormMain
             // 
@@ -945,6 +1033,7 @@
             this.contextMenuStripUsers.ResumeLayout(false);
             this.toolStripUsers.ResumeLayout(false);
             this.toolStripUsers.PerformLayout();
+            this.tabPageLog.ResumeLayout(false);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();
             this.ResumeLayout(false);
@@ -1033,6 +1122,15 @@
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabel1;
         private System.Windows.Forms.ToolStripButton toolStripButtonToInventory;
         private System.Windows.Forms.ToolStripMenuItem перейтиВИнвентарьToolStripMenuItem;
+        private System.Windows.Forms.Button buttonSaveToday;
+        private System.Windows.Forms.TabPage tabPageLog;
+        private System.Windows.Forms.ListView listViewLog;
+        private System.Windows.Forms.ColumnHeader columnHeaderLDate;
+        private System.Windows.Forms.ColumnHeader columnHeaderLNum;
+        private System.Windows.Forms.ColumnHeader columnHeaderLName;
+        private System.Windows.Forms.ColumnHeader columnHeaderLMove;
+        private System.Windows.Forms.ToolStripMenuItem сервисToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem очисткаЖурналаПеремещенийToolStripMenuItem;
     }
 }
 

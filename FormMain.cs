@@ -1,10 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace My_Inventory
@@ -19,6 +14,7 @@ namespace My_Inventory
         bool ChangeUserName;
         bool ChangePlace;
 
+        #region Общее
         public FormMain()
         {
             InitializeComponent();
@@ -48,17 +44,21 @@ namespace My_Inventory
             panelItem.Width = Properties.Settings.Default.Splitter1;
             listViewUsers.Width = Properties.Settings.Default.Splitter2;
             listViewInventory.Columns[0].Width = Properties.Settings.Default.Column00;
-            listViewInventory.Columns[1].Width = Properties.Settings.Default.Column00;
-            listViewInventory.Columns[2].Width = Properties.Settings.Default.Column01;
-            listViewInventory.Columns[3].Width = Properties.Settings.Default.Column02;
-            listViewInventory.Columns[4].Width = Properties.Settings.Default.Column03;
-            listViewInventory.Columns[5].Width = Properties.Settings.Default.Column04;
+            listViewInventory.Columns[1].Width = Properties.Settings.Default.Column01;
+            listViewInventory.Columns[2].Width = Properties.Settings.Default.Column02;
+            listViewInventory.Columns[3].Width = Properties.Settings.Default.Column03;
+            listViewInventory.Columns[4].Width = Properties.Settings.Default.Column04;
+            listViewInventory.Columns[5].Width = Properties.Settings.Default.Column05;
             listViewUsers.Columns[0].Width = Properties.Settings.Default.Column10;
             listViewUsers.Columns[1].Width = Properties.Settings.Default.Column07;
             listViewUserItems.Columns[0].Width = Properties.Settings.Default.Column20;
             listViewUserItems.Columns[1].Width = Properties.Settings.Default.Column21;
             listViewUserItems.Columns[2].Width = Properties.Settings.Default.Column22;
             listViewUserItems.Columns[3].Width = Properties.Settings.Default.Column23;
+            listViewLog.Columns[0].Width = Properties.Settings.Default.Column30;
+            listViewLog.Columns[1].Width = Properties.Settings.Default.Column31;
+            listViewLog.Columns[2].Width = Properties.Settings.Default.Column32;
+            listViewLog.Columns[3].Width = Properties.Settings.Default.Column33;
             Data.Load();
             DrawBase();
         }
@@ -73,11 +73,11 @@ namespace My_Inventory
             Properties.Settings.Default.Splitter1 = panelItem.Width;
             Properties.Settings.Default.Splitter2 = listViewUsers.Width;
             Properties.Settings.Default.Column00 = listViewInventory.Columns[0].Width;
-            Properties.Settings.Default.Column00 = listViewInventory.Columns[1].Width;
-            Properties.Settings.Default.Column01 = listViewInventory.Columns[2].Width;
-            Properties.Settings.Default.Column02 = listViewInventory.Columns[3].Width;
-            Properties.Settings.Default.Column03 = listViewInventory.Columns[4].Width;
-            Properties.Settings.Default.Column04 = listViewInventory.Columns[5].Width;
+            Properties.Settings.Default.Column01 = listViewInventory.Columns[1].Width;
+            Properties.Settings.Default.Column02 = listViewInventory.Columns[2].Width;
+            Properties.Settings.Default.Column03 = listViewInventory.Columns[3].Width;
+            Properties.Settings.Default.Column04 = listViewInventory.Columns[4].Width;
+            Properties.Settings.Default.Column05 = listViewInventory.Columns[5].Width;
             Properties.Settings.Default.Column10 = listViewUsers.Columns[0].Width;
             Properties.Settings.Default.Column07 = listViewUsers.Columns[1].Width;
             Properties.Settings.Default.Column20 = listViewUserItems.Columns[0].Width;
@@ -104,16 +104,12 @@ namespace My_Inventory
         void DrawBase()
         {
             Data.Sort();
-            //Рисование инвентаря
+            //Вкладка инвентаря
+            //Рисование списка
             listViewInventory.Items.Clear();
             foreach (Item item in Data.Items)
                 listViewInventory.Items.Add(item.GetListItem());
-            //Рисование сотрудников, выпадающие списки сотрудников, должностей,
-            //организаций и подразделений! Очень круто!!!
-            listViewUsers.Items.Clear();
-            comboBoxUsers.Items.Clear();
-
-            //Выпадающие списки по данным инвентаря
+            //Выпадающие списки
             List<string> Places = new List<string>();
             foreach (Item item in Data.Items)
             {
@@ -123,6 +119,10 @@ namespace My_Inventory
             Places.Sort();
             comboBoxPlace.DataSource = Places;
 
+            //Вкладка сотрудников
+            //Рисование списка
+            listViewUsers.Items.Clear();
+            comboBoxUsers.Items.Clear();
             //Выпадающие списки по данным пользователей
             List<string> Posts = new List<string>();
             List<string> Orgs = new List<string>();
@@ -148,6 +148,11 @@ namespace My_Inventory
             listViewInventory_SelectedIndexChanged(null, null);
             listViewUsers_SelectedIndexChanged(null, null);
             buttonUSave.Enabled = false;
+
+            //Вкладка журнала изменений
+            listViewLog.Items.Clear();
+            foreach (LogRecord rec in Data.Log)
+                listViewLog.Items.Add(rec.GetListItem());
         }
 
         private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
@@ -169,6 +174,7 @@ namespace My_Inventory
             FormCompanyOptions form = new FormCompanyOptions();
             form.ShowDialog();
         }
+        #endregion
 
         #region Вкладка "Инвентарь"
         /// <summary>
@@ -284,6 +290,7 @@ namespace My_Inventory
             ChangeDiscription = false;
             //Изменение доступностей кнопок
             buttonSave.Enabled = false;
+            buttonSaveToday.Enabled = false;
             bool sel = listViewInventory.SelectedIndices.Count > 0;
             toolStripButtonDelItem.Enabled = sel;
             toolStripMenuItemDel.Enabled = sel;
@@ -304,12 +311,14 @@ namespace My_Inventory
         {
             ChangeUser = true;
             buttonSave.Enabled = true;
+            buttonSaveToday.Enabled = true;
         }
 
         private void comboBoxPlace_TextChanged(object sender, EventArgs e)
         {
             ChangePlace = true;
             buttonSave.Enabled = true;
+            buttonSaveToday.Enabled = true;
         }
 
         private void dateTimePickerDate_ValueChanged(object sender, EventArgs e)
@@ -324,8 +333,8 @@ namespace My_Inventory
             buttonSave.Enabled = true;
         }
 
-        //Кнопка сохранения параметров предметов
-        private void buttonSave_Click(object sender, EventArgs e)
+        //Сохранение изменений в инвентаре
+        void SaveItem(bool Log)
         {
             bool Many = listViewInventory.SelectedIndices.Count > 1;
             //Надо сделать проверку на то, нет ли такого номера уже в базе
@@ -337,7 +346,14 @@ namespace My_Inventory
             foreach (ListViewItem lItem in listViewInventory.SelectedItems)
             {
                 Item item = (Item)lItem.Tag;
-                if (Many)
+                string move = "";
+                if (ChangeUser) move = item.User + " -> " + comboBoxUsers.Text;
+                if (ChangePlace)
+                {
+                    if (move != "") move += ";   ";
+                    move += item.Place + " -> " + comboBoxPlace.Text;
+                }
+                    if (Many)
                 {
                     if (ChangeUser) item.User = comboBoxUsers.Text;
                     if (ChangePlace) item.Place = comboBoxPlace.Text; 
@@ -355,11 +371,17 @@ namespace My_Inventory
                     item.Date = dateTimePickerDate.Text;
                     item.Discription = textBoxDiscription.Text;
                 }
+                if (Log)
+                    Data.Log.Insert(0, new LogRecord(item.Date, item.Number,
+                        item.Name + " " + item.Model, move));
             }
             DrawBase();
             Data.Save();
         }
 
+        //Кнопка сохранения параметров предметов
+        private void buttonSave_Click(object sender, EventArgs e) { SaveItem(false); }
+        private void buttonSaveToday_Click(object sender, EventArgs e) { SaveItem(true); }
         private void toolStripButtonNewItem_Click(object sender, EventArgs e) { NewItem(); }
         private void toolStripMenuItemNewItem_Click(object sender, EventArgs e) { NewItem(); }
         private void toolStripButtonDelItem_Click(object sender, EventArgs e) { DelItem(); }
@@ -511,5 +533,15 @@ namespace My_Inventory
         private void перейтиВИнвентарьToolStripMenuItem_Click(object sender, EventArgs e) { ToInventory(); }
         private void toolStripButtonToInventory_Click(object sender, EventArgs e) { ToInventory(); }
         #endregion
+
+        #region Вкладка "Журнал перемещений"
+        private void очисткаЖурналаПеремещенийToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            using (FormLogShrink form = new FormLogShrink())
+                form.ShowDialog();
+            DrawBase();
+        }
+        #endregion
+
     }
 }

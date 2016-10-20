@@ -14,6 +14,7 @@ namespace My_Inventory
 
         public static List<Item> Items = new List<Item>();
         public static List<User> Users = new List<User>();
+        public static List<LogRecord> Log = new List<LogRecord>();
         const string fileName = "DB.txt";
 
         /// <summary>
@@ -41,6 +42,12 @@ namespace My_Inventory
                     c = Convert.ToInt32(file.ReadLine());
                     for (int i = 0; i < c; i++)
                         Users.Add(new User(file.ReadLine(), file.ReadLine(),
+                            file.ReadLine(), file.ReadLine()));
+                    //Загрузка журнала
+                    file.ReadLine();
+                    c = Convert.ToInt32(file.ReadLine());
+                    for (int i = 0; i < c; i++)
+                        Log.Add(new LogRecord(file.ReadLine(), file.ReadLine(),
                             file.ReadLine(), file.ReadLine()));
                 }
             }
@@ -84,6 +91,15 @@ namespace My_Inventory
                         file.WriteLine(user.Post);
                         file.WriteLine(user.Organisation);
                         file.WriteLine(user.Departament);
+                    }
+                    file.WriteLine("------------------------------------Log------------------------------------");
+                    file.WriteLine(Log.Count);
+                    foreach (LogRecord rec in Log)
+                    {
+                        file.WriteLine(rec.Date);
+                        file.WriteLine(rec.Num);
+                        file.WriteLine(rec.ItemName);
+                        file.WriteLine(rec.MoveRec);
                     }
                 }
             }
