@@ -40,6 +40,8 @@
             this.новыйСотрудникToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.удалитьToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.параметрыПредприятияToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.очисткаЖурналаПеремещенийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.справкаToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tabControlMain = new System.Windows.Forms.TabControl();
@@ -109,15 +111,14 @@
             this.toolStripButtonToInventory = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelUser = new System.Windows.Forms.ToolStripButton();
             this.tabPageLog = new System.Windows.Forms.TabPage();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
             this.listViewLog = new System.Windows.Forms.ListView();
             this.columnHeaderLDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderLNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderLName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeaderLMove = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.сервисToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.очисткаЖурналаПеремещенийToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.columnHeaderIPlace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
@@ -225,6 +226,21 @@
             this.параметрыПредприятияToolStripMenuItem.Text = "Параметры предприятия";
             this.параметрыПредприятияToolStripMenuItem.Click += new System.EventHandler(this.параметрыПредприятияToolStripMenuItem_Click);
             // 
+            // сервисToolStripMenuItem
+            // 
+            this.сервисToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.очисткаЖурналаПеремещенийToolStripMenuItem});
+            this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
+            this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.сервисToolStripMenuItem.Text = "Сервис";
+            // 
+            // очисткаЖурналаПеремещенийToolStripMenuItem
+            // 
+            this.очисткаЖурналаПеремещенийToolStripMenuItem.Name = "очисткаЖурналаПеремещенийToolStripMenuItem";
+            this.очисткаЖурналаПеремещенийToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
+            this.очисткаЖурналаПеремещенийToolStripMenuItem.Text = "Очистка журнала перемещений";
+            this.очисткаЖурналаПеремещенийToolStripMenuItem.Click += new System.EventHandler(this.очисткаЖурналаПеремещенийToolStripMenuItem_Click);
+            // 
             // справкаToolStripMenuItem
             // 
             this.справкаToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -273,8 +289,8 @@
             this.columnHeaderNum,
             this.columnHeaderName,
             this.columnHeaderUser,
-            this.columnHeaderPlace,
             this.columnHeaderDate,
+            this.columnHeaderPlace,
             this.columnHeaderDiscription});
             this.listViewInventory.ContextMenuStrip = this.contextMenuStripItems;
             this.listViewInventory.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -627,6 +643,7 @@
             this.columnHeaderINum,
             this.columnHeaderIName,
             this.columnHeaderIDate,
+            this.columnHeaderIPlace,
             this.columnHeaderIDiscription});
             this.listViewUserItems.Dock = System.Windows.Forms.DockStyle.Fill;
             this.listViewUserItems.Enabled = false;
@@ -934,23 +951,6 @@
             this.tabPageLog.Text = "Журнал перемещений";
             this.tabPageLog.UseVisualStyleBackColor = true;
             // 
-            // statusStrip1
-            // 
-            this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabel1});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 506);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(932, 22);
-            this.statusStrip1.TabIndex = 2;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // toolStripStatusLabel1
-            // 
-            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
-            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 17);
-            this.toolStripStatusLabel1.Text = "Выбрано элементов:";
-            // 
             // listViewLog
             // 
             this.listViewLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
@@ -986,20 +986,26 @@
             // 
             this.columnHeaderLMove.Text = "Перемещение";
             // 
-            // сервисToolStripMenuItem
+            // statusStrip1
             // 
-            this.сервисToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.очисткаЖурналаПеремещенийToolStripMenuItem});
-            this.сервисToolStripMenuItem.Name = "сервисToolStripMenuItem";
-            this.сервисToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
-            this.сервисToolStripMenuItem.Text = "Сервис";
+            this.statusStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabel1});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 506);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(932, 22);
+            this.statusStrip1.TabIndex = 2;
+            this.statusStrip1.Text = "statusStrip1";
             // 
-            // очисткаЖурналаПеремещенийToolStripMenuItem
+            // toolStripStatusLabel1
             // 
-            this.очисткаЖурналаПеремещенийToolStripMenuItem.Name = "очисткаЖурналаПеремещенийToolStripMenuItem";
-            this.очисткаЖурналаПеремещенийToolStripMenuItem.Size = new System.Drawing.Size(253, 22);
-            this.очисткаЖурналаПеремещенийToolStripMenuItem.Text = "Очистка журнала перемещений";
-            this.очисткаЖурналаПеремещенийToolStripMenuItem.Click += new System.EventHandler(this.очисткаЖурналаПеремещенийToolStripMenuItem_Click);
+            this.toolStripStatusLabel1.Name = "toolStripStatusLabel1";
+            this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 17);
+            this.toolStripStatusLabel1.Text = "Выбрано элементов:";
+            // 
+            // columnHeaderIPlace
+            // 
+            this.columnHeaderIPlace.Text = "Местоположение";
             // 
             // FormMain
             // 
@@ -1131,6 +1137,7 @@
         private System.Windows.Forms.ColumnHeader columnHeaderLMove;
         private System.Windows.Forms.ToolStripMenuItem сервисToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem очисткаЖурналаПеремещенийToolStripMenuItem;
+        private System.Windows.Forms.ColumnHeader columnHeaderIPlace;
     }
 }
 

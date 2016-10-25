@@ -51,11 +51,11 @@ namespace My_Inventory
             Label(380, 190, 700, 30, usr.Name + " (" + usr.Post + ")", Mid, Left, false, e);
             //Шапка таблицы
             Label(80, 240, 60, 30, "Номер", Small, Centr, true, e);
-            Label(140, 240, 200, 30, "Наименование", Small, Centr, true, e);
-            Label(340, 240, 200, 30, "Модель", Small, Centr, true, e);
-            Label(540, 240, 60, 30, "Инв №", Small, Centr, true, e);
-            Label(600, 240, 190, 30, "Дата", Small, Centr, true, e);
-            Label(790, 240, 200, 30, "Местоположение", Small, Centr, true, e);
+            Label(140, 240, 270, 30, "Наименование", Small, Centr, true, e);
+            Label(410, 240, 60, 30, "Инв №", Small, Centr, true, e);
+            Label(470, 240, 150, 30, "Дата получения", Small, Centr, true, e);
+            Label(620, 240, 150, 30, "Дата возврата", Small, Centr, true, e);
+            Label(770, 240, 220, 30, "Местоположение", Small, Centr, true, e);
             Label(990, 240, 100, 30, "Подпись", Small, Centr, true, e);
             //Поля таблицы
             for (int i = 0; i < 20; i++)
@@ -64,11 +64,11 @@ namespace My_Inventory
                 {
                     Item it = itms[0];
                     Label(80, 270 + i * 20, 60, 20, (i+1).ToString(), Small, Left, true, e);
-                    Label(140, 270 + i * 20, 200, 20, it.Name, Small, Left, true, e);
-                    Label(340, 270 + i * 20, 200, 20, it.Name, Small, Left, true, e);
-                    Label(540, 270 + i * 20, 60, 20, it.Number, Small, Left, true, e);
-                    Label(600, 270 + i * 20, 190, 20, it.Date, Small, Left, true, e);
-                    Label(790, 270 + i * 20, 200, 20, it.Place, Small, Left, true, e);
+                    Label(140, 270 + i * 20, 270, 20, it.Name + " " + it.Model, Small, Left, true, e);
+                    Label(410, 270 + i * 20, 60, 20, it.Number, Small, Left, true, e);
+                    Label(470, 270 + i * 20, 150, 20, it.Date, Small, Left, true, e);
+                    Label(620, 270 + i * 20, 150, 20, "", Small, Left, true, e);
+                    Label(770, 270 + i * 20, 220, 20, it.Place, Small, Left, true, e);
                     Label(990, 270 + i * 20, 100, 20, "", Small, Left, true, e);
                     itms.RemoveAt(0);
                 }

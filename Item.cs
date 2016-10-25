@@ -35,7 +35,7 @@ namespace My_Inventory
         {
             User user = Data.Users.Find(o => o.Name == User);
             //string dep = user == null ? "" : user.Departament;
-            string[] str = { Number, Name, User, Place, Date, Discription };
+            string[] str = { Number, Name + " " + Model, User, Date, Place, Discription };
             ListViewItem listItem = new ListViewItem(str);
             listItem.Tag = this;
             return listItem;
@@ -49,7 +49,7 @@ namespace My_Inventory
         {
             User user = Data.Users.Find(o => o.Name == User);
             string dep = user == null ? "" : user.Departament;
-            string[] str = { Number, Name, Date, Discription };
+            string[] str = { Number, Name + " " + Model, Date, Place, Discription };
             ListViewItem listItem = new ListViewItem(str);
             listItem.Tag = this;
             return listItem;

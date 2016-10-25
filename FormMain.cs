@@ -55,6 +55,7 @@ namespace My_Inventory
             listViewUserItems.Columns[1].Width = Properties.Settings.Default.Column21;
             listViewUserItems.Columns[2].Width = Properties.Settings.Default.Column22;
             listViewUserItems.Columns[3].Width = Properties.Settings.Default.Column23;
+            listViewUserItems.Columns[4].Width = Properties.Settings.Default.Column24;
             listViewLog.Columns[0].Width = Properties.Settings.Default.Column30;
             listViewLog.Columns[1].Width = Properties.Settings.Default.Column31;
             listViewLog.Columns[2].Width = Properties.Settings.Default.Column32;
@@ -84,6 +85,11 @@ namespace My_Inventory
             Properties.Settings.Default.Column21 = listViewUserItems.Columns[1].Width;
             Properties.Settings.Default.Column22 = listViewUserItems.Columns[2].Width;
             Properties.Settings.Default.Column23 = listViewUserItems.Columns[3].Width;
+            Properties.Settings.Default.Column24 = listViewUserItems.Columns[4].Width;
+            Properties.Settings.Default.Column30 = listViewLog.Columns[0].Width;
+            Properties.Settings.Default.Column31 = listViewLog.Columns[1].Width;
+            Properties.Settings.Default.Column32 = listViewLog.Columns[2].Width;
+            Properties.Settings.Default.Column33 = listViewLog.Columns[3].Width;
             Properties.Settings.Default.Save();
         }
 
