@@ -352,14 +352,8 @@ namespace My_Inventory
             foreach (ListViewItem lItem in listViewInventory.SelectedItems)
             {
                 Item item = (Item)lItem.Tag;
-                string move = "";
-                if (ChangeUser) move = item.User + " -> " + comboBoxUsers.Text;
-                if (ChangePlace)
-                {
-                    if (move != "") move += ";   ";
-                    move += item.Place + " -> " + comboBoxPlace.Text;
-                }
-                    if (Many)
+                string move = item.User + " " + item.Place + "   ->   ";
+                if (Many)
                 {
                     if (ChangeUser) item.User = comboBoxUsers.Text;
                     if (ChangePlace) item.Place = comboBoxPlace.Text; 
@@ -377,9 +371,13 @@ namespace My_Inventory
                     item.Date = dateTimePickerDate.Text;
                     item.Discription = textBoxDiscription.Text;
                 }
+                move += item.User + " " + item.Place;
                 if (Log)
+                {
+                    item.Date = DateTime.Now.ToLongDateString();
                     Data.Log.Insert(0, new LogRecord(item.Date, item.Number,
                         item.Name + " " + item.Model, move));
+                }
             }
             DrawBase();
             Data.Save();
