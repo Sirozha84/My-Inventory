@@ -161,11 +161,6 @@ namespace My_Inventory
                 listViewLog.Items.Add(rec.GetListItem());
         }
 
-        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (tabControlMain.SelectedIndex == 0) DelItem();
-            if (tabControlMain.SelectedIndex == 1) DelUser();
-        }
 
         private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -175,11 +170,6 @@ namespace My_Inventory
                 удалитьToolStripMenuItem.Enabled = listViewUsers.SelectedItems.Count > 0;
         }
 
-        private void параметрыПредприятияToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            FormCompanyOptions form = new FormCompanyOptions();
-            form.ShowDialog();
-        }
         #endregion
 
         #region Вкладка "Инвентарь"
@@ -209,18 +199,26 @@ namespace My_Inventory
         /// <summary>
         /// Удаление предметов
         /// </summary>
-        void DelItem()
+        void DelItem(bool Crib)
         {
-            string ask = "Уверены, что хотите удалить выделенный предмет?";
+            string del = Crib ? "списать" : "удалить";
+            string cap = Crib ? "Списание инвентаря" : "Удаление инвентаря";
+            string ask = "Уверены, что хотите " + Crib + " выделенный предмет?";
             if (listViewInventory.SelectedIndices.Count > 1)
-                ask = "Уверены, что хотите удалить выделенные предметы (" +
+                ask = "Уверены, что хотите " + Crib + " выделенные предметы (" +
                     listViewInventory.SelectedIndices.Count + ")?";
-            if (MessageBox.Show(ask, "Удаление инвентаря", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            if (MessageBox.Show(ask, cap, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
                 for (int i = 0; i < listViewInventory.SelectedItems.Count; i++)
-                    Data.Items.Remove((Item)listViewInventory.SelectedItems[i].Tag);
+                {
+                    Item it = (Item)listViewInventory.SelectedItems[i].Tag;
+                    if (Crib) Data.Log.Insert(0, new LogRecord(DateTime.Now.ToLongDateString(), it.Number,
+                                it.Name + " " + it.Model, "Списан!"));
+                    Data.Items.Remove(it);
+                }
                 DrawBase();
             }
+            Data.Save();
         }
 
         private void listViewInventory_SelectedIndexChanged(object sender, EventArgs e)
@@ -299,8 +297,11 @@ namespace My_Inventory
             buttonSaveToday.Enabled = false;
             bool sel = listViewInventory.SelectedIndices.Count > 0;
             toolStripButtonDelItem.Enabled = sel;
+            toolStripButtonCrib.Enabled = sel;
             toolStripMenuItemDel.Enabled = sel;
             удалитьToolStripMenuItem.Enabled = sel;
+            списатьToolStripMenuItem.Enabled = sel;
+            списатьToolStripMenuItem1.Enabled = sel;
         }
 
         private void textBoxNum_TextChanged(object sender, EventArgs e)
@@ -383,14 +384,23 @@ namespace My_Inventory
             Data.Save();
         }
 
+        private void данныеПредприятияToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormCompanyOptions form = new FormCompanyOptions();
+            form.ShowDialog();
+
+        }
         //Кнопка сохранения параметров предметов
         private void buttonSave_Click(object sender, EventArgs e) { SaveItem(false); }
         private void buttonSaveToday_Click(object sender, EventArgs e) { SaveItem(true); }
         private void toolStripButtonNewItem_Click(object sender, EventArgs e) { NewItem(); }
         private void toolStripMenuItemNewItem_Click(object sender, EventArgs e) { NewItem(); }
-        private void toolStripButtonDelItem_Click(object sender, EventArgs e) { DelItem(); }
-        private void toolStripMenuItemDel_Click(object sender, EventArgs e) { DelItem(); }
         private void новыйПредметToolStripMenuItem_Click(object sender, EventArgs e) { NewItem(); }
+        private void toolStripButtonCrib_Click(object sender, EventArgs e) { DelItem(true); }
+        private void списатьToolStripMenuItem_Click(object sender, EventArgs e) { DelItem(true); }
+        private void toolStripMenuItemDel_Click(object sender, EventArgs e) { DelItem(false); }
+        private void toolStripButtonDelItem_Click(object sender, EventArgs e) { DelItem(false); }
+        private void удалитьToolStripMenuItem_Click(object sender, EventArgs e) { DelItem(false); }        
         #endregion
 
         #region Вкладка "Сотрудники"
@@ -462,7 +472,7 @@ namespace My_Inventory
             toolStripButtonDelUser.Enabled = sel;
             ToolStripMenuItemDelUser.Enabled = sel;
             печатьКарточкиУчётаToolStripMenuItem.Enabled = sel;
-            удалитьToolStripMenuItem.Enabled = sel;
+            удалитьToolStripMenuItem1.Enabled = sel;
             ToolStripMenuItemPrint.Enabled = sel;
             buttonUSave.Enabled = false;
             toolStripButtonToInventory.Enabled = sel;
@@ -520,17 +530,19 @@ namespace My_Inventory
             }
         }
 
-        private void новыйСотрудникToolStripMenuItem1_Click(object sender, EventArgs e) { NewUser(); }
+
+        private void toolStripButtonNewUser_Click(object sender, EventArgs e) { NewUser(); }
+        private void ToolStripMenuItemNewUser_Click(object sender, EventArgs e) { NewUser(); }
+        private void новыйСотрудникToolStripMenuItem_Click(object sender, EventArgs e) { NewUser(); }
+        private void toolStripButtonDelUser_Click(object sender, EventArgs e) { DelUser(); }
+        private void ToolStripMenuItemDelUser_Click(object sender, EventArgs e) { DelUser(); }
+        private void удалитьToolStripMenuItem1_Click(object sender, EventArgs e) { DelUser(); }
         private void comboBoxPost_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxPost_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxDepartament_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxDepartament_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxOrg_SelectedIndexChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
         private void comboBoxOrg_TextChanged(object sender, EventArgs e) { buttonUSave.Enabled = true; }
-        private void toolStripButtonNewUser_Click(object sender, EventArgs e) { NewUser(); }
-        private void ToolStripMenuItemNewUser_Click(object sender, EventArgs e) { NewUser(); }
-        private void toolStripButtonDelUser_Click(object sender, EventArgs e) { DelUser(); }
-        private void ToolStripMenuItemDelUser_Click(object sender, EventArgs e) { DelUser(); }
         private void печатьКарточкиУчётаToolStripMenuItem_Click(object sender, EventArgs e) { PrintRegistryCard(); }
         private void toolStripButtonPrint_Click(object sender, EventArgs e) { PrintRegistryCard(); }
         private void ToolStripMenuItemPrint_Click(object sender, EventArgs e) { PrintRegistryCard(); }
@@ -546,6 +558,5 @@ namespace My_Inventory
             DrawBase();
         }
         #endregion
-
     }
 }

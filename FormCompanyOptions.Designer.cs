@@ -112,7 +112,7 @@
             this.MinimizeBox = false;
             this.Name = "FormCompanyOptions";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Параметры предприятия";
+            this.Text = "Данные предприятия";
             this.ResumeLayout(false);
             this.PerformLayout();
 
