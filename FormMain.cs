@@ -112,9 +112,7 @@ namespace My_Inventory
             Data.Sort();
             //Вкладка инвентаря
             //Рисование списка
-            listViewInventory.Items.Clear();
-            foreach (Item item in Data.Items)
-                listViewInventory.Items.Add(item.GetListItem());
+            DrawItems("");
             //Выпадающие списки
             List<string> Places = new List<string>();
             foreach (Item item in Data.Items)
@@ -127,6 +125,7 @@ namespace My_Inventory
 
             //Вкладка сотрудников
             //Рисование списка
+            listViewUsers.BeginUpdate();
             listViewUsers.Items.Clear();
             comboBoxUsers.Items.Clear();
             //Выпадающие списки по данным пользователей
@@ -144,6 +143,7 @@ namespace My_Inventory
                 if (user.Departament != "" && Deps.Find(o => o == user.Departament) == null)
                     Deps.Add(user.Departament);
             }
+            listViewUsers.EndUpdate();
             Posts.Sort();
             Orgs.Sort();
             Deps.Sort();
@@ -156,11 +156,31 @@ namespace My_Inventory
             buttonUSave.Enabled = false;
 
             //Вкладка журнала изменений
+            listViewLog.BeginUpdate();
             listViewLog.Items.Clear();
             foreach (LogRecord rec in Data.Log)
                 listViewLog.Items.Add(rec.GetListItem());
+            listViewLog.EndUpdate();
         }
 
+        /// <summary>
+        /// Вывод списка предметов
+        /// </summary>
+        void DrawItems(string Filter)
+        {
+            listViewInventory.BeginUpdate();
+            listViewInventory.Items.Clear();
+            foreach (Item item in Data.Items)
+            {
+                if (Filter == "" ||
+                    (item.Number.ToLower().Contains(Filter) | item.Name.ToLower().Contains(Filter) |
+                    item.Model.ToLower().Contains(Filter) | item.User.ToLower().Contains(Filter) |
+                    item.Place.ToLower().Contains(Filter) | item.Discription.ToLower().Contains(Filter)))
+                    listViewInventory.Items.Add(item.GetListItem());
+            }
+            listViewInventory.EndUpdate();
+            listViewInventory_SelectedIndexChanged(null, null);
+        }
 
         private void tabControlMain_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -390,6 +410,18 @@ namespace My_Inventory
             form.ShowDialog();
 
         }
+
+        private void toolStripButtonResetFilter_Click(object sender, EventArgs e)
+        {
+            toolStripTextBoxFilter.Text = "";
+            toolStripButtonResetFilter.Enabled = false;
+        }
+        private void toolStripTextBoxFilter_TextChanged(object sender, EventArgs e)
+        {
+            toolStripButtonResetFilter.Enabled = toolStripTextBoxFilter.Text != "";
+            DrawItems(toolStripTextBoxFilter.Text.ToLower());
+        }
+
         //Кнопка сохранения параметров предметов
         private void buttonSave_Click(object sender, EventArgs e) { SaveItem(false); }
         private void buttonSaveToday_Click(object sender, EventArgs e) { SaveItem(true); }
@@ -432,12 +464,14 @@ namespace My_Inventory
             foreach (Item item in Data.Items)
                 if (item.User == name) item.User = "";
             DrawBase();
+            Data.Save();
         }
 
         //Изменение выделения списка сотрудников
         private void listViewUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             bool sel = listViewUsers.SelectedIndices.Count == 1;
+            listViewUserItems.BeginUpdate();
             listViewUserItems.Items.Clear();
             if (sel)
             {
@@ -460,6 +494,7 @@ namespace My_Inventory
                 comboBoxDepartament.Text = "";
                 comboBoxOrg.Text = "";
             }
+            listViewUserItems.EndUpdate();
             //Сброс флагов
             ChangeUserName = false;
             //Установка доступности кнопок
@@ -558,5 +593,6 @@ namespace My_Inventory
             DrawBase();
         }
         #endregion
+
     }
 }

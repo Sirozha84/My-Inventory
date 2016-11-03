@@ -82,10 +82,12 @@
             this.labelNum = new System.Windows.Forms.Label();
             this.toolStripNewItem = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonNewItem = new System.Windows.Forms.ToolStripButton();
-            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripButtonCrib = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelItem = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripTextBoxFilter = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButtonResetFilter = new System.Windows.Forms.ToolStripButton();
             this.tabPageUsers = new System.Windows.Forms.TabPage();
             this.listViewUserItems = new System.Windows.Forms.ListView();
             this.columnHeaderINum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -126,8 +128,6 @@
             this.columnHeaderLMove = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel1 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.toolStripButtonCancelFind = new System.Windows.Forms.ToolStripButton();
             this.menuStripMain.SuspendLayout();
             this.tabControlMain.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
@@ -644,8 +644,8 @@
             this.toolStripButtonDelItem,
             this.toolStripSeparator1,
             this.toolStripLabel1,
-            this.toolStripTextBox1,
-            this.toolStripButtonCancelFind});
+            this.toolStripTextBoxFilter,
+            this.toolStripButtonResetFilter});
             this.toolStripNewItem.Location = new System.Drawing.Point(3, 3);
             this.toolStripNewItem.Name = "toolStripNewItem";
             this.toolStripNewItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
@@ -661,13 +661,6 @@
             this.toolStripButtonNewItem.Text = "Новый предмет";
             this.toolStripButtonNewItem.ToolTipText = "Создать новый предмет";
             this.toolStripButtonNewItem.Click += new System.EventHandler(this.toolStripButtonNewItem_Click);
-            // 
-            // toolStripTextBox1
-            // 
-            this.toolStripTextBox1.BackColor = System.Drawing.SystemColors.Window;
-            this.toolStripTextBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolStripTextBox1.Name = "toolStripTextBox1";
-            this.toolStripTextBox1.Size = new System.Drawing.Size(200, 25);
             // 
             // toolStripButtonCrib
             // 
@@ -691,11 +684,35 @@
             this.toolStripButtonDelItem.ToolTipText = "Удалить выбранные предметы";
             this.toolStripButtonDelItem.Click += new System.EventHandler(this.toolStripButtonDelItem_Click);
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
+            // 
             // toolStripLabel1
             // 
             this.toolStripLabel1.Name = "toolStripLabel1";
             this.toolStripLabel1.Size = new System.Drawing.Size(45, 22);
             this.toolStripLabel1.Text = "Поиск:";
+            // 
+            // toolStripTextBoxFilter
+            // 
+            this.toolStripTextBoxFilter.BackColor = System.Drawing.SystemColors.Window;
+            this.toolStripTextBoxFilter.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.toolStripTextBoxFilter.Name = "toolStripTextBoxFilter";
+            this.toolStripTextBoxFilter.Size = new System.Drawing.Size(200, 25);
+            this.toolStripTextBoxFilter.TextChanged += new System.EventHandler(this.toolStripTextBoxFilter_TextChanged);
+            // 
+            // toolStripButtonResetFilter
+            // 
+            this.toolStripButtonResetFilter.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonResetFilter.Enabled = false;
+            this.toolStripButtonResetFilter.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonResetFilter.Image")));
+            this.toolStripButtonResetFilter.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonResetFilter.Name = "toolStripButtonResetFilter";
+            this.toolStripButtonResetFilter.Size = new System.Drawing.Size(46, 22);
+            this.toolStripButtonResetFilter.Text = "Сброс";
+            this.toolStripButtonResetFilter.Click += new System.EventHandler(this.toolStripButtonResetFilter_Click);
             // 
             // tabPageUsers
             // 
@@ -1082,21 +1099,6 @@
             this.toolStripStatusLabel1.Size = new System.Drawing.Size(122, 17);
             this.toolStripStatusLabel1.Text = "Выбрано элементов:";
             // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
-            // 
-            // toolStripButtonCancelFind
-            // 
-            this.toolStripButtonCancelFind.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolStripButtonCancelFind.Enabled = false;
-            this.toolStripButtonCancelFind.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonCancelFind.Image")));
-            this.toolStripButtonCancelFind.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonCancelFind.Name = "toolStripButtonCancelFind";
-            this.toolStripButtonCancelFind.Size = new System.Drawing.Size(53, 22);
-            this.toolStripButtonCancelFind.Text = "Отмена";
-            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1233,10 +1235,10 @@
         private System.Windows.Forms.ToolStripMenuItem новыйСотрудникToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem удалитьToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem списатьToolStripMenuItem1;
-        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBoxFilter;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripButton toolStripButtonCancelFind;
+        private System.Windows.Forms.ToolStripButton toolStripButtonResetFilter;
     }
 }
 
