@@ -27,8 +27,8 @@ namespace My_Inventory
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            MessageBox.Show(Application.ProductName + "\nВерсия: " +
-                Application.ProductVersion + "\nАвтор: Сергей Гордеев\n" +
+            MessageBox.Show(Application.ProductName + "\nВерсия: " + 
+                Application.ProductVersion + " (10 января 2017 года.\nАвтор: Сергей Гордеев\n" +
                 "Сайт: www.sg-software.ru",
                 "О " + Application.ProductName, MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
@@ -191,6 +191,15 @@ namespace My_Inventory
         }
 
         #endregion
+        private void сайтРазработчикаToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.sg-software.ru");
+        }
+
+        private void страницаПрограммыToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start("http://www.sg-software.ru/windows/programs/my_inventory");
+        }
 
         #region Вкладка "Инвентарь"
         /// <summary>
