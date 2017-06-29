@@ -28,7 +28,7 @@ namespace My_Inventory
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
             MessageBox.Show(Application.ProductName + "\nВерсия: " + 
-                Application.ProductVersion + " (10 января 2017 года.\nАвтор: Сергей Гордеев\n" +
+                Application.ProductVersion + " (10 января 2017 года)\nАвтор: Сергей Гордеев\n" +
                 "Сайт: www.sg-software.ru",
                 "О " + Application.ProductName, MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
