@@ -232,9 +232,9 @@ namespace My_Inventory
         {
             string del = Crib ? "списать" : "удалить";
             string cap = Crib ? "Списание инвентаря" : "Удаление инвентаря";
-            string ask = "Уверены, что хотите " + Crib + " выделенный предмет?";
+            string ask = "Уверены, что хотите " + del + " выделенный предмет?";
             if (listViewInventory.SelectedIndices.Count > 1)
-                ask = "Уверены, что хотите " + Crib + " выделенные предметы (" +
+                ask = "Уверены, что хотите " + del + " выделенные предметы (" +
                     listViewInventory.SelectedIndices.Count + ")?";
             if (MessageBox.Show(ask, cap, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
@@ -603,5 +603,9 @@ namespace My_Inventory
         }
         #endregion
 
+        private void списатьToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

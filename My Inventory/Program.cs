@@ -1,12 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Windows.Forms;
 
 namespace My_Inventory
 {
     static class Program
     {
+        public static string Url = "";
+        public static string Site = "";
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
