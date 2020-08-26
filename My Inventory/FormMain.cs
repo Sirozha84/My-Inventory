@@ -29,11 +29,6 @@ namespace My_Inventory
         {
             FormAbout form = new FormAbout();
             form.ShowDialog();
-            MessageBox.Show(Application.ProductName + "\nВерсия: " + 
-                Application.ProductVersion + " (10 января 2017 года)\nАвтор: Сергей Гордеев\n" +
-                "Сайт: www.sg-software.ru",
-                "О " + Application.ProductName, MessageBoxButtons.OK,
-                MessageBoxIcon.Information);
         }
 
         //Загрузка приложения
