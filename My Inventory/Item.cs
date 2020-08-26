@@ -3,7 +3,7 @@ using System.Windows.Forms;
 
 namespace My_Inventory
 {
-    class Item : IComparable
+    public class Item
     {
         public string Number;
         public string Name;
@@ -13,6 +13,8 @@ namespace My_Inventory
         public string Place;
         public string Date;
         public string Discription;
+
+        public Item() { }
 
         public Item(string Number, string Name, string Model, string Serial, string User,
             string Place, string Date, string Discription)
@@ -33,7 +35,7 @@ namespace My_Inventory
         /// <returns></returns>
         public ListViewItem GetListItem()
         {
-            User user = Data.Users.Find(o => o.Name == User);
+            User user = Data.data.Users.Find(o => o.Name == User);
             //string dep = user == null ? "" : user.Departament;
             string[] str = { Number, Name + " " + Model, User, Date, Place, Discription };
             ListViewItem listItem = new ListViewItem(str);
@@ -47,7 +49,7 @@ namespace My_Inventory
         /// <returns></returns>
         public ListViewItem GetListItemForUser()
         {
-            User user = Data.Users.Find(o => o.Name == User);
+            User user = Data.data.Users.Find(o => o.Name == User);
             string dep = user == null ? "" : user.Departament;
             string[] str = { Number, Name + " " + Model, Date, Place, Discription };
             ListViewItem listItem = new ListViewItem(str);

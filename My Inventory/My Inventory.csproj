@@ -62,12 +62,6 @@
     <Compile Include="FormCompanyOptions.Designer.cs">
       <DependentUpon>FormCompanyOptions.cs</DependentUpon>
     </Compile>
-    <Compile Include="FormLogShrink.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FormLogShrink.Designer.cs">
-      <DependentUpon>FormLogShrink.cs</DependentUpon>
-    </Compile>
     <Compile Include="FormMain.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -93,9 +87,6 @@
     <Compile Include="User.cs" />
     <EmbeddedResource Include="FormCompanyOptions.resx">
       <DependentUpon>FormCompanyOptions.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="FormLogShrink.resx">
-      <DependentUpon>FormLogShrink.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormMain.resx">
       <DependentUpon>FormMain.cs</DependentUpon>

@@ -53,10 +53,6 @@ namespace My_Inventory
             listViewUserItems.Columns[2].Width = Properties.Settings.Default.Column22;
             listViewUserItems.Columns[3].Width = Properties.Settings.Default.Column23;
             listViewUserItems.Columns[4].Width = Properties.Settings.Default.Column24;
-            listViewLog.Columns[0].Width = Properties.Settings.Default.Column30;
-            listViewLog.Columns[1].Width = Properties.Settings.Default.Column31;
-            listViewLog.Columns[2].Width = Properties.Settings.Default.Column32;
-            listViewLog.Columns[3].Width = Properties.Settings.Default.Column33;
             Data.Load();
             DrawBase();
         }
@@ -83,10 +79,6 @@ namespace My_Inventory
             Properties.Settings.Default.Column22 = listViewUserItems.Columns[2].Width;
             Properties.Settings.Default.Column23 = listViewUserItems.Columns[3].Width;
             Properties.Settings.Default.Column24 = listViewUserItems.Columns[4].Width;
-            Properties.Settings.Default.Column30 = listViewLog.Columns[0].Width;
-            Properties.Settings.Default.Column31 = listViewLog.Columns[1].Width;
-            Properties.Settings.Default.Column32 = listViewLog.Columns[2].Width;
-            Properties.Settings.Default.Column33 = listViewLog.Columns[3].Width;
             Properties.Settings.Default.Save();
         }
 
@@ -112,7 +104,7 @@ namespace My_Inventory
             DrawItems("");
             //Выпадающие списки
             List<string> Places = new List<string>();
-            foreach (Item item in Data.Items)
+            foreach (Item item in Data.data.Items)
             {
                 if (item.Place != "" && Places.Find(o => o == item.Place) == null)
                     Places.Add(item.Place);
@@ -129,7 +121,7 @@ namespace My_Inventory
             List<string> Posts = new List<string>();
             List<string> Orgs = new List<string>();
             List<string> Deps = new List<string>();
-            foreach (User user in Data.Users)
+            foreach (User user in Data.data.Users)
             {
                 listViewUsers.Items.Add(user.GetListVievItem());
                 comboBoxUsers.Items.Add(user.Name);
@@ -151,13 +143,6 @@ namespace My_Inventory
             listViewInventory_SelectedIndexChanged(null, null);
             listViewUsers_SelectedIndexChanged(null, null);
             buttonUSave.Enabled = false;
-
-            //Вкладка журнала изменений
-            listViewLog.BeginUpdate();
-            listViewLog.Items.Clear();
-            foreach (LogRecord rec in Data.Log)
-                listViewLog.Items.Add(rec.GetListItem());
-            listViewLog.EndUpdate();
         }
 
         /// <summary>
@@ -167,7 +152,7 @@ namespace My_Inventory
         {
             listViewInventory.BeginUpdate();
             listViewInventory.Items.Clear();
-            foreach (Item item in Data.Items)
+            foreach (Item item in Data.data.Items)
             {
                 if (Filter == "" ||
                     (item.Number.ToLower().Contains(Filter) | item.Name.ToLower().Contains(Filter) |
@@ -206,8 +191,8 @@ namespace My_Inventory
         {
             tabControlMain.SelectedIndex = 0;
             //Ищем доступный номер
-            int max = 1;
-            foreach (Item itm in Data.Items)
+            int max = 0;
+            foreach (Item itm in Data.data.Items)
             {
                 int c = 0;
                 try { c = Convert.ToInt32(itm.Number); } catch { }
@@ -216,7 +201,7 @@ namespace My_Inventory
             max++;
             //Создаём предмет
             Item item = new Item(max.ToString(), "", "", "", "", "", "", "");
-            Data.Items.Add(item);
+            Data.data.Items.Add(item);
             DrawBase();
             SelectOnliLastItem(listViewInventory);
             textBoxNum.Focus();
@@ -238,9 +223,7 @@ namespace My_Inventory
                 for (int i = 0; i < listViewInventory.SelectedItems.Count; i++)
                 {
                     Item it = (Item)listViewInventory.SelectedItems[i].Tag;
-                    if (Crib) Data.Log.Insert(0, new LogRecord(DateTime.Now.ToLongDateString(), it.Number,
-                                it.Name + " " + it.Model, "Списан!"));
-                    Data.Items.Remove(it);
+                    Data.data.Items.Remove(it);
                 }
                 DrawBase();
             }
@@ -327,7 +310,6 @@ namespace My_Inventory
             toolStripMenuItemDel.Enabled = sel;
             удалитьToolStripMenuItem.Enabled = sel;
             списатьToolStripMenuItem.Enabled = sel;
-            списатьToolStripMenuItem1.Enabled = sel;
         }
 
         private void textBoxNum_TextChanged(object sender, EventArgs e)
@@ -371,7 +353,7 @@ namespace My_Inventory
         {
             bool Many = listViewInventory.SelectedIndices.Count > 1;
             //Надо сделать проверку на то, нет ли такого номера уже в базе
-            if (!Many && ChangeNum && Data.Items.Find(o => o.Number == textBoxNum.Text) != null)
+            if (!Many && ChangeNum && Data.data.Items.Find(o => o.Number == textBoxNum.Text) != null)
             {
                 MessageBox.Show("В базе уже есть предмет с таким номером");
                 return;
@@ -402,8 +384,6 @@ namespace My_Inventory
                 if (Log)
                 {
                     item.Date = DateTime.Now.ToLongDateString();
-                    Data.Log.Insert(0, new LogRecord(item.Date, item.Number,
-                        item.Name + " " + item.Model, move));
                 }
             }
             DrawBase();
@@ -449,7 +429,7 @@ namespace My_Inventory
         {
             tabControlMain.SelectedIndex = 1;
             User user = new User("Сотрудник", "", "", "");
-            Data.Users.Add(user);
+            Data.data.Users.Add(user);
             listViewUsers.Items.Add(user.GetListVievItem());
             SelectOnliLastItem(listViewUsers);
             textBoxUUser.Focus();
@@ -465,9 +445,9 @@ namespace My_Inventory
                 return;
             User user = (User)listViewUsers.SelectedItems[0].Tag;
             string name = user.Name;
-            Data.Users.Remove(user);
+            Data.data.Users.Remove(user);
             //А теперь пометим предметы, которые были прикреплены ничьими
-            foreach (Item item in Data.Items)
+            foreach (Item item in Data.data.Items)
                 if (item.User == name) item.User = "";
             DrawBase();
             Data.Save();
@@ -488,7 +468,7 @@ namespace My_Inventory
                 comboBoxOrg.Text = user.Organisation;
                 comboBoxDepartament.Text = user.Departament;
                 //comboBoxOrg.Text = user;
-                Data.Items.FindAll(o => o.User == user.Name).ForEach(o =>
+                Data.data.Items.FindAll(o => o.User == user.Name).ForEach(o =>
                 {
                     listViewUserItems.Items.Add(o.GetListItemForUser());
                 });
@@ -524,7 +504,7 @@ namespace My_Inventory
         private void buttonUSave_Click(object sender, EventArgs e)
         {
             //Надо сделать проверку на то, нет ли такого имени уже
-            if (ChangeUserName && Data.Users.Find(o => o.Name == textBoxUUser.Text) != null)
+            if (ChangeUserName && Data.data.Users.Find(o => o.Name == textBoxUUser.Text) != null)
             {
                 MessageBox.Show("Сотрудник с такими Фамилией И. О. уже существует в базе.");
                 return;
@@ -536,7 +516,7 @@ namespace My_Inventory
             user.Organisation = comboBoxOrg.Text;
             user.Departament = comboBoxDepartament.Text;
             //Надо изменить записи в инвентаре при переименовании
-            foreach (Item item in Data.Items)
+            foreach (Item item in Data.data.Items)
                 if (item.User == oldName) item.User = user.Name;
             DrawBase();
             Data.Save();
@@ -591,18 +571,5 @@ namespace My_Inventory
         private void toolStripButtonToInventory_Click(object sender, EventArgs e) { ToInventory(); }
         #endregion
 
-        #region Вкладка "Журнал перемещений"
-        private void очисткаЖурналаПеремещенийToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            using (FormLogShrink form = new FormLogShrink())
-                form.ShowDialog();
-            DrawBase();
-        }
-        #endregion
-
-        private void списатьToolStripMenuItem1_Click(object sender, EventArgs e)
-        {
-
-        }
     }
 }

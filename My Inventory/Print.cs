@@ -16,7 +16,7 @@ namespace My_Inventory
         public static void RegistryCard(User user)
         {
             usr = user;
-            itms = Data.Items.FindAll(o => o.User == usr.Name);
+            itms = Data.data.Items.FindAll(o => o.User == usr.Name);
             PageNum = 1;
 
             PrintDocument doc = new PrintDocument();
@@ -74,7 +74,7 @@ namespace My_Inventory
                 }
             }
             //Нижние поля
-            Label(80, 700, 1069, 35, "Карточку заполнил " + Data.Post + " __________ " + Data.ResponsiblePerson +
+            Label(80, 700, 1069, 35, "Карточку заполнил " + Data.data.Post + " __________ " + Data.data.ResponsiblePerson +
                 "   " + Date(), Mid, Left, false, e);
             e.HasMorePages = itms.Count > 0;
             PageNum++;

@@ -14,14 +14,14 @@ namespace My_Inventory
         public FormCompanyOptions()
         {
             InitializeComponent();
-            textBoxResponsiblePerson.Text = Data.ResponsiblePerson;
-            textBoxPost.Text = Data.Post;
+            textBoxResponsiblePerson.Text = Data.data.ResponsiblePerson;
+            textBoxPost.Text = Data.data.Post;
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            Data.ResponsiblePerson = textBoxResponsiblePerson.Text;
-            Data.Post = textBoxPost.Text;
+            Data.data.ResponsiblePerson = textBoxResponsiblePerson.Text;
+            Data.data.Post = textBoxPost.Text;
             Data.Save();
             Close();
         }
