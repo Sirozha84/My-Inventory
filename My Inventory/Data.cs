@@ -53,8 +53,8 @@ namespace My_Inventory
         /// </summary>
         public static void Sort()
         {
-            data.Items.Sort((o1, o2) => o1.Number.CompareTo(o2.Number));
-            data.Users.Sort((o1, o2) => o1.Name.CompareTo(o2.Name));
+            data.Items.Sort((o1, o2) => o1.number.CompareTo(o2.number));
+            data.Users.Sort((o1, o2) => o1.name.CompareTo(o2.name));
         }
     }
 }

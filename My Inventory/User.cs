@@ -8,24 +8,24 @@ namespace My_Inventory
 {
     public class User
     {
-        public string Name;
-        public string Post;
-        public string Organisation;
-        public string Departament;
+        public string name;
+        public string post;
+        public string organisation;
+        public string departament;
 
         public User() { }
 
         public User(string Name, string Post, string Organisation, string Departament)
         {
-            this.Name = Name;
-            this.Post = Post;
-            this.Organisation = Organisation;
-            this.Departament = Departament;
+            this.name = Name;
+            this.post = Post;
+            this.organisation = Organisation;
+            this.departament = Departament;
         }
 
         public ListViewItem GetListVievItem()
         {
-            string[] str = { Name, Departament };
+            string[] str = { name, departament };
             ListViewItem item = new ListViewItem(str);
             item.Tag = this;
             return item;
@@ -36,7 +36,7 @@ namespace My_Inventory
             if (obj == null)
                 return 1;
             else
-                return Name.CompareTo(((User)obj).Name);
+                return name.CompareTo(((User)obj).name);
         }
     }
 }

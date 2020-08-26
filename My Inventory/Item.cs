@@ -1,32 +1,36 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 
 namespace My_Inventory
 {
     public class Item
     {
-        public string Number;
-        public string Name;
-        public string Model;
-        public string Serial;
-        public string User;
-        public string Place;
-        public string Date;
-        public string Discription;
+        public string number;
+        public string name;
+        public string model;
+        public string serial;
+        public string user;
+        public string place;
+        public string date;
+        public string discription;
+        public List<Move> history;
 
-        public Item() { }
-
-        public Item(string Number, string Name, string Model, string Serial, string User,
-            string Place, string Date, string Discription)
+        public Item()
         {
-            this.Number = Number;
-            this.Name = Name;
-            this.Model = Model;
-            this.Serial = Serial;
-            this.User = User;
-            this.Place = Place;
-            this.Date = Date;
-            this.Discription = Discription;
+            //Ищем доступный номер
+            int max = 0;
+            if (Data.data != null)
+            {
+                foreach (Item itm in Data.data.Items)
+                {
+                    int c = 0;
+                    try { c = Convert.ToInt32(itm.number); } catch { }
+                    if (c > max) max = c;
+                }
+            }
+            number = (++max).ToString();
+            history = new List<Move>();
         }
 
         /// <summary>
@@ -35,9 +39,9 @@ namespace My_Inventory
         /// <returns></returns>
         public ListViewItem GetListItem()
         {
-            User user = Data.data.Users.Find(o => o.Name == User);
-            //string dep = user == null ? "" : user.Departament;
-            string[] str = { Number, Name + " " + Model, User, Date, Place, Discription };
+            User usr = Data.data.Users.Find(o => o.name == user);
+            //string dep = user == null ? "" : user.;
+            string[] str = { number, name + " " + model, this.user, date, place, discription };
             ListViewItem listItem = new ListViewItem(str);
             listItem.Tag = this;
             return listItem;
@@ -49,9 +53,9 @@ namespace My_Inventory
         /// <returns></returns>
         public ListViewItem GetListItemForUser()
         {
-            User user = Data.data.Users.Find(o => o.Name == User);
-            string dep = user == null ? "" : user.Departament;
-            string[] str = { Number, Name + " " + Model, Date, Place, Discription };
+            User usr = Data.data.Users.Find(o => o.name == user);
+            //string dep = user == null ? "" : user.Departament;
+            string[] str = { number, name + " " + model, date, place, discription };
             ListViewItem listItem = new ListViewItem(str);
             listItem.Tag = this;
             return listItem;
@@ -61,7 +65,7 @@ namespace My_Inventory
         {
             try
             {
-                return Convert.ToInt16(Number) > Convert.ToInt16(((Item)obj).Number) ? 1 : -1;
+                return Convert.ToInt16(number) > Convert.ToInt16(((Item)obj).number) ? 1 : -1;
             }
             catch { return 1; }
         }
