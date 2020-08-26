@@ -27,6 +27,8 @@ namespace My_Inventory
 
         private void оПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FormAbout form = new FormAbout();
+            form.ShowDialog();
             MessageBox.Show(Application.ProductName + "\nВерсия: " + 
                 Application.ProductVersion + " (10 января 2017 года)\nАвтор: Сергей Гордеев\n" +
                 "Сайт: www.sg-software.ru",
@@ -232,9 +234,9 @@ namespace My_Inventory
         {
             string del = Crib ? "списать" : "удалить";
             string cap = Crib ? "Списание инвентаря" : "Удаление инвентаря";
-            string ask = "Уверены, что хотите " + del + " выделенный предмет?";
+            string ask = "Уверены, что хотите удалить выделенный предмет?";
             if (listViewInventory.SelectedIndices.Count > 1)
-                ask = "Уверены, что хотите " + del + " выделенные предметы (" +
+                ask = "Уверены, что хотите удалить выделенные предметы (" +
                     listViewInventory.SelectedIndices.Count + ")?";
             if (MessageBox.Show(ask, cap, MessageBoxButtons.YesNo) == DialogResult.Yes)
             {
