@@ -91,7 +91,7 @@
             // buttonOK
             // 
             this.buttonOK.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonOK.Location = new System.Drawing.Point(634, 222);
+            this.buttonOK.Location = new System.Drawing.Point(616, 226);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 4;
@@ -103,12 +103,13 @@
             // 
             this.buttonCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.buttonCancel.Location = new System.Drawing.Point(715, 222);
+            this.buttonCancel.Location = new System.Drawing.Point(697, 226);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
             this.buttonCancel.TabIndex = 5;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // textBoxModel
             // 
@@ -250,7 +251,7 @@
             this.listViewHistory.Location = new System.Drawing.Point(290, 41);
             this.listViewHistory.MultiSelect = false;
             this.listViewHistory.Name = "listViewHistory";
-            this.listViewHistory.Size = new System.Drawing.Size(500, 175);
+            this.listViewHistory.Size = new System.Drawing.Size(482, 179);
             this.listViewHistory.TabIndex = 21;
             this.listViewHistory.UseCompatibleStateImageBehavior = false;
             this.listViewHistory.View = System.Windows.Forms.View.Details;
@@ -275,7 +276,7 @@
             // columnComment
             // 
             this.columnComment.Text = "Комментарий";
-            this.columnComment.Width = 200;
+            this.columnComment.Width = 180;
             // 
             // buttonChangeMove
             // 
@@ -294,7 +295,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
-            this.ClientSize = new System.Drawing.Size(802, 257);
+            this.ClientSize = new System.Drawing.Size(784, 261);
             this.Controls.Add(this.buttonAddMove);
             this.Controls.Add(this.buttonDelMove);
             this.Controls.Add(this.listViewHistory);
@@ -317,11 +318,13 @@
             this.Controls.Add(this.labelName);
             this.Controls.Add(this.textBoxNumber);
             this.Controls.Add(this.labelNumber);
+            this.MinimumSize = new System.Drawing.Size(800, 300);
             this.Name = "FormItem";
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "Новый предмет";
+            this.Text = "Новый объект";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormItem_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

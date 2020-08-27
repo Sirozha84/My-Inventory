@@ -8,11 +8,14 @@ namespace My_Inventory
     {
         Item item;
         List<Move> history = new List<Move>();
+        bool cancel;
 
         public FormItem(Item item)
         {
             InitializeComponent();
             this.item = item;
+
+            if (item.name != null) Text = item.name + " " + item.model;
 
             textBoxNumber.Text = item.number;
             textBoxName.Text = item.name;
@@ -81,14 +84,27 @@ namespace My_Inventory
 
         private void OK(object sender, EventArgs e)
         {
-            item.number = textBoxNumber.Text;
-            item.name = textBoxName.Text;
-            item.model = textBoxModel.Text;
-            item.discription = textBoxDisc.Text;
-            item.history.Clear();
-            foreach (Move m in history) item.history.Add(m);
-            DialogResult = DialogResult.OK;
+            if (item.number != textBoxNumber.Text && Data.data.items.Find(o => o.number == textBoxNumber.Text) != null)
+            {
+                MessageBox.Show("В базе уже есть объект с таким номером. Измените инвентарный номер.");
+                cancel = true;
+            }
+            else
+            {
+                item.number = textBoxNumber.Text;
+                item.name = textBoxName.Text;
+                item.model = textBoxModel.Text;
+                item.discription = textBoxDisc.Text;
+                item.history.Clear();
+                foreach (Move m in history) item.history.Add(m);
+                DialogResult = DialogResult.OK;
+                cancel = false;
+            }
         }
+
+        private void buttonCancel_Click(object sender, EventArgs e) { cancel = false; }
+
+        private void FormItem_FormClosing(object sender, FormClosingEventArgs e) { e.Cancel = cancel; }
 
     }
 }
