@@ -103,7 +103,7 @@ namespace My_Inventory
             
             //Выпадающие списки
             List<string> Places = new List<string>();
-            foreach (Item item in Data.data.Items)
+            foreach (Item item in Data.data.items)
             {
                 if (item.place != "" && Places.Find(o => o == item.place) == null)
                     Places.Add(item.place);
@@ -121,7 +121,7 @@ namespace My_Inventory
             List<string> Posts = new List<string>();
             List<string> Orgs = new List<string>();
             List<string> Deps = new List<string>();
-            foreach (User user in Data.data.Users)
+            foreach (User user in Data.data.users)
             {
                 listViewUsers.Items.Add(user.GetListVievItem());
                 //comboBoxUsers.Items.Add(user.Name);
@@ -152,7 +152,7 @@ namespace My_Inventory
         {
             listViewInventory.BeginUpdate();
             listViewInventory.Items.Clear();
-            foreach (Item item in Data.data.Items)
+            foreach (Item item in Data.data.items)
             {
                 if (Filter == "" ||
                     (item.number.ToLower().Contains(Filter) | item.name.ToLower().Contains(Filter) |
@@ -194,7 +194,7 @@ namespace My_Inventory
 
             if (form.ShowDialog() == DialogResult.OK)
             {
-                Data.data.Items.Add(item);
+                Data.data.items.Add(item);
                 Data.Save();
                 RefreshData();
             }
@@ -218,7 +218,7 @@ namespace My_Inventory
                 for (int i = 0; i < listViewInventory.SelectedItems.Count; i++)
                 {
                     Item it = (Item)listViewInventory.SelectedItems[i].Tag;
-                    Data.data.Items.Remove(it);
+                    Data.data.items.Remove(it);
                 }
                 RefreshData();
             }
@@ -334,7 +334,7 @@ namespace My_Inventory
         {
             tabControlMain.SelectedIndex = 1;
             User user = new User("Сотрудник", "", "", "");
-            Data.data.Users.Add(user);
+            Data.data.users.Add(user);
             listViewUsers.Items.Add(user.GetListVievItem());
             SelectOnliLastItem(listViewUsers);
             textBoxUUser.Focus();
@@ -350,9 +350,9 @@ namespace My_Inventory
                 return;
             User user = (User)listViewUsers.SelectedItems[0].Tag;
             string name = user.name;
-            Data.data.Users.Remove(user);
+            Data.data.users.Remove(user);
             //А теперь пометим предметы, которые были прикреплены ничьими
-            foreach (Item item in Data.data.Items)
+            foreach (Item item in Data.data.items)
                 if (item.user == name) item.user = "";
             RefreshData();
             Data.Save();
@@ -373,7 +373,7 @@ namespace My_Inventory
                 comboBoxOrg.Text = user.organisation;
                 comboBoxDepartament.Text = user.departament;
                 //comboBoxOrg.Text = user;
-                Data.data.Items.FindAll(o => o.user == user.name).ForEach(o =>
+                Data.data.items.FindAll(o => o.user == user.name).ForEach(o =>
                 {
                     listViewUserItems.Items.Add(o.GetListItemForUser());
                 });
@@ -409,7 +409,7 @@ namespace My_Inventory
         private void buttonUSave_Click(object sender, EventArgs e)
         {
             //Надо сделать проверку на то, нет ли такого имени уже
-            if (ChangeUserName && Data.data.Users.Find(o => o.name == textBoxUUser.Text) != null)
+            if (ChangeUserName && Data.data.users.Find(o => o.name == textBoxUUser.Text) != null)
             {
                 MessageBox.Show("Сотрудник с такими Фамилией И. О. уже существует в базе.");
                 return;
@@ -421,7 +421,7 @@ namespace My_Inventory
             user.organisation = comboBoxOrg.Text;
             user.departament = comboBoxDepartament.Text;
             //Надо изменить записи в инвентаре при переименовании
-            foreach (Item item in Data.data.Items)
+            foreach (Item item in Data.data.items)
                 if (item.user == oldName) item.user = user.name;
             RefreshData();
             Data.Save();

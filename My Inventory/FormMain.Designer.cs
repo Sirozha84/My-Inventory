@@ -125,7 +125,7 @@
             this.справкаToolStripMenuItem});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(834, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(784, 24);
             this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStripMain";
             // 
@@ -278,7 +278,7 @@
             this.tabControlMain.Location = new System.Drawing.Point(0, 24);
             this.tabControlMain.Name = "tabControlMain";
             this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(834, 415);
+            this.tabControlMain.Size = new System.Drawing.Size(784, 415);
             this.tabControlMain.TabIndex = 1;
             this.tabControlMain.SelectedIndexChanged += new System.EventHandler(this.tabControlMain_SelectedIndexChanged);
             // 
@@ -289,7 +289,7 @@
             this.tabPageInventory.Location = new System.Drawing.Point(4, 22);
             this.tabPageInventory.Name = "tabPageInventory";
             this.tabPageInventory.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageInventory.Size = new System.Drawing.Size(826, 389);
+            this.tabPageInventory.Size = new System.Drawing.Size(776, 389);
             this.tabPageInventory.TabIndex = 0;
             this.tabPageInventory.Text = "Инвентарь";
             this.tabPageInventory.UseVisualStyleBackColor = true;
@@ -312,7 +312,7 @@
             this.listViewInventory.HideSelection = false;
             this.listViewInventory.Location = new System.Drawing.Point(3, 28);
             this.listViewInventory.Name = "listViewInventory";
-            this.listViewInventory.Size = new System.Drawing.Size(820, 358);
+            this.listViewInventory.Size = new System.Drawing.Size(770, 358);
             this.listViewInventory.TabIndex = 0;
             this.listViewInventory.UseCompatibleStateImageBehavior = false;
             this.listViewInventory.View = System.Windows.Forms.View.Details;
@@ -398,7 +398,7 @@
             this.toolStripNewItem.Location = new System.Drawing.Point(3, 3);
             this.toolStripNewItem.Name = "toolStripNewItem";
             this.toolStripNewItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripNewItem.Size = new System.Drawing.Size(820, 25);
+            this.toolStripNewItem.Size = new System.Drawing.Size(770, 25);
             this.toolStripNewItem.TabIndex = 1;
             // 
             // toolStripButtonNewItem
@@ -473,7 +473,7 @@
             this.tabPageUsers.Location = new System.Drawing.Point(4, 22);
             this.tabPageUsers.Name = "tabPageUsers";
             this.tabPageUsers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUsers.Size = new System.Drawing.Size(826, 389);
+            this.tabPageUsers.Size = new System.Drawing.Size(776, 389);
             this.tabPageUsers.TabIndex = 2;
             this.tabPageUsers.Text = "Сотрудники";
             this.tabPageUsers.UseVisualStyleBackColor = true;
@@ -492,7 +492,7 @@
             this.listViewUserItems.GridLines = true;
             this.listViewUserItems.Location = new System.Drawing.Point(241, 116);
             this.listViewUserItems.Name = "listViewUserItems";
-            this.listViewUserItems.Size = new System.Drawing.Size(582, 270);
+            this.listViewUserItems.Size = new System.Drawing.Size(532, 270);
             this.listViewUserItems.TabIndex = 6;
             this.listViewUserItems.UseCompatibleStateImageBehavior = false;
             this.listViewUserItems.View = System.Windows.Forms.View.Details;
@@ -537,7 +537,7 @@
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUser.Location = new System.Drawing.Point(241, 28);
             this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(582, 88);
+            this.panelUser.Size = new System.Drawing.Size(532, 88);
             this.panelUser.TabIndex = 5;
             // 
             // comboBoxPost
@@ -546,7 +546,7 @@
             this.comboBoxPost.FormattingEnabled = true;
             this.comboBoxPost.Location = new System.Drawing.Point(111, 29);
             this.comboBoxPost.Name = "comboBoxPost";
-            this.comboBoxPost.Size = new System.Drawing.Size(176, 21);
+            this.comboBoxPost.Size = new System.Drawing.Size(101, 21);
             this.comboBoxPost.TabIndex = 2;
             this.comboBoxPost.SelectedIndexChanged += new System.EventHandler(this.comboBoxPost_SelectedIndexChanged);
             this.comboBoxPost.TextChanged += new System.EventHandler(this.comboBoxPost_TextChanged);
@@ -564,9 +564,9 @@
             // 
             this.comboBoxOrg.Enabled = false;
             this.comboBoxOrg.FormattingEnabled = true;
-            this.comboBoxOrg.Location = new System.Drawing.Point(400, 2);
+            this.comboBoxOrg.Location = new System.Drawing.Point(311, 3);
             this.comboBoxOrg.Name = "comboBoxOrg";
-            this.comboBoxOrg.Size = new System.Drawing.Size(176, 21);
+            this.comboBoxOrg.Size = new System.Drawing.Size(101, 21);
             this.comboBoxOrg.TabIndex = 3;
             this.comboBoxOrg.SelectedIndexChanged += new System.EventHandler(this.comboBoxOrg_SelectedIndexChanged);
             this.comboBoxOrg.TextChanged += new System.EventHandler(this.comboBoxOrg_TextChanged);
@@ -574,7 +574,7 @@
             // labelOrg
             // 
             this.labelOrg.AutoSize = true;
-            this.labelOrg.Location = new System.Drawing.Point(317, 6);
+            this.labelOrg.Location = new System.Drawing.Point(228, 7);
             this.labelOrg.Name = "labelOrg";
             this.labelOrg.Size = new System.Drawing.Size(74, 13);
             this.labelOrg.TabIndex = 14;
@@ -584,9 +584,9 @@
             // 
             this.comboBoxDepartament.Enabled = false;
             this.comboBoxDepartament.FormattingEnabled = true;
-            this.comboBoxDepartament.Location = new System.Drawing.Point(400, 29);
+            this.comboBoxDepartament.Location = new System.Drawing.Point(311, 30);
             this.comboBoxDepartament.Name = "comboBoxDepartament";
-            this.comboBoxDepartament.Size = new System.Drawing.Size(176, 21);
+            this.comboBoxDepartament.Size = new System.Drawing.Size(101, 21);
             this.comboBoxDepartament.TabIndex = 4;
             this.comboBoxDepartament.SelectedIndexChanged += new System.EventHandler(this.comboBoxDepartament_SelectedIndexChanged);
             this.comboBoxDepartament.TextChanged += new System.EventHandler(this.comboBoxDepartament_TextChanged);
@@ -594,7 +594,7 @@
             // labelDepartament
             // 
             this.labelDepartament.AutoSize = true;
-            this.labelDepartament.Location = new System.Drawing.Point(307, 32);
+            this.labelDepartament.Location = new System.Drawing.Point(218, 33);
             this.labelDepartament.Name = "labelDepartament";
             this.labelDepartament.Size = new System.Drawing.Size(87, 13);
             this.labelDepartament.TabIndex = 12;
@@ -604,7 +604,7 @@
             // 
             this.buttonUSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.buttonUSave.Enabled = false;
-            this.buttonUSave.Location = new System.Drawing.Point(490, 59);
+            this.buttonUSave.Location = new System.Drawing.Point(440, 59);
             this.buttonUSave.Name = "buttonUSave";
             this.buttonUSave.Size = new System.Drawing.Size(87, 23);
             this.buttonUSave.TabIndex = 5;
@@ -627,7 +627,7 @@
             this.textBoxUUser.Enabled = false;
             this.textBoxUUser.Location = new System.Drawing.Point(111, 3);
             this.textBoxUUser.Name = "textBoxUUser";
-            this.textBoxUUser.Size = new System.Drawing.Size(176, 20);
+            this.textBoxUUser.Size = new System.Drawing.Size(101, 20);
             this.textBoxUUser.TabIndex = 1;
             this.textBoxUUser.TextChanged += new System.EventHandler(this.textBoxUUser_TextChanged);
             // 
@@ -735,7 +735,7 @@
             this.toolStripUsers.Location = new System.Drawing.Point(3, 3);
             this.toolStripUsers.Name = "toolStripUsers";
             this.toolStripUsers.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripUsers.Size = new System.Drawing.Size(820, 25);
+            this.toolStripUsers.Size = new System.Drawing.Size(770, 25);
             this.toolStripUsers.TabIndex = 0;
             this.toolStripUsers.Text = "toolStrip2";
             // 
@@ -789,7 +789,7 @@
             this.toolStripStatusLabel1});
             this.statusStrip1.Location = new System.Drawing.Point(0, 439);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(834, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(784, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -803,13 +803,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(834, 461);
+            this.ClientSize = new System.Drawing.Size(784, 461);
             this.Controls.Add(this.tabControlMain);
             this.Controls.Add(this.menuStripMain);
             this.Controls.Add(this.statusStrip1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
-            this.MinimumSize = new System.Drawing.Size(850, 500);
+            this.MinimumSize = new System.Drawing.Size(800, 500);
             this.Name = "FormMain";
             this.Text = "My Inventory";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);

@@ -11,8 +11,8 @@ namespace My_Inventory
         
         public string ResponsiblePerson;
         public string Post;
-        public List<Item> Items = new List<Item>();
-        public List<User> Users = new List<User>();
+        public List<Item> items = new List<Item>();
+        public List<User> users = new List<User>();
 
         /// <summary>
         /// Загрузка базы данных
@@ -36,16 +36,16 @@ namespace My_Inventory
         /// </summary>
         public static void Save()
         {
-            //try
-            //{
+            try
+            {
                 var serializer = new XmlSerializer(typeof(Data));
                 using (var writer = new StreamWriter("Data.xml"))
                     serializer.Serialize(writer, data);
-            /*}
+            }
             catch
             {
                 MessageBox.Show("Ошибка при сохранении данных");
-            }*/
+            }
         }
 
         /// <summary>
@@ -53,8 +53,8 @@ namespace My_Inventory
         /// </summary>
         public static void Sort()
         {
-            data.Items.Sort((o1, o2) => o1.number.CompareTo(o2.number));
-            data.Users.Sort((o1, o2) => o1.name.CompareTo(o2.name));
+            data.items.Sort((o1, o2) => o1.number.CompareTo(o2.number));
+            data.users.Sort((o1, o2) => o1.name.CompareTo(o2.name));
         }
     }
 }

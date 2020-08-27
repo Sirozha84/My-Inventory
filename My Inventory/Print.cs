@@ -16,7 +16,7 @@ namespace My_Inventory
         public static void RegistryCard(User user)
         {
             usr = user;
-            itms = Data.data.Items.FindAll(o => o.user == usr.name);
+            itms = Data.data.items.FindAll(o => o.user == usr.name);
             PageNum = 1;
 
             PrintDocument doc = new PrintDocument();

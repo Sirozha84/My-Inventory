@@ -46,14 +46,14 @@
             this.labelUser = new System.Windows.Forms.Label();
             this.textBoxDate = new System.Windows.Forms.TextBox();
             this.labelDate = new System.Windows.Forms.Label();
-            this.buttonAddVersion = new System.Windows.Forms.Button();
-            this.buttonDelVersion = new System.Windows.Forms.Button();
+            this.buttonAddMove = new System.Windows.Forms.Button();
+            this.buttonDelMove = new System.Windows.Forms.Button();
             this.listViewHistory = new System.Windows.Forms.ListView();
             this.columnVerDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnPlace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnComment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.buttonChangeVersion = new System.Windows.Forms.Button();
+            this.buttonChangeMove = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelNumber
@@ -97,7 +97,7 @@
             this.buttonOK.TabIndex = 4;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
-            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
+            this.buttonOK.Click += new System.EventHandler(this.OK);
             // 
             // buttonCancel
             // 
@@ -209,28 +209,29 @@
             this.labelDate.TabIndex = 16;
             this.labelDate.Text = "Дата выдачи:";
             // 
-            // buttonAddVersion
+            // buttonAddMove
             // 
-            this.buttonAddVersion.Image = global::My_Inventory.Properties.Resources.add;
-            this.buttonAddVersion.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonAddVersion.Location = new System.Drawing.Point(290, 12);
-            this.buttonAddVersion.Name = "buttonAddVersion";
-            this.buttonAddVersion.Size = new System.Drawing.Size(80, 23);
-            this.buttonAddVersion.TabIndex = 18;
-            this.buttonAddVersion.Text = "Добавить";
-            this.buttonAddVersion.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
-            this.buttonAddVersion.UseVisualStyleBackColor = true;
-            this.buttonAddVersion.Click += new System.EventHandler(this.buttonAddVersion_Click);
+            this.buttonAddMove.Image = global::My_Inventory.Properties.Resources.add;
+            this.buttonAddMove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonAddMove.Location = new System.Drawing.Point(290, 12);
+            this.buttonAddMove.Name = "buttonAddMove";
+            this.buttonAddMove.Size = new System.Drawing.Size(80, 23);
+            this.buttonAddMove.TabIndex = 18;
+            this.buttonAddMove.Text = "Добавить";
+            this.buttonAddMove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.buttonAddMove.UseVisualStyleBackColor = true;
+            this.buttonAddMove.Click += new System.EventHandler(this.addMove);
             // 
-            // buttonDelVersion
+            // buttonDelMove
             // 
-            this.buttonDelVersion.Enabled = false;
-            this.buttonDelVersion.Location = new System.Drawing.Point(457, 12);
-            this.buttonDelVersion.Name = "buttonDelVersion";
-            this.buttonDelVersion.Size = new System.Drawing.Size(75, 23);
-            this.buttonDelVersion.TabIndex = 20;
-            this.buttonDelVersion.Text = "Удалить";
-            this.buttonDelVersion.UseVisualStyleBackColor = true;
+            this.buttonDelMove.Enabled = false;
+            this.buttonDelMove.Location = new System.Drawing.Point(457, 12);
+            this.buttonDelMove.Name = "buttonDelMove";
+            this.buttonDelMove.Size = new System.Drawing.Size(75, 23);
+            this.buttonDelMove.TabIndex = 20;
+            this.buttonDelMove.Text = "Удалить";
+            this.buttonDelMove.UseVisualStyleBackColor = true;
+            this.buttonDelMove.Click += new System.EventHandler(this.DelMove);
             // 
             // listViewHistory
             // 
@@ -253,6 +254,8 @@
             this.listViewHistory.TabIndex = 21;
             this.listViewHistory.UseCompatibleStateImageBehavior = false;
             this.listViewHistory.View = System.Windows.Forms.View.Details;
+            this.listViewHistory.SelectedIndexChanged += new System.EventHandler(this.HistorySelectedChanged);
+            this.listViewHistory.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.ChangeMove);
             // 
             // columnVerDate
             // 
@@ -274,15 +277,16 @@
             this.columnComment.Text = "Комментарий";
             this.columnComment.Width = 200;
             // 
-            // buttonChangeVersion
+            // buttonChangeMove
             // 
-            this.buttonChangeVersion.Enabled = false;
-            this.buttonChangeVersion.Location = new System.Drawing.Point(376, 12);
-            this.buttonChangeVersion.Name = "buttonChangeVersion";
-            this.buttonChangeVersion.Size = new System.Drawing.Size(75, 23);
-            this.buttonChangeVersion.TabIndex = 19;
-            this.buttonChangeVersion.Text = "Изменить";
-            this.buttonChangeVersion.UseVisualStyleBackColor = true;
+            this.buttonChangeMove.Enabled = false;
+            this.buttonChangeMove.Location = new System.Drawing.Point(376, 12);
+            this.buttonChangeMove.Name = "buttonChangeMove";
+            this.buttonChangeMove.Size = new System.Drawing.Size(75, 23);
+            this.buttonChangeMove.TabIndex = 19;
+            this.buttonChangeMove.Text = "Изменить";
+            this.buttonChangeMove.UseVisualStyleBackColor = true;
+            this.buttonChangeMove.Click += new System.EventHandler(this.ChangeMove);
             // 
             // FormItem
             // 
@@ -291,10 +295,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(802, 257);
-            this.Controls.Add(this.buttonAddVersion);
-            this.Controls.Add(this.buttonDelVersion);
+            this.Controls.Add(this.buttonAddMove);
+            this.Controls.Add(this.buttonDelMove);
             this.Controls.Add(this.listViewHistory);
-            this.Controls.Add(this.buttonChangeVersion);
+            this.Controls.Add(this.buttonChangeMove);
             this.Controls.Add(this.textBoxDate);
             this.Controls.Add(this.labelDate);
             this.Controls.Add(this.textBoxPlace);
@@ -343,13 +347,13 @@
         private System.Windows.Forms.Label labelUser;
         private System.Windows.Forms.TextBox textBoxDate;
         private System.Windows.Forms.Label labelDate;
-        private System.Windows.Forms.Button buttonAddVersion;
-        private System.Windows.Forms.Button buttonDelVersion;
+        private System.Windows.Forms.Button buttonAddMove;
+        private System.Windows.Forms.Button buttonDelMove;
         private System.Windows.Forms.ListView listViewHistory;
         private System.Windows.Forms.ColumnHeader columnVerDate;
         private System.Windows.Forms.ColumnHeader columnUser;
         private System.Windows.Forms.ColumnHeader columnPlace;
         private System.Windows.Forms.ColumnHeader columnComment;
-        private System.Windows.Forms.Button buttonChangeVersion;
+        private System.Windows.Forms.Button buttonChangeMove;
     }
 }

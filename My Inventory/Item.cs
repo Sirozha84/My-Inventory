@@ -22,7 +22,7 @@ namespace My_Inventory
             int max = 0;
             if (Data.data != null)
             {
-                foreach (Item itm in Data.data.Items)
+                foreach (Item itm in Data.data.items)
                 {
                     int c = 0;
                     try { c = Convert.ToInt32(itm.number); } catch { }
@@ -39,7 +39,7 @@ namespace My_Inventory
         /// <returns></returns>
         public ListViewItem GetListItem()
         {
-            User usr = Data.data.Users.Find(o => o.name == user);
+            User usr = Data.data.users.Find(o => o.name == user);
             //string dep = user == null ? "" : user.;
             string[] str = { number, name + " " + model, this.user, date, place, discription };
             ListViewItem listItem = new ListViewItem(str);
@@ -53,21 +53,12 @@ namespace My_Inventory
         /// <returns></returns>
         public ListViewItem GetListItemForUser()
         {
-            User usr = Data.data.Users.Find(o => o.name == user);
+            User usr = Data.data.users.Find(o => o.name == user);
             //string dep = user == null ? "" : user.Departament;
             string[] str = { number, name + " " + model, date, place, discription };
             ListViewItem listItem = new ListViewItem(str);
             listItem.Tag = this;
             return listItem;
-        }
-
-        public int CompareTo(object obj)
-        {
-            try
-            {
-                return Convert.ToInt16(number) > Convert.ToInt16(((Item)obj).number) ? 1 : -1;
-            }
-            catch { return 1; }
         }
     }
 }

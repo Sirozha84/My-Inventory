@@ -1,11 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace My_Inventory
@@ -24,9 +18,6 @@ namespace My_Inventory
             textBoxName.Text = item.name;
             textBoxModel.Text = item.model;
             textBoxDisc.Text = item.discription;
-            textBoxDate.Text = item.date;
-            textBoxUser.Text = item.user;
-            textBoxPlace.Text = item.place;
             
             history.Clear();
             foreach (Move m in item.history)
@@ -38,21 +29,20 @@ namespace My_Inventory
         {
             listViewHistory.BeginUpdate();
             listViewHistory.Items.Clear();
-            foreach (Move m in history)
-                listViewHistory.Items.Add(m.listItem());
+            history.Sort((o1, o2) => o1.date.CompareTo(o2.date));
+            foreach (Move m in history) listViewHistory.Items.Add(m.listItem());
             listViewHistory.EndUpdate();
-        }
-        private void buttonOK_Click(object sender, EventArgs e)
-        {
-            item.number = textBoxNumber.Text;
-            item.name = textBoxName.Text;
-            item.model = textBoxModel.Text;
-            item.discription = textBoxDisc.Text;
-            DialogResult = DialogResult.OK;
-            //Close();
+            bool notVoid = history.Count > 0;
+            int last = history.Count - 1;
+            item.date = notVoid ? history[last].date.ToString("dd.MM.yyyy") : "";
+            item.user = notVoid ? history[last].user : "";
+            item.place = notVoid ? history[last].place : "";
+            textBoxDate.Text = item.date;
+            textBoxUser.Text = item.user;
+            textBoxPlace.Text = item.place;
         }
 
-        private void buttonAddVersion_Click(object sender, EventArgs e)
+        private void addMove(object sender, EventArgs e)
         {
             Move move = new Move();
             FormMove form = new FormMove(move);
@@ -62,5 +52,43 @@ namespace My_Inventory
                 DrawHistory();
             }
         }
+        private void ChangeMove(object sender, EventArgs e)
+        {
+            if (listViewHistory.SelectedIndices.Count == 1)
+            {
+                Move move = (Move)listViewHistory.SelectedItems[0].Tag;
+                FormMove form = new FormMove(move);
+                if (form.ShowDialog() == DialogResult.OK) DrawHistory();
+            }
+        }
+
+        private void DelMove(object sender, EventArgs e)
+        {
+            if (listViewHistory.SelectedIndices.Count == 1)
+            {
+                Move move = (Move)listViewHistory.SelectedItems[0].Tag;
+                history.Remove(move);
+                DrawHistory();
+            }
+        }
+
+        private void HistorySelectedChanged(object sender, EventArgs e)
+        {
+            bool sel = listViewHistory.SelectedIndices.Count > 0;
+            buttonChangeMove.Enabled = sel;
+            buttonDelMove.Enabled = sel;
+        }
+
+        private void OK(object sender, EventArgs e)
+        {
+            item.number = textBoxNumber.Text;
+            item.name = textBoxName.Text;
+            item.model = textBoxModel.Text;
+            item.discription = textBoxDisc.Text;
+            item.history.Clear();
+            foreach (Move m in history) item.history.Add(m);
+            DialogResult = DialogResult.OK;
+        }
+
     }
 }

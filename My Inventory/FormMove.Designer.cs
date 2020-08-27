@@ -30,14 +30,14 @@
         {
             this.buttonCancel = new System.Windows.Forms.Button();
             this.buttonOK = new System.Windows.Forms.Button();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
+            this.date = new System.Windows.Forms.DateTimePicker();
+            this.labelDate = new System.Windows.Forms.Label();
+            this.labelUser = new System.Windows.Forms.Label();
+            this.comboBoxUser = new System.Windows.Forms.ComboBox();
+            this.comboBoxPlace = new System.Windows.Forms.ComboBox();
+            this.labelPlace = new System.Windows.Forms.Label();
+            this.textBoxComment = new System.Windows.Forms.TextBox();
+            this.labelComment = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonCancel
@@ -60,88 +60,92 @@
             this.buttonOK.TabIndex = 6;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
-            // dateTimePicker1
+            // date
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(114, 12);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(159, 20);
-            this.dateTimePicker1.TabIndex = 9;
+            this.date.Location = new System.Drawing.Point(114, 12);
+            this.date.Name = "date";
+            this.date.Size = new System.Drawing.Size(159, 20);
+            this.date.TabIndex = 9;
             // 
-            // label1
+            // labelDate
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(72, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 13);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "Дата:";
+            this.labelDate.AutoSize = true;
+            this.labelDate.Location = new System.Drawing.Point(72, 15);
+            this.labelDate.Name = "labelDate";
+            this.labelDate.Size = new System.Drawing.Size(36, 13);
+            this.labelDate.TabIndex = 8;
+            this.labelDate.Text = "Дата:";
             // 
-            // label2
+            // labelUser
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(45, 41);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(63, 13);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Сотрудник:";
+            this.labelUser.AutoSize = true;
+            this.labelUser.Location = new System.Drawing.Point(45, 41);
+            this.labelUser.Name = "labelUser";
+            this.labelUser.Size = new System.Drawing.Size(63, 13);
+            this.labelUser.TabIndex = 10;
+            this.labelUser.Text = "Сотрудник:";
             // 
-            // comboBox1
+            // comboBoxUser
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(114, 38);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(159, 21);
-            this.comboBox1.TabIndex = 11;
+            this.comboBoxUser.FormattingEnabled = true;
+            this.comboBoxUser.Location = new System.Drawing.Point(114, 38);
+            this.comboBoxUser.Name = "comboBoxUser";
+            this.comboBoxUser.Size = new System.Drawing.Size(159, 21);
+            this.comboBoxUser.TabIndex = 11;
             // 
-            // comboBox2
+            // comboBoxPlace
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(114, 65);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(159, 21);
-            this.comboBox2.TabIndex = 13;
+            this.comboBoxPlace.FormattingEnabled = true;
+            this.comboBoxPlace.Location = new System.Drawing.Point(114, 65);
+            this.comboBoxPlace.Name = "comboBoxPlace";
+            this.comboBoxPlace.Size = new System.Drawing.Size(159, 21);
+            this.comboBoxPlace.TabIndex = 13;
             // 
-            // label3
+            // labelPlace
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 68);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(98, 13);
-            this.label3.TabIndex = 12;
-            this.label3.Text = "Местоположение:";
+            this.labelPlace.AutoSize = true;
+            this.labelPlace.Location = new System.Drawing.Point(10, 68);
+            this.labelPlace.Name = "labelPlace";
+            this.labelPlace.Size = new System.Drawing.Size(98, 13);
+            this.labelPlace.TabIndex = 12;
+            this.labelPlace.Text = "Местоположение:";
             // 
-            // textBox1
+            // textBoxComment
             // 
-            this.textBox1.Location = new System.Drawing.Point(114, 93);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(159, 20);
-            this.textBox1.TabIndex = 14;
+            this.textBoxComment.Location = new System.Drawing.Point(114, 93);
+            this.textBoxComment.Name = "textBoxComment";
+            this.textBoxComment.Size = new System.Drawing.Size(159, 20);
+            this.textBoxComment.TabIndex = 14;
             // 
-            // label4
+            // labelComment
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(28, 96);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(80, 13);
-            this.label4.TabIndex = 15;
-            this.label4.Text = "Комментарий:";
+            this.labelComment.AutoSize = true;
+            this.labelComment.Location = new System.Drawing.Point(28, 96);
+            this.labelComment.Name = "labelComment";
+            this.labelComment.Size = new System.Drawing.Size(80, 13);
+            this.labelComment.TabIndex = 15;
+            this.labelComment.Text = "Комментарий:";
             // 
             // FormMove
             // 
+            this.AcceptButton = this.buttonOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.CancelButton = this.buttonCancel;
             this.ClientSize = new System.Drawing.Size(286, 157);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.comboBox2);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelComment);
+            this.Controls.Add(this.textBoxComment);
+            this.Controls.Add(this.comboBoxPlace);
+            this.Controls.Add(this.labelPlace);
+            this.Controls.Add(this.comboBoxUser);
+            this.Controls.Add(this.labelUser);
+            this.Controls.Add(this.date);
+            this.Controls.Add(this.labelDate);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FormMove";
@@ -158,13 +162,13 @@
 
         private System.Windows.Forms.Button buttonCancel;
         private System.Windows.Forms.Button buttonOK;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.ComboBox comboBox2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.DateTimePicker date;
+        private System.Windows.Forms.Label labelDate;
+        private System.Windows.Forms.Label labelUser;
+        private System.Windows.Forms.ComboBox comboBoxUser;
+        private System.Windows.Forms.ComboBox comboBoxPlace;
+        private System.Windows.Forms.Label labelPlace;
+        private System.Windows.Forms.TextBox textBoxComment;
+        private System.Windows.Forms.Label labelComment;
     }
 }
