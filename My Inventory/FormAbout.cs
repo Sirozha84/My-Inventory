@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Drawing;
 using System.Windows.Forms;
 
 namespace My_Inventory
@@ -15,16 +8,38 @@ namespace My_Inventory
         public FormAbout()
         {
             InitializeComponent();
-            Text = "О " + Application.ProductName;
-            label1.Text = Application.ProductName;
-            label2.Text = "Версия: " + Application.ProductVersion;
-            label3.Text = "Автор программы: Сергей гордеев";
-            linkLabel1.Text = Program.Site;
+            labelName.Text = Application.ProductName;
+            labelVersion.Text = "Версия: " + Application.ProductVersion;
+            labelAutor.Text = "Автор программы: Сергей гордеев";
+
+            Font fontR = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Regular);
+            Font fontB = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Bold);
+
+            history.SelectionFont = fontB;
+            history.AppendText("Версия 2.0 (28.08.2020)\n\n");
+            history.SelectionFont = fontR;
+            history.AppendText("• Переработана система записи базы в файл\n");
+            history.AppendText("• Переработан интерфейс создания и редактирования объектов и сотрудников\n");
+            history.AppendText("• Ведение истории перемещения для каждого объекта\n");
+            history.AppendText("• Общий журнал перемещений теперь формируется динамически\n\n");
+            history.SelectionFont = fontB;
+            history.AppendText("Версия 1.1 (30.06.2017)\n\n");
+            history.SelectionFont = fontR;
+            history.AppendText("• Исправлена ошибка \"Вы уверены что хотите true этот предмет ?\"\n");
+            history.AppendText("• Добавлено окно About\n");
+            history.AppendText("• Перерисована иконка приложения\n\n");
+            history.SelectionFont = fontB;
+            history.AppendText("Версия 1.0 (10.01.2017)\n\n");
+            history.SelectionFont = fontR;
+            history.AppendText("• Учёт инвентаря\n");
+            history.AppendText("• Просмотр прикреплённых объектов в списке сотрудников\n");
+            history.AppendText("• Печать карточек учёта сотрудников\n");
+            history.AppendText("• Автоматически формируемые выпадающие списки организаций, подразделений, должностей и местоположений\n");
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void linkLabelSite_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            System.Diagnostics.Process.Start(Program.Url);
+            System.Diagnostics.Process.Start(Program.Site);
         }
     }
 }

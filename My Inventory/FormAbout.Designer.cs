@@ -27,131 +27,149 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.label4 = new System.Windows.Forms.Label();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.okButton = new System.Windows.Forms.Button();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tabControl = new System.Windows.Forms.TabControl();
+            this.tabPageAbout = new System.Windows.Forms.TabPage();
+            this.linkLabelSite = new System.Windows.Forms.LinkLabel();
+            this.labelNewVersions = new System.Windows.Forms.Label();
+            this.labelAutor = new System.Windows.Forms.Label();
+            this.labelVersion = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.logo = new System.Windows.Forms.PictureBox();
+            this.tabPageHistory = new System.Windows.Forms.TabPage();
+            this.history = new System.Windows.Forms.RichTextBox();
+            this.buttonClose = new System.Windows.Forms.Button();
+            this.tabControl.SuspendLayout();
+            this.tabPageAbout.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).BeginInit();
+            this.tabPageHistory.SuspendLayout();
             this.SuspendLayout();
             // 
-            // linkLabel1
+            // tabControl
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.linkLabel1.Location = new System.Drawing.Point(139, 114);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(384, 20);
-            this.linkLabel1.TabIndex = 30;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "сайт автора";
-            this.linkLabel1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            this.tabControl.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.tabControl.Controls.Add(this.tabPageAbout);
+            this.tabControl.Controls.Add(this.tabPageHistory);
+            this.tabControl.Location = new System.Drawing.Point(12, 12);
+            this.tabControl.Name = "tabControl";
+            this.tabControl.SelectedIndex = 0;
+            this.tabControl.Size = new System.Drawing.Size(460, 208);
+            this.tabControl.TabIndex = 2;
             // 
-            // label4
+            // tabPageAbout
             // 
-            this.label4.AutoSize = true;
-            this.label4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label4.Location = new System.Drawing.Point(139, 94);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(384, 20);
-            this.label4.TabIndex = 29;
-            this.label4.Text = "Новую версию этой и других программ Вы можете загрузить на сайте:";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.tabPageAbout.Controls.Add(this.linkLabelSite);
+            this.tabPageAbout.Controls.Add(this.labelNewVersions);
+            this.tabPageAbout.Controls.Add(this.labelAutor);
+            this.tabPageAbout.Controls.Add(this.labelVersion);
+            this.tabPageAbout.Controls.Add(this.labelName);
+            this.tabPageAbout.Controls.Add(this.logo);
+            this.tabPageAbout.Location = new System.Drawing.Point(4, 22);
+            this.tabPageAbout.Name = "tabPageAbout";
+            this.tabPageAbout.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageAbout.Size = new System.Drawing.Size(452, 182);
+            this.tabPageAbout.TabIndex = 0;
+            this.tabPageAbout.Text = "О программе";
+            this.tabPageAbout.UseVisualStyleBackColor = true;
             // 
-            // pictureBox1
+            // linkLabelSite
             // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Image = Properties.Resources.Logo;
-            this.pictureBox1.Location = new System.Drawing.Point(3, 3);
-            this.pictureBox1.Name = "pictureBox1";
-            this.tableLayoutPanel1.SetRowSpan(this.pictureBox1, 5);
-            this.pictureBox1.Size = new System.Drawing.Size(130, 128);
-            this.pictureBox1.TabIndex = 31;
-            this.pictureBox1.TabStop = false;
+            this.linkLabelSite.AutoSize = true;
+            this.linkLabelSite.Location = new System.Drawing.Point(182, 144);
+            this.linkLabelSite.Name = "linkLabelSite";
+            this.linkLabelSite.Size = new System.Drawing.Size(100, 13);
+            this.linkLabelSite.TabIndex = 6;
+            this.linkLabelSite.TabStop = true;
+            this.linkLabelSite.Text = "www.sg-software.ru";
+            this.linkLabelSite.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabelSite_LinkClicked);
             // 
-            // okButton
+            // labelNewVersions
             // 
-            this.okButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.okButton.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.okButton.Location = new System.Drawing.Point(448, 145);
-            this.okButton.Name = "okButton";
-            this.okButton.Size = new System.Drawing.Size(75, 23);
-            this.okButton.TabIndex = 24;
-            this.okButton.Text = "&ОК";
+            this.labelNewVersions.Location = new System.Drawing.Point(182, 118);
+            this.labelNewVersions.Name = "labelNewVersions";
+            this.labelNewVersions.Size = new System.Drawing.Size(226, 30);
+            this.labelNewVersions.TabIndex = 5;
+            this.labelNewVersions.Text = "Новую версию этой и других моих программ Вы можете загрузить на сайте";
             // 
-            // label3
+            // labelAutor
             // 
-            this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(139, 74);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(384, 20);
-            this.label3.TabIndex = 28;
-            this.label3.Text = "Автор";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelAutor.AutoSize = true;
+            this.labelAutor.Location = new System.Drawing.Point(182, 92);
+            this.labelAutor.Name = "labelAutor";
+            this.labelAutor.Size = new System.Drawing.Size(124, 13);
+            this.labelAutor.TabIndex = 4;
+            this.labelAutor.Text = "Автор: Сергей Гордеев";
             // 
-            // label2
+            // labelVersion
             // 
-            this.label2.AutoSize = true;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label2.Location = new System.Drawing.Point(139, 54);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(384, 20);
-            this.label2.TabIndex = 27;
-            this.label2.Text = "Версия";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelVersion.AutoSize = true;
+            this.labelVersion.Location = new System.Drawing.Point(182, 67);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(44, 13);
+            this.labelVersion.TabIndex = 3;
+            this.labelVersion.Text = "Версия";
             // 
-            // label1
+            // labelName
             // 
-            this.label1.AutoSize = true;
-            this.label1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label1.Location = new System.Drawing.Point(139, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(384, 54);
-            this.label1.TabIndex = 26;
-            this.label1.Text = "Название программы";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelName.AutoSize = true;
+            this.labelName.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.labelName.Location = new System.Drawing.Point(180, 32);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(68, 25);
+            this.labelName.TabIndex = 2;
+            this.labelName.Text = "Name";
             // 
-            // tableLayoutPanel1
+            // logo
             // 
-            this.tableLayoutPanel1.ColumnCount = 2;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 136F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Controls.Add(this.label1, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.okButton, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.pictureBox1, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.linkLabel1, 1, 4);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(9, 9);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 7;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 54F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 32F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(526, 171);
-            this.tableLayoutPanel1.TabIndex = 31;
+            this.logo.Image = global::My_Inventory.Properties.Resources.Logo;
+            this.logo.Location = new System.Drawing.Point(32, 32);
+            this.logo.Name = "logo";
+            this.logo.Size = new System.Drawing.Size(128, 128);
+            this.logo.TabIndex = 0;
+            this.logo.TabStop = false;
+            // 
+            // tabPageHistory
+            // 
+            this.tabPageHistory.Controls.Add(this.history);
+            this.tabPageHistory.Location = new System.Drawing.Point(4, 22);
+            this.tabPageHistory.Name = "tabPageHistory";
+            this.tabPageHistory.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageHistory.Size = new System.Drawing.Size(452, 182);
+            this.tabPageHistory.TabIndex = 1;
+            this.tabPageHistory.Text = "История версий";
+            this.tabPageHistory.UseVisualStyleBackColor = true;
+            // 
+            // history
+            // 
+            this.history.BackColor = System.Drawing.Color.White;
+            this.history.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.history.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.history.Location = new System.Drawing.Point(3, 3);
+            this.history.Name = "history";
+            this.history.ReadOnly = true;
+            this.history.Size = new System.Drawing.Size(446, 176);
+            this.history.TabIndex = 0;
+            this.history.Text = "";
+            // 
+            // buttonClose
+            // 
+            this.buttonClose.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.buttonClose.Location = new System.Drawing.Point(397, 226);
+            this.buttonClose.Name = "buttonClose";
+            this.buttonClose.Size = new System.Drawing.Size(75, 23);
+            this.buttonClose.TabIndex = 3;
+            this.buttonClose.Text = "Закрыть";
+            this.buttonClose.UseVisualStyleBackColor = true;
             // 
             // FormAbout
             // 
-            this.AcceptButton = this.okButton;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.CancelButton = this.okButton;
-            this.ClientSize = new System.Drawing.Size(544, 189);
-            this.Controls.Add(this.tableLayoutPanel1);
+            this.ClientSize = new System.Drawing.Size(484, 261);
+            this.Controls.Add(this.tabControl);
+            this.Controls.Add(this.buttonClose);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -160,23 +178,28 @@
             this.ShowIcon = false;
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "FormAbout";
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            this.tableLayoutPanel1.ResumeLayout(false);
-            this.tableLayoutPanel1.PerformLayout();
+            this.Text = "О программе";
+            this.tabControl.ResumeLayout(false);
+            this.tabPageAbout.ResumeLayout(false);
+            this.tabPageAbout.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.logo)).EndInit();
+            this.tabPageHistory.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.LinkLabel linkLabel1;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button okButton;
+        private System.Windows.Forms.TabControl tabControl;
+        private System.Windows.Forms.TabPage tabPageAbout;
+        private System.Windows.Forms.LinkLabel linkLabelSite;
+        private System.Windows.Forms.Label labelNewVersions;
+        private System.Windows.Forms.Label labelAutor;
+        private System.Windows.Forms.Label labelVersion;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.PictureBox logo;
+        private System.Windows.Forms.TabPage tabPageHistory;
+        private System.Windows.Forms.RichTextBox history;
+        private System.Windows.Forms.Button buttonClose;
     }
 }

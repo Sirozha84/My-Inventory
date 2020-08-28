@@ -104,6 +104,9 @@
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="User.cs" />
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FormCompanyOptions.resx">
       <DependentUpon>FormCompanyOptions.cs</DependentUpon>
     </EmbeddedResource>

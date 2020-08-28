@@ -80,12 +80,12 @@ namespace My_Inventory
         #region Меню Справка
         private void WebSite(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.sg-software.ru");
+            System.Diagnostics.Process.Start(Program.Site);
         }
 
         private void ProgramPage(object sender, EventArgs e)
         {
-            System.Diagnostics.Process.Start("http://www.sg-software.ru/windows/programs/my_inventory");
+            System.Diagnostics.Process.Start(Program.ProgramPage);
         }
 
         private void About(object sender, EventArgs e)

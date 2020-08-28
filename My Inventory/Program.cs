@@ -5,8 +5,8 @@ namespace My_Inventory
 {
     static class Program
     {
-        public static string Url = "";
-        public static string Site = "";
+        public static string Site = "http://www.sg-software.ru";
+        public static string ProgramPage = "http://www.sg-software.ru/windows/programs/my_inventory";
         /// <summary>
         /// Главная точка входа для приложения.
         /// </summary>
