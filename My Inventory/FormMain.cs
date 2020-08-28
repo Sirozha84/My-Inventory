@@ -121,6 +121,21 @@ namespace My_Inventory
                 RefreshData();
             }
         }
+        
+        //Перемещение комплекта объектов
+        private void MoveItems(object sender, EventArgs e)
+        {
+            if (listViewInventory.SelectedItems.Count < 1) return;
+            Move move = new Move();
+            FormMove form = new FormMove(move);
+            if (form.ShowDialog() == DialogResult.OK)
+            {
+                foreach (ListViewItem item in listViewInventory.SelectedItems)
+                    ((Item)item.Tag).AddMove(move);
+                Data.Save();
+                RefreshData();
+            }
+        }
 
         //Удаление объекта
         void DelItem(object sender, EventArgs e)
@@ -169,7 +184,8 @@ namespace My_Inventory
             //Изменение доступностей кнопок
             bool sel = listViewInventory.SelectedIndices.Count > 0;
             toolDelItem.Enabled = sel;
-            toolStripMenuItemDel.Enabled = sel;
+            cmenuMoveItems.Enabled = sel;
+            cmenuDelItem.Enabled = sel;
         }
         #endregion
 
@@ -298,11 +314,11 @@ namespace My_Inventory
             listViewUserItems.Enabled = sel;
             toolStripButtonPrint.Enabled = sel;
             toolStripButtonDelUser.Enabled = sel;
-            ToolStripMenuItemDelUser.Enabled = sel;
+            cmenuDelUser.Enabled = sel;
             menuPrintCard.Enabled = sel;
-            ToolStripMenuItemPrint.Enabled = sel;
+            cmenuPrintCard.Enabled = sel;
             toolStripButtonToInventory.Enabled = sel;
-            перейтиВИнвентарьToolStripMenuItem.Enabled = sel;
+            cmenuToInventory.Enabled = sel;
         }
     }
 }

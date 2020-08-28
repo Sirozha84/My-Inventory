@@ -121,7 +121,7 @@
     <value>17, 17</value>
   </metadata>
   <metadata name="contextMenuStripItems.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>477, 24</value>
+    <value>488, 17</value>
   </metadata>
   <metadata name="toolStripNewItem.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>234, 16</value>
@@ -146,7 +146,7 @@
 </value>
   </data>
   <metadata name="contextMenuStripUsers.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>656, 24</value>
+    <value>694, 15</value>
   </metadata>
   <metadata name="toolStripUsers.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>369, 17</value>
