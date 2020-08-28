@@ -70,14 +70,14 @@
             this.textBoxNumber.Location = new System.Drawing.Point(134, 12);
             this.textBoxNumber.Name = "textBoxNumber";
             this.textBoxNumber.Size = new System.Drawing.Size(150, 20);
-            this.textBoxNumber.TabIndex = 1;
+            this.textBoxNumber.TabIndex = 0;
             // 
             // textBoxName
             // 
             this.textBoxName.Location = new System.Drawing.Point(134, 38);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(150, 20);
-            this.textBoxName.TabIndex = 3;
+            this.textBoxName.TabIndex = 1;
             // 
             // labelName
             // 
@@ -94,7 +94,7 @@
             this.buttonOK.Location = new System.Drawing.Point(616, 226);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 4;
+            this.buttonOK.TabIndex = 9;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.OK);
@@ -106,7 +106,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(697, 226);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 5;
+            this.buttonCancel.TabIndex = 10;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -116,7 +116,7 @@
             this.textBoxModel.Location = new System.Drawing.Point(134, 64);
             this.textBoxModel.Name = "textBoxModel";
             this.textBoxModel.Size = new System.Drawing.Size(150, 20);
-            this.textBoxModel.TabIndex = 7;
+            this.textBoxModel.TabIndex = 2;
             // 
             // labelModel
             // 
@@ -132,7 +132,7 @@
             this.textBoxSerial.Location = new System.Drawing.Point(134, 90);
             this.textBoxSerial.Name = "textBoxSerial";
             this.textBoxSerial.Size = new System.Drawing.Size(150, 20);
-            this.textBoxSerial.TabIndex = 9;
+            this.textBoxSerial.TabIndex = 3;
             // 
             // labelSerial
             // 
@@ -148,7 +148,7 @@
             this.textBoxDisc.Location = new System.Drawing.Point(134, 116);
             this.textBoxDisc.Name = "textBoxDisc";
             this.textBoxDisc.Size = new System.Drawing.Size(150, 20);
-            this.textBoxDisc.TabIndex = 11;
+            this.textBoxDisc.TabIndex = 4;
             // 
             // labelDisc
             // 
@@ -166,6 +166,7 @@
             this.textBoxPlace.ReadOnly = true;
             this.textBoxPlace.Size = new System.Drawing.Size(150, 20);
             this.textBoxPlace.TabIndex = 15;
+            this.textBoxPlace.TabStop = false;
             // 
             // labelPlace
             // 
@@ -183,6 +184,7 @@
             this.textBoxUser.ReadOnly = true;
             this.textBoxUser.Size = new System.Drawing.Size(150, 20);
             this.textBoxUser.TabIndex = 13;
+            this.textBoxUser.TabStop = false;
             // 
             // labelUser
             // 
@@ -200,6 +202,7 @@
             this.textBoxDate.ReadOnly = true;
             this.textBoxDate.Size = new System.Drawing.Size(150, 20);
             this.textBoxDate.TabIndex = 17;
+            this.textBoxDate.TabStop = false;
             // 
             // labelDate
             // 
@@ -217,7 +220,7 @@
             this.buttonAddMove.Location = new System.Drawing.Point(290, 12);
             this.buttonAddMove.Name = "buttonAddMove";
             this.buttonAddMove.Size = new System.Drawing.Size(80, 23);
-            this.buttonAddMove.TabIndex = 18;
+            this.buttonAddMove.TabIndex = 5;
             this.buttonAddMove.Text = "Добавить";
             this.buttonAddMove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonAddMove.UseVisualStyleBackColor = true;
@@ -229,7 +232,7 @@
             this.buttonDelMove.Location = new System.Drawing.Point(457, 12);
             this.buttonDelMove.Name = "buttonDelMove";
             this.buttonDelMove.Size = new System.Drawing.Size(75, 23);
-            this.buttonDelMove.TabIndex = 20;
+            this.buttonDelMove.TabIndex = 7;
             this.buttonDelMove.Text = "Удалить";
             this.buttonDelMove.UseVisualStyleBackColor = true;
             this.buttonDelMove.Click += new System.EventHandler(this.DelMove);
@@ -252,7 +255,8 @@
             this.listViewHistory.MultiSelect = false;
             this.listViewHistory.Name = "listViewHistory";
             this.listViewHistory.Size = new System.Drawing.Size(482, 179);
-            this.listViewHistory.TabIndex = 21;
+            this.listViewHistory.TabIndex = 8;
+            this.listViewHistory.TabStop = false;
             this.listViewHistory.UseCompatibleStateImageBehavior = false;
             this.listViewHistory.View = System.Windows.Forms.View.Details;
             this.listViewHistory.SelectedIndexChanged += new System.EventHandler(this.HistorySelectedChanged);
@@ -284,7 +288,7 @@
             this.buttonChangeMove.Location = new System.Drawing.Point(376, 12);
             this.buttonChangeMove.Name = "buttonChangeMove";
             this.buttonChangeMove.Size = new System.Drawing.Size(75, 23);
-            this.buttonChangeMove.TabIndex = 19;
+            this.buttonChangeMove.TabIndex = 6;
             this.buttonChangeMove.Text = "Изменить";
             this.buttonChangeMove.UseVisualStyleBackColor = true;
             this.buttonChangeMove.Click += new System.EventHandler(this.ChangeMove);

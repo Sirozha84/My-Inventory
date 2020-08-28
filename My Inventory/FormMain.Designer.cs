@@ -42,7 +42,7 @@
             this.menuProgramPage = new System.Windows.Forms.ToolStripMenuItem();
             this.sep2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuAbout = new System.Windows.Forms.ToolStripMenuItem();
-            this.tabControlMain = new System.Windows.Forms.TabControl();
+            this.tabPages = new System.Windows.Forms.TabControl();
             this.tabPageInventory = new System.Windows.Forms.TabPage();
             this.listViewInventory = new System.Windows.Forms.ListView();
             this.columnNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -53,6 +53,7 @@
             this.columnComment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.contextMenuStripItems = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmenuNewItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cmenuMoveItems = new System.Windows.Forms.ToolStripMenuItem();
             this.cmenuDelItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripNewItem = new System.Windows.Forms.ToolStrip();
             this.toolТNewItem = new System.Windows.Forms.ToolStripButton();
@@ -94,9 +95,18 @@
             this.toolStripButtonDelUser = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
-            this.cmenuMoveItems = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabPageLog = new System.Windows.Forms.TabPage();
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.toolRefreshLog = new System.Windows.Forms.ToolStripButton();
+            this.listViewLog = new System.Windows.Forms.ListView();
+            this.columnLDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnLNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnLName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnLUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnLPlace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnLComment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStripMain.SuspendLayout();
-            this.tabControlMain.SuspendLayout();
+            this.tabPages.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
             this.contextMenuStripItems.SuspendLayout();
             this.toolStripNewItem.SuspendLayout();
@@ -105,6 +115,8 @@
             this.contextMenuStripUsers.SuspendLayout();
             this.toolStripUsers.SuspendLayout();
             this.statusStrip.SuspendLayout();
+            this.tabPageLog.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -204,16 +216,17 @@
             this.menuAbout.Text = "О программе";
             this.menuAbout.Click += new System.EventHandler(this.About);
             // 
-            // tabControlMain
+            // tabPages
             // 
-            this.tabControlMain.Controls.Add(this.tabPageInventory);
-            this.tabControlMain.Controls.Add(this.tabPageUsers);
-            this.tabControlMain.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlMain.Location = new System.Drawing.Point(0, 24);
-            this.tabControlMain.Name = "tabControlMain";
-            this.tabControlMain.SelectedIndex = 0;
-            this.tabControlMain.Size = new System.Drawing.Size(784, 415);
-            this.tabControlMain.TabIndex = 1;
+            this.tabPages.Controls.Add(this.tabPageInventory);
+            this.tabPages.Controls.Add(this.tabPageUsers);
+            this.tabPages.Controls.Add(this.tabPageLog);
+            this.tabPages.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPages.Location = new System.Drawing.Point(0, 24);
+            this.tabPages.Name = "tabPages";
+            this.tabPages.SelectedIndex = 0;
+            this.tabPages.Size = new System.Drawing.Size(784, 415);
+            this.tabPages.TabIndex = 1;
             // 
             // tabPageInventory
             // 
@@ -289,7 +302,7 @@
             this.cmenuMoveItems,
             this.cmenuDelItem});
             this.contextMenuStripItems.Name = "contextMenuStripItems";
-            this.contextMenuStripItems.Size = new System.Drawing.Size(203, 92);
+            this.contextMenuStripItems.Size = new System.Drawing.Size(203, 70);
             // 
             // cmenuNewItem
             // 
@@ -298,6 +311,13 @@
             this.cmenuNewItem.Size = new System.Drawing.Size(202, 22);
             this.cmenuNewItem.Text = "Новый объект";
             this.cmenuNewItem.Click += new System.EventHandler(this.NewItem);
+            // 
+            // cmenuMoveItems
+            // 
+            this.cmenuMoveItems.Name = "cmenuMoveItems";
+            this.cmenuMoveItems.Size = new System.Drawing.Size(202, 22);
+            this.cmenuMoveItems.Text = "Переместить комплект";
+            this.cmenuMoveItems.Click += new System.EventHandler(this.MoveItems);
             // 
             // cmenuDelItem
             // 
@@ -692,19 +712,93 @@
             this.statusSelected.Size = new System.Drawing.Size(122, 17);
             this.statusSelected.Text = "Выбрано элементов:";
             // 
-            // cmenuMoveItems
+            // tabPageLog
             // 
-            this.cmenuMoveItems.Name = "cmenuMoveItems";
-            this.cmenuMoveItems.Size = new System.Drawing.Size(202, 22);
-            this.cmenuMoveItems.Text = "Переместить комплект";
-            this.cmenuMoveItems.Click += new System.EventHandler(this.MoveItems);
+            this.tabPageLog.Controls.Add(this.listViewLog);
+            this.tabPageLog.Controls.Add(this.toolStrip1);
+            this.tabPageLog.Location = new System.Drawing.Point(4, 22);
+            this.tabPageLog.Name = "tabPageLog";
+            this.tabPageLog.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageLog.Size = new System.Drawing.Size(776, 389);
+            this.tabPageLog.TabIndex = 3;
+            this.tabPageLog.Text = "Журнал перемещений";
+            this.tabPageLog.UseVisualStyleBackColor = true;
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolRefreshLog});
+            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(770, 25);
+            this.toolStrip1.TabIndex = 0;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // toolRefreshLog
+            // 
+            this.toolRefreshLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolRefreshLog.Image = ((System.Drawing.Image)(resources.GetObject("toolRefreshLog.Image")));
+            this.toolRefreshLog.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolRefreshLog.Name = "toolRefreshLog";
+            this.toolRefreshLog.Size = new System.Drawing.Size(95, 22);
+            this.toolRefreshLog.Text = "Сформировать";
+            this.toolRefreshLog.Click += new System.EventHandler(this.RefreshLog);
+            // 
+            // listViewLog
+            // 
+            this.listViewLog.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnLDate,
+            this.columnLNum,
+            this.columnLName,
+            this.columnLUser,
+            this.columnLPlace,
+            this.columnLComment});
+            this.listViewLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewLog.FullRowSelect = true;
+            this.listViewLog.GridLines = true;
+            this.listViewLog.Location = new System.Drawing.Point(3, 28);
+            this.listViewLog.Name = "listViewLog";
+            this.listViewLog.Size = new System.Drawing.Size(770, 358);
+            this.listViewLog.TabIndex = 1;
+            this.listViewLog.UseCompatibleStateImageBehavior = false;
+            this.listViewLog.View = System.Windows.Forms.View.Details;
+            // 
+            // columnLDate
+            // 
+            this.columnLDate.Text = "Дата";
+            this.columnLDate.Width = 70;
+            // 
+            // columnLNum
+            // 
+            this.columnLNum.Text = "Инв Н.";
+            // 
+            // columnLName
+            // 
+            this.columnLName.Text = "Наименование";
+            this.columnLName.Width = 150;
+            // 
+            // columnLUser
+            // 
+            this.columnLUser.Text = "Сотрудник";
+            this.columnLUser.Width = 150;
+            // 
+            // columnLPlace
+            // 
+            this.columnLPlace.Text = "Местоположение";
+            this.columnLPlace.Width = 150;
+            // 
+            // columnLComment
+            // 
+            this.columnLComment.Text = "Комментарий";
+            this.columnLComment.Width = 150;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(784, 461);
-            this.Controls.Add(this.tabControlMain);
+            this.Controls.Add(this.tabPages);
             this.Controls.Add(this.menuStripMain);
             this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -716,7 +810,7 @@
             this.Load += new System.EventHandler(this.FormMain_Load);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            this.tabControlMain.ResumeLayout(false);
+            this.tabPages.ResumeLayout(false);
             this.tabPageInventory.ResumeLayout(false);
             this.tabPageInventory.PerformLayout();
             this.contextMenuStripItems.ResumeLayout(false);
@@ -731,6 +825,10 @@
             this.toolStripUsers.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.tabPageLog.ResumeLayout(false);
+            this.tabPageLog.PerformLayout();
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -743,7 +841,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuExit;
         private System.Windows.Forms.ToolStripMenuItem menuHelp;
         private System.Windows.Forms.ToolStripMenuItem menuAbout;
-        private System.Windows.Forms.TabControl tabControlMain;
+        private System.Windows.Forms.TabControl tabPages;
         private System.Windows.Forms.TabPage tabPageInventory;
         private System.Windows.Forms.TabPage tabPageUsers;
         private System.Windows.Forms.StatusStrip statusStrip;
@@ -803,6 +901,16 @@
         private System.Windows.Forms.TextBox textBoxDep;
         private System.Windows.Forms.TextBox textBoxOrg;
         private System.Windows.Forms.ToolStripMenuItem cmenuMoveItems;
+        private System.Windows.Forms.TabPage tabPageLog;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton toolRefreshLog;
+        private System.Windows.Forms.ListView listViewLog;
+        private System.Windows.Forms.ColumnHeader columnLDate;
+        private System.Windows.Forms.ColumnHeader columnLNum;
+        private System.Windows.Forms.ColumnHeader columnLName;
+        private System.Windows.Forms.ColumnHeader columnLUser;
+        private System.Windows.Forms.ColumnHeader columnLPlace;
+        private System.Windows.Forms.ColumnHeader columnLComment;
     }
 }
 

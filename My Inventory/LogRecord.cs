@@ -9,16 +9,21 @@ namespace My_Inventory
 {
     class LogRecord
     {
-        public string Date;
-        public string Num;
-        public string ItemName;
-        public string MoveRec;
-        public LogRecord(string date, string num, string name, string move)
+        public DateTime date;
+        string num;
+        string name;
+        string user;
+        string place;
+        string comment;
+
+        public LogRecord(Item item, Move move)
         {
-            Date = date;
-            Num = num;
-            ItemName = name;
-            MoveRec = move;
+            date = move.date;
+            num = item.number;
+            name = item.name;
+            user = move.user;
+            place = move.place;
+            comment = move.comment;
         }
 
         /// <summary>
@@ -27,11 +32,9 @@ namespace My_Inventory
         /// <returns></returns>
         public ListViewItem GetListItem()
         {
-            string[] str = { Date, Num, ItemName, MoveRec };
+            string[] str = { date.ToString("dd.MM.yyyy"), num, name, user, place, comment };
             ListViewItem listItem = new ListViewItem(str);
-            listItem.Tag = this;
             return listItem;
         }
-
     }
 }

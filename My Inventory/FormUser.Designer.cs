@@ -46,7 +46,7 @@
             this.comboBoxPost.Location = new System.Drawing.Point(112, 92);
             this.comboBoxPost.Name = "comboBoxPost";
             this.comboBoxPost.Size = new System.Drawing.Size(200, 21);
-            this.comboBoxPost.TabIndex = 19;
+            this.comboBoxPost.TabIndex = 3;
             // 
             // labelPost
             // 
@@ -63,7 +63,7 @@
             this.comboBoxOrg.Location = new System.Drawing.Point(112, 38);
             this.comboBoxOrg.Name = "comboBoxOrg";
             this.comboBoxOrg.Size = new System.Drawing.Size(200, 21);
-            this.comboBoxOrg.TabIndex = 20;
+            this.comboBoxOrg.TabIndex = 1;
             // 
             // labelOrg
             // 
@@ -80,7 +80,7 @@
             this.comboBoxDep.Location = new System.Drawing.Point(112, 65);
             this.comboBoxDep.Name = "comboBoxDep";
             this.comboBoxDep.Size = new System.Drawing.Size(200, 21);
-            this.comboBoxDep.TabIndex = 21;
+            this.comboBoxDep.TabIndex = 2;
             // 
             // labelDepartament
             // 
@@ -96,7 +96,7 @@
             this.textBoxUser.Location = new System.Drawing.Point(112, 12);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.Size = new System.Drawing.Size(200, 20);
-            this.textBoxUser.TabIndex = 18;
+            this.textBoxUser.TabIndex = 0;
             // 
             // labelUser
             // 
@@ -114,7 +114,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(237, 127);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 26;
+            this.buttonCancel.TabIndex = 5;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
@@ -124,7 +124,7 @@
             this.buttonOK.Location = new System.Drawing.Point(156, 127);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 25;
+            this.buttonOK.TabIndex = 4;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.OK);

@@ -47,7 +47,7 @@
             this.buttonCancel.Location = new System.Drawing.Point(199, 122);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(75, 23);
-            this.buttonCancel.TabIndex = 7;
+            this.buttonCancel.TabIndex = 4;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
             // 
@@ -57,7 +57,7 @@
             this.buttonOK.Location = new System.Drawing.Point(118, 122);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
-            this.buttonOK.TabIndex = 6;
+            this.buttonOK.TabIndex = 3;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
@@ -67,7 +67,7 @@
             this.date.Location = new System.Drawing.Point(114, 12);
             this.date.Name = "date";
             this.date.Size = new System.Drawing.Size(159, 20);
-            this.date.TabIndex = 9;
+            this.date.TabIndex = 5;
             // 
             // labelDate
             // 
@@ -93,7 +93,7 @@
             this.comboBoxUser.Location = new System.Drawing.Point(114, 38);
             this.comboBoxUser.Name = "comboBoxUser";
             this.comboBoxUser.Size = new System.Drawing.Size(159, 21);
-            this.comboBoxUser.TabIndex = 11;
+            this.comboBoxUser.TabIndex = 0;
             // 
             // comboBoxPlace
             // 
@@ -101,7 +101,7 @@
             this.comboBoxPlace.Location = new System.Drawing.Point(114, 65);
             this.comboBoxPlace.Name = "comboBoxPlace";
             this.comboBoxPlace.Size = new System.Drawing.Size(159, 21);
-            this.comboBoxPlace.TabIndex = 13;
+            this.comboBoxPlace.TabIndex = 1;
             // 
             // labelPlace
             // 
@@ -117,7 +117,7 @@
             this.textBoxComment.Location = new System.Drawing.Point(114, 93);
             this.textBoxComment.Name = "textBoxComment";
             this.textBoxComment.Size = new System.Drawing.Size(159, 20);
-            this.textBoxComment.TabIndex = 14;
+            this.textBoxComment.TabIndex = 2;
             // 
             // labelComment
             // 

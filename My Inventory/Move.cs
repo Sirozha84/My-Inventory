@@ -24,5 +24,11 @@ namespace My_Inventory
             string[] labels = { date.ToString("dd.MM.yyyy"), user, place, comment };
             return new ListViewItem(labels) { Tag = this };
         }
+
+        public ListViewItem LogItem()
+        {
+            string[] labels = { date.ToString("dd.MM.yyyy"), "", "", user, place, comment };
+            return new ListViewItem(labels) { Tag = this };
+        }
     }
 }

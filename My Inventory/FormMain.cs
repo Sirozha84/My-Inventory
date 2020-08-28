@@ -236,13 +236,30 @@ namespace My_Inventory
         //Переход к инвентарю
         void ToInventory(object sender, EventArgs e)
         {
-            tabControlMain.SelectedIndex = 0;
+            tabPages.SelectedIndex = 0;
             User user = (User)listViewUsers.SelectedItems[0].Tag;
             foreach (ListViewItem item in listViewInventory.Items)
             {
                 Item i = (Item)(item.Tag);
                 item.Selected = i.user == user.name;
             }
+        }
+        #endregion
+
+        #region Вкладка "Журнал перемещений"
+        //Формирование журнала перемещений
+        void RefreshLog(object sender, EventArgs e)
+        {
+            List<LogRecord> log = new List<LogRecord>();
+            foreach (Item item in Data.data.items)
+                foreach (Move move in item.history)
+                    log.Add(new LogRecord(item, move));
+            log.Sort((o1, o2) => o1.date.CompareTo(o2.date));
+            listViewLog.BeginUpdate();
+            listViewLog.Items.Clear();
+            foreach (LogRecord rec in log)
+                listViewLog.Items.Add(rec.GetListItem());
+            listViewLog.EndUpdate();
         }
         #endregion
 
@@ -320,5 +337,6 @@ namespace My_Inventory
             toolStripButtonToInventory.Enabled = sel;
             cmenuToInventory.Enabled = sel;
         }
+
     }
 }
