@@ -51,7 +51,7 @@
             this.columnDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnPlace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnComment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.contextMenuStripItems = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmenuItems = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmenuNewItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cmenuMoveItems = new System.Windows.Forms.ToolStripMenuItem();
             this.cmenuDelItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -83,7 +83,7 @@
             this.listViewUsers = new System.Windows.Forms.ListView();
             this.columnUUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnUDep = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.contextMenuStripUsers = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmenuUsers = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.cmenuNewUser = new System.Windows.Forms.ToolStripMenuItem();
             this.cmenuPrintCard = new System.Windows.Forms.ToolStripMenuItem();
             this.cmenuToInventory = new System.Windows.Forms.ToolStripMenuItem();
@@ -93,11 +93,7 @@
             this.toolStripButtonPrint = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonToInventory = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonDelUser = new System.Windows.Forms.ToolStripButton();
-            this.statusStrip = new System.Windows.Forms.StatusStrip();
-            this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.tabPageLog = new System.Windows.Forms.TabPage();
-            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
-            this.toolRefreshLog = new System.Windows.Forms.ToolStripButton();
             this.listViewLog = new System.Windows.Forms.ListView();
             this.columnLDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnLNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -105,18 +101,22 @@
             this.columnLUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnLPlace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnLComment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.toolStripLog = new System.Windows.Forms.ToolStrip();
+            this.toolRefreshLog = new System.Windows.Forms.ToolStripButton();
+            this.statusStrip = new System.Windows.Forms.StatusStrip();
+            this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStripMain.SuspendLayout();
             this.tabPages.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
-            this.contextMenuStripItems.SuspendLayout();
+            this.cmenuItems.SuspendLayout();
             this.toolStripNewItem.SuspendLayout();
             this.tabPageUsers.SuspendLayout();
             this.panelUser.SuspendLayout();
-            this.contextMenuStripUsers.SuspendLayout();
+            this.cmenuUsers.SuspendLayout();
             this.toolStripUsers.SuspendLayout();
-            this.statusStrip.SuspendLayout();
             this.tabPageLog.SuspendLayout();
-            this.toolStrip1.SuspendLayout();
+            this.toolStripLog.SuspendLayout();
+            this.statusStrip.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -144,7 +144,7 @@
             // menuPrintCard
             // 
             this.menuPrintCard.Enabled = false;
-            this.menuPrintCard.Image = global::My_Inventory.Properties.Resources.Printer;
+            this.menuPrintCard.Image = global::My_Inventory.Properties.Resources.printer;
             this.menuPrintCard.Name = "menuPrintCard";
             this.menuPrintCard.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.P)));
             this.menuPrintCard.Size = new System.Drawing.Size(241, 22);
@@ -252,7 +252,7 @@
             this.columnDate,
             this.columnPlace,
             this.columnComment});
-            this.listViewInventory.ContextMenuStrip = this.contextMenuStripItems;
+            this.listViewInventory.ContextMenuStrip = this.cmenuItems;
             this.listViewInventory.FullRowSelect = true;
             this.listViewInventory.GridLines = true;
             this.listViewInventory.HideSelection = false;
@@ -295,19 +295,20 @@
             this.columnComment.Text = "Примечание";
             this.columnComment.Width = 102;
             // 
-            // contextMenuStripItems
+            // cmenuItems
             // 
-            this.contextMenuStripItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmenuItems.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmenuNewItem,
             this.cmenuMoveItems,
             this.cmenuDelItem});
-            this.contextMenuStripItems.Name = "contextMenuStripItems";
-            this.contextMenuStripItems.Size = new System.Drawing.Size(203, 70);
+            this.cmenuItems.Name = "contextMenuStripItems";
+            this.cmenuItems.Size = new System.Drawing.Size(203, 70);
             // 
             // cmenuNewItem
             // 
+            this.cmenuNewItem.Image = global::My_Inventory.Properties.Resources.add;
             this.cmenuNewItem.Name = "cmenuNewItem";
-            this.cmenuNewItem.ShortcutKeyDisplayString = "Ctrl + N";
+            this.cmenuNewItem.ShortcutKeyDisplayString = "";
             this.cmenuNewItem.Size = new System.Drawing.Size(202, 22);
             this.cmenuNewItem.Text = "Новый объект";
             this.cmenuNewItem.Click += new System.EventHandler(this.NewItem);
@@ -322,8 +323,9 @@
             // cmenuDelItem
             // 
             this.cmenuDelItem.Enabled = false;
+            this.cmenuDelItem.Image = global::My_Inventory.Properties.Resources.delete;
             this.cmenuDelItem.Name = "cmenuDelItem";
-            this.cmenuDelItem.ShortcutKeyDisplayString = "Shift + Del";
+            this.cmenuDelItem.ShortcutKeyDisplayString = "";
             this.cmenuDelItem.Size = new System.Drawing.Size(202, 22);
             this.cmenuDelItem.Text = "Удалить";
             this.cmenuDelItem.Click += new System.EventHandler(this.DelItem);
@@ -347,7 +349,7 @@
             // 
             // toolТNewItem
             // 
-            this.toolТNewItem.Image = global::My_Inventory.Properties.Resources.New;
+            this.toolТNewItem.Image = global::My_Inventory.Properties.Resources.plus;
             this.toolТNewItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolТNewItem.Name = "toolТNewItem";
             this.toolТNewItem.Size = new System.Drawing.Size(65, 22);
@@ -357,7 +359,7 @@
             // toolDelItem
             // 
             this.toolDelItem.Enabled = false;
-            this.toolDelItem.Image = global::My_Inventory.Properties.Resources.delete;
+            this.toolDelItem.Image = ((System.Drawing.Image)(resources.GetObject("toolDelItem.Image")));
             this.toolDelItem.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolDelItem.Name = "toolDelItem";
             this.toolDelItem.Size = new System.Drawing.Size(71, 22);
@@ -473,34 +475,34 @@
             // textBoxPost
             // 
             this.textBoxPost.Enabled = false;
-            this.textBoxPost.Location = new System.Drawing.Point(345, 29);
+            this.textBoxPost.Location = new System.Drawing.Point(355, 29);
             this.textBoxPost.Name = "textBoxPost";
             this.textBoxPost.ReadOnly = true;
-            this.textBoxPost.Size = new System.Drawing.Size(149, 20);
+            this.textBoxPost.Size = new System.Drawing.Size(172, 20);
             this.textBoxPost.TabIndex = 19;
             // 
             // textBoxDep
             // 
             this.textBoxDep.Enabled = false;
-            this.textBoxDep.Location = new System.Drawing.Point(345, 3);
+            this.textBoxDep.Location = new System.Drawing.Point(355, 3);
             this.textBoxDep.Name = "textBoxDep";
             this.textBoxDep.ReadOnly = true;
-            this.textBoxDep.Size = new System.Drawing.Size(149, 20);
+            this.textBoxDep.Size = new System.Drawing.Size(172, 20);
             this.textBoxDep.TabIndex = 18;
             // 
             // textBoxOrg
             // 
             this.textBoxOrg.Enabled = false;
-            this.textBoxOrg.Location = new System.Drawing.Point(90, 29);
+            this.textBoxOrg.Location = new System.Drawing.Point(86, 29);
             this.textBoxOrg.Name = "textBoxOrg";
             this.textBoxOrg.ReadOnly = true;
-            this.textBoxOrg.Size = new System.Drawing.Size(149, 20);
+            this.textBoxOrg.Size = new System.Drawing.Size(172, 20);
             this.textBoxOrg.TabIndex = 17;
             // 
             // labelPost
             // 
             this.labelPost.AutoSize = true;
-            this.labelPost.Location = new System.Drawing.Point(271, 32);
+            this.labelPost.Location = new System.Drawing.Point(281, 32);
             this.labelPost.Name = "labelPost";
             this.labelPost.Size = new System.Drawing.Size(68, 13);
             this.labelPost.TabIndex = 16;
@@ -509,7 +511,7 @@
             // labelOrg
             // 
             this.labelOrg.AutoSize = true;
-            this.labelOrg.Location = new System.Drawing.Point(7, 32);
+            this.labelOrg.Location = new System.Drawing.Point(3, 32);
             this.labelOrg.Name = "labelOrg";
             this.labelOrg.Size = new System.Drawing.Size(77, 13);
             this.labelOrg.TabIndex = 14;
@@ -518,7 +520,7 @@
             // labelDep
             // 
             this.labelDep.AutoSize = true;
-            this.labelDep.Location = new System.Drawing.Point(249, 6);
+            this.labelDep.Location = new System.Drawing.Point(259, 6);
             this.labelDep.Name = "labelDep";
             this.labelDep.Size = new System.Drawing.Size(90, 13);
             this.labelDep.TabIndex = 12;
@@ -537,16 +539,16 @@
             // textBoxUser
             // 
             this.textBoxUser.Enabled = false;
-            this.textBoxUser.Location = new System.Drawing.Point(90, 3);
+            this.textBoxUser.Location = new System.Drawing.Point(86, 3);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.ReadOnly = true;
-            this.textBoxUser.Size = new System.Drawing.Size(149, 20);
+            this.textBoxUser.Size = new System.Drawing.Size(172, 20);
             this.textBoxUser.TabIndex = 1;
             // 
             // labelUser
             // 
             this.labelUser.AutoSize = true;
-            this.labelUser.Location = new System.Drawing.Point(32, 6);
+            this.labelUser.Location = new System.Drawing.Point(28, 6);
             this.labelUser.Name = "labelUser";
             this.labelUser.Size = new System.Drawing.Size(52, 13);
             this.labelUser.TabIndex = 0;
@@ -566,7 +568,7 @@
             this.listViewUsers.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnUUser,
             this.columnUDep});
-            this.listViewUsers.ContextMenuStrip = this.contextMenuStripUsers;
+            this.listViewUsers.ContextMenuStrip = this.cmenuUsers;
             this.listViewUsers.Dock = System.Windows.Forms.DockStyle.Left;
             this.listViewUsers.FullRowSelect = true;
             this.listViewUsers.GridLines = true;
@@ -591,30 +593,32 @@
             this.columnUDep.Text = "Подразделение";
             this.columnUDep.Width = 100;
             // 
-            // contextMenuStripUsers
+            // cmenuUsers
             // 
-            this.contextMenuStripUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmenuUsers.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.cmenuNewUser,
             this.cmenuPrintCard,
             this.cmenuToInventory,
             this.cmenuDelUser});
-            this.contextMenuStripUsers.Name = "contextMenuStripUsers";
-            this.contextMenuStripUsers.Size = new System.Drawing.Size(260, 92);
+            this.cmenuUsers.Name = "contextMenuStripUsers";
+            this.cmenuUsers.Size = new System.Drawing.Size(191, 114);
             // 
             // cmenuNewUser
             // 
+            this.cmenuNewUser.Image = global::My_Inventory.Properties.Resources.add_user;
             this.cmenuNewUser.Name = "cmenuNewUser";
-            this.cmenuNewUser.ShortcutKeyDisplayString = "Ctrl + Shift + N";
-            this.cmenuNewUser.Size = new System.Drawing.Size(259, 22);
+            this.cmenuNewUser.ShortcutKeyDisplayString = "";
+            this.cmenuNewUser.Size = new System.Drawing.Size(190, 22);
             this.cmenuNewUser.Text = "Новый сотрудник";
             this.cmenuNewUser.Click += new System.EventHandler(this.NewUser);
             // 
             // cmenuPrintCard
             // 
             this.cmenuPrintCard.Enabled = false;
+            this.cmenuPrintCard.Image = global::My_Inventory.Properties.Resources.printer;
             this.cmenuPrintCard.Name = "cmenuPrintCard";
-            this.cmenuPrintCard.ShortcutKeyDisplayString = "Ctrl + P";
-            this.cmenuPrintCard.Size = new System.Drawing.Size(259, 22);
+            this.cmenuPrintCard.ShortcutKeyDisplayString = "";
+            this.cmenuPrintCard.Size = new System.Drawing.Size(190, 22);
             this.cmenuPrintCard.Text = "Карточка учёта";
             this.cmenuPrintCard.Click += new System.EventHandler(this.PrintCard);
             // 
@@ -622,7 +626,7 @@
             // 
             this.cmenuToInventory.Enabled = false;
             this.cmenuToInventory.Name = "cmenuToInventory";
-            this.cmenuToInventory.Size = new System.Drawing.Size(259, 22);
+            this.cmenuToInventory.Size = new System.Drawing.Size(190, 22);
             this.cmenuToInventory.Text = "Перейти в инвентарь";
             this.cmenuToInventory.ToolTipText = "Показать все предметы сотрудника в общем списке инвентаря";
             this.cmenuToInventory.Click += new System.EventHandler(this.ToInventory);
@@ -630,9 +634,10 @@
             // cmenuDelUser
             // 
             this.cmenuDelUser.Enabled = false;
+            this.cmenuDelUser.Image = global::My_Inventory.Properties.Resources.delete;
             this.cmenuDelUser.Name = "cmenuDelUser";
-            this.cmenuDelUser.ShortcutKeyDisplayString = "Shift + Del";
-            this.cmenuDelUser.Size = new System.Drawing.Size(259, 22);
+            this.cmenuDelUser.ShortcutKeyDisplayString = "";
+            this.cmenuDelUser.Size = new System.Drawing.Size(190, 22);
             this.cmenuDelUser.Text = "Удалить";
             this.cmenuDelUser.Click += new System.EventHandler(this.DelUser);
             // 
@@ -654,7 +659,7 @@
             // 
             // toolNewUser
             // 
-            this.toolNewUser.Image = global::My_Inventory.Properties.Resources.New;
+            this.toolNewUser.Image = global::My_Inventory.Properties.Resources.add_user;
             this.toolNewUser.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolNewUser.Name = "toolNewUser";
             this.toolNewUser.Size = new System.Drawing.Size(65, 22);
@@ -665,7 +670,7 @@
             // toolStripButtonPrint
             // 
             this.toolStripButtonPrint.Enabled = false;
-            this.toolStripButtonPrint.Image = global::My_Inventory.Properties.Resources.Printer;
+            this.toolStripButtonPrint.Image = global::My_Inventory.Properties.Resources.printer;
             this.toolStripButtonPrint.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonPrint.Name = "toolStripButtonPrint";
             this.toolStripButtonPrint.Size = new System.Drawing.Size(111, 22);
@@ -687,7 +692,7 @@
             // toolStripButtonDelUser
             // 
             this.toolStripButtonDelUser.Enabled = false;
-            this.toolStripButtonDelUser.Image = global::My_Inventory.Properties.Resources.delete;
+            this.toolStripButtonDelUser.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDelUser.Image")));
             this.toolStripButtonDelUser.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonDelUser.Name = "toolStripButtonDelUser";
             this.toolStripButtonDelUser.Size = new System.Drawing.Size(71, 22);
@@ -695,27 +700,10 @@
             this.toolStripButtonDelUser.ToolTipText = "Удалить выбранного пользователя";
             this.toolStripButtonDelUser.Click += new System.EventHandler(this.DelUser);
             // 
-            // statusStrip
-            // 
-            this.statusStrip.BackColor = System.Drawing.Color.Transparent;
-            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.statusSelected});
-            this.statusStrip.Location = new System.Drawing.Point(0, 439);
-            this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(784, 22);
-            this.statusStrip.TabIndex = 2;
-            this.statusStrip.Text = "statusStrip";
-            // 
-            // statusSelected
-            // 
-            this.statusSelected.Name = "statusSelected";
-            this.statusSelected.Size = new System.Drawing.Size(122, 17);
-            this.statusSelected.Text = "Выбрано элементов:";
-            // 
             // tabPageLog
             // 
             this.tabPageLog.Controls.Add(this.listViewLog);
-            this.tabPageLog.Controls.Add(this.toolStrip1);
+            this.tabPageLog.Controls.Add(this.toolStripLog);
             this.tabPageLog.Location = new System.Drawing.Point(4, 22);
             this.tabPageLog.Name = "tabPageLog";
             this.tabPageLog.Padding = new System.Windows.Forms.Padding(3);
@@ -723,27 +711,6 @@
             this.tabPageLog.TabIndex = 3;
             this.tabPageLog.Text = "Журнал перемещений";
             this.tabPageLog.UseVisualStyleBackColor = true;
-            // 
-            // toolStrip1
-            // 
-            this.toolStrip1.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
-            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolRefreshLog});
-            this.toolStrip1.Location = new System.Drawing.Point(3, 3);
-            this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(770, 25);
-            this.toolStrip1.TabIndex = 0;
-            this.toolStrip1.Text = "toolStrip1";
-            // 
-            // toolRefreshLog
-            // 
-            this.toolRefreshLog.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
-            this.toolRefreshLog.Image = ((System.Drawing.Image)(resources.GetObject("toolRefreshLog.Image")));
-            this.toolRefreshLog.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolRefreshLog.Name = "toolRefreshLog";
-            this.toolRefreshLog.Size = new System.Drawing.Size(95, 22);
-            this.toolRefreshLog.Text = "Сформировать";
-            this.toolRefreshLog.Click += new System.EventHandler(this.RefreshLog);
             // 
             // listViewLog
             // 
@@ -793,6 +760,43 @@
             this.columnLComment.Text = "Комментарий";
             this.columnLComment.Width = 150;
             // 
+            // toolStripLog
+            // 
+            this.toolStripLog.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolRefreshLog});
+            this.toolStripLog.Location = new System.Drawing.Point(3, 3);
+            this.toolStripLog.Name = "toolStripLog";
+            this.toolStripLog.Size = new System.Drawing.Size(770, 25);
+            this.toolStripLog.TabIndex = 0;
+            this.toolStripLog.Text = "toolStrip1";
+            // 
+            // toolRefreshLog
+            // 
+            this.toolRefreshLog.Image = global::My_Inventory.Properties.Resources.update;
+            this.toolRefreshLog.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolRefreshLog.Name = "toolRefreshLog";
+            this.toolRefreshLog.Size = new System.Drawing.Size(111, 22);
+            this.toolRefreshLog.Text = "Сформировать";
+            this.toolRefreshLog.Click += new System.EventHandler(this.RefreshLog);
+            // 
+            // statusStrip
+            // 
+            this.statusStrip.BackColor = System.Drawing.Color.Transparent;
+            this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.statusSelected});
+            this.statusStrip.Location = new System.Drawing.Point(0, 439);
+            this.statusStrip.Name = "statusStrip";
+            this.statusStrip.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip.TabIndex = 2;
+            this.statusStrip.Text = "statusStrip";
+            // 
+            // statusSelected
+            // 
+            this.statusSelected.Name = "statusSelected";
+            this.statusSelected.Size = new System.Drawing.Size(122, 17);
+            this.statusSelected.Text = "Выбрано элементов:";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -813,22 +817,22 @@
             this.tabPages.ResumeLayout(false);
             this.tabPageInventory.ResumeLayout(false);
             this.tabPageInventory.PerformLayout();
-            this.contextMenuStripItems.ResumeLayout(false);
+            this.cmenuItems.ResumeLayout(false);
             this.toolStripNewItem.ResumeLayout(false);
             this.toolStripNewItem.PerformLayout();
             this.tabPageUsers.ResumeLayout(false);
             this.tabPageUsers.PerformLayout();
             this.panelUser.ResumeLayout(false);
             this.panelUser.PerformLayout();
-            this.contextMenuStripUsers.ResumeLayout(false);
+            this.cmenuUsers.ResumeLayout(false);
             this.toolStripUsers.ResumeLayout(false);
             this.toolStripUsers.PerformLayout();
-            this.statusStrip.ResumeLayout(false);
-            this.statusStrip.PerformLayout();
             this.tabPageLog.ResumeLayout(false);
             this.tabPageLog.PerformLayout();
-            this.toolStrip1.ResumeLayout(false);
-            this.toolStrip1.PerformLayout();
+            this.toolStripLog.ResumeLayout(false);
+            this.toolStripLog.PerformLayout();
+            this.statusStrip.ResumeLayout(false);
+            this.statusStrip.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -871,11 +875,11 @@
         private System.Windows.Forms.ColumnHeader columnUDep;
         private System.Windows.Forms.Label labelDep;
         private System.Windows.Forms.ToolStripButton toolDelItem;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripItems;
+        private System.Windows.Forms.ContextMenuStrip cmenuItems;
         private System.Windows.Forms.ToolStripMenuItem cmenuNewItem;
         private System.Windows.Forms.ToolStripMenuItem cmenuDelItem;
         private System.Windows.Forms.ToolStripButton toolStripButtonDelUser;
-        private System.Windows.Forms.ContextMenuStrip contextMenuStripUsers;
+        private System.Windows.Forms.ContextMenuStrip cmenuUsers;
         private System.Windows.Forms.ToolStripMenuItem cmenuNewUser;
         private System.Windows.Forms.ToolStripMenuItem cmenuDelUser;
         private System.Windows.Forms.Label labelOrg;
@@ -902,7 +906,7 @@
         private System.Windows.Forms.TextBox textBoxOrg;
         private System.Windows.Forms.ToolStripMenuItem cmenuMoveItems;
         private System.Windows.Forms.TabPage tabPageLog;
-        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStrip toolStripLog;
         private System.Windows.Forms.ToolStripButton toolRefreshLog;
         private System.Windows.Forms.ListView listViewLog;
         private System.Windows.Forms.ColumnHeader columnLDate;

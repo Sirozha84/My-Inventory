@@ -179,7 +179,7 @@ namespace My_Inventory
             if (listViewInventory.SelectedIndices.Count == 1)
                 statusSelected.Text = "Выбран один объект";
             if (listViewInventory.SelectedIndices.Count > 1)
-                statusSelected.Text = "Выбрано объект: " + listViewInventory.SelectedIndices.Count;
+                statusSelected.Text = "Выбрано объектов: " + listViewInventory.SelectedIndices.Count;
 
             //Изменение доступностей кнопок
             bool sel = listViewInventory.SelectedIndices.Count > 0;

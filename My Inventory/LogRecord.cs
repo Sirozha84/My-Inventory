@@ -20,7 +20,7 @@ namespace My_Inventory
         {
             date = move.date;
             num = item.number;
-            name = item.name;
+            name = item.name + " " + item.model;
             user = move.user;
             place = move.place;
             comment = move.comment;
