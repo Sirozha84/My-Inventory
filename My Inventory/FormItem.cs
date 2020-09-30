@@ -20,6 +20,7 @@ namespace My_Inventory
             textBoxNumber.Text = item.number;
             textBoxName.Text = item.name;
             textBoxModel.Text = item.model;
+            textBoxSerial.Text = item.serial;
             textBoxDisc.Text = item.discription;
             
             history.Clear();
@@ -94,6 +95,7 @@ namespace My_Inventory
                 item.number = textBoxNumber.Text;
                 item.name = textBoxName.Text;
                 item.model = textBoxModel.Text;
+                item.serial = textBoxSerial.Text;
                 item.discription = textBoxDisc.Text;
                 item.history.Clear();
                 foreach (Move m in history) item.history.Add(m);

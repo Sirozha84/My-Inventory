@@ -9,12 +9,16 @@ namespace My_Inventory
         {
             InitializeComponent();
             labelName.Text = Application.ProductName;
-            labelVersion.Text = "Версия: " + Application.ProductVersion;
+            labelVersion.Text = "Версия: " + Application.ProductVersion + " BETA!";
             labelAutor.Text = "Автор программы: Сергей гордеев";
 
             Font fontR = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Regular);
             Font fontB = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Bold);
 
+            history.SelectionFont = fontB;
+            history.AppendText("Версия 2.1 (30.09.2020)\n\n");
+            history.SelectionFont = fontR;
+            history.AppendText("В работе...\n\n");
             history.SelectionFont = fontB;
             history.AppendText("Версия 2.0 (28.08.2020)\n\n");
             history.SelectionFont = fontR;
