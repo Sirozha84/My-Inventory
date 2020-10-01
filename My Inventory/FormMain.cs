@@ -257,11 +257,6 @@ namespace My_Inventory
                 return;
             string name = user.name;
             Data.data.users.Remove(user);
-
-            //А теперь пометим предметы, которые были прикреплены ничьими
-            foreach (Item item in Data.data.items)
-                if (item.user == name) item.user = "";
-
             Data.Save();
             RefreshData();
         }
