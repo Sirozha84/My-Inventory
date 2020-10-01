@@ -60,7 +60,7 @@
             this.toolDelItem = new System.Windows.Forms.ToolStripButton();
             this.sep3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolFind = new System.Windows.Forms.ToolStripLabel();
-            this.toolFindItem = new System.Windows.Forms.ToolStripTextBox();
+            this.toolSearch = new System.Windows.Forms.ToolStripTextBox();
             this.toolResetItem = new System.Windows.Forms.ToolStripButton();
             this.tabPageUsers = new System.Windows.Forms.TabPage();
             this.listViewUserItems = new System.Windows.Forms.ListView();
@@ -103,6 +103,8 @@
             this.columnLComment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.toolStripLog = new System.Windows.Forms.ToolStrip();
             this.toolRefreshLog = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonFromUser = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonFromPlace = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStripMain.SuspendLayout();
@@ -127,7 +129,7 @@
             this.menuHelp});
             this.menuStripMain.Location = new System.Drawing.Point(0, 0);
             this.menuStripMain.Name = "menuStripMain";
-            this.menuStripMain.Size = new System.Drawing.Size(784, 24);
+            this.menuStripMain.Size = new System.Drawing.Size(884, 24);
             this.menuStripMain.TabIndex = 0;
             this.menuStripMain.Text = "menuStripMain";
             // 
@@ -225,7 +227,7 @@
             this.tabPages.Location = new System.Drawing.Point(0, 24);
             this.tabPages.Name = "tabPages";
             this.tabPages.SelectedIndex = 0;
-            this.tabPages.Size = new System.Drawing.Size(784, 415);
+            this.tabPages.Size = new System.Drawing.Size(884, 515);
             this.tabPages.TabIndex = 1;
             // 
             // tabPageInventory
@@ -235,7 +237,7 @@
             this.tabPageInventory.Location = new System.Drawing.Point(4, 22);
             this.tabPageInventory.Name = "tabPageInventory";
             this.tabPageInventory.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageInventory.Size = new System.Drawing.Size(776, 389);
+            this.tabPageInventory.Size = new System.Drawing.Size(876, 489);
             this.tabPageInventory.TabIndex = 0;
             this.tabPageInventory.Text = "Инвентарь";
             this.tabPageInventory.UseVisualStyleBackColor = true;
@@ -258,7 +260,7 @@
             this.listViewInventory.HideSelection = false;
             this.listViewInventory.Location = new System.Drawing.Point(3, 28);
             this.listViewInventory.Name = "listViewInventory";
-            this.listViewInventory.Size = new System.Drawing.Size(770, 358);
+            this.listViewInventory.Size = new System.Drawing.Size(870, 458);
             this.listViewInventory.TabIndex = 0;
             this.listViewInventory.UseCompatibleStateImageBehavior = false;
             this.listViewInventory.View = System.Windows.Forms.View.Details;
@@ -339,12 +341,12 @@
             this.toolDelItem,
             this.sep3,
             this.toolFind,
-            this.toolFindItem,
+            this.toolSearch,
             this.toolResetItem});
             this.toolStripNewItem.Location = new System.Drawing.Point(3, 3);
             this.toolStripNewItem.Name = "toolStripNewItem";
             this.toolStripNewItem.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripNewItem.Size = new System.Drawing.Size(770, 25);
+            this.toolStripNewItem.Size = new System.Drawing.Size(870, 25);
             this.toolStripNewItem.TabIndex = 1;
             // 
             // toolТNewItem
@@ -378,13 +380,13 @@
             this.toolFind.Size = new System.Drawing.Size(45, 22);
             this.toolFind.Text = "Поиск:";
             // 
-            // toolFindItem
+            // toolSearch
             // 
-            this.toolFindItem.BackColor = System.Drawing.SystemColors.Window;
-            this.toolFindItem.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.toolFindItem.Name = "toolFindItem";
-            this.toolFindItem.Size = new System.Drawing.Size(200, 25);
-            this.toolFindItem.TextChanged += new System.EventHandler(this.FindTextChange);
+            this.toolSearch.BackColor = System.Drawing.SystemColors.Window;
+            this.toolSearch.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.toolSearch.Name = "toolSearch";
+            this.toolSearch.Size = new System.Drawing.Size(200, 25);
+            this.toolSearch.TextChanged += new System.EventHandler(this.FindTextChange);
             // 
             // toolResetItem
             // 
@@ -407,7 +409,7 @@
             this.tabPageUsers.Location = new System.Drawing.Point(4, 22);
             this.tabPageUsers.Name = "tabPageUsers";
             this.tabPageUsers.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageUsers.Size = new System.Drawing.Size(776, 389);
+            this.tabPageUsers.Size = new System.Drawing.Size(876, 489);
             this.tabPageUsers.TabIndex = 2;
             this.tabPageUsers.Text = "Сотрудники";
             this.tabPageUsers.UseVisualStyleBackColor = true;
@@ -426,7 +428,7 @@
             this.listViewUserItems.GridLines = true;
             this.listViewUserItems.Location = new System.Drawing.Point(241, 116);
             this.listViewUserItems.Name = "listViewUserItems";
-            this.listViewUserItems.Size = new System.Drawing.Size(532, 270);
+            this.listViewUserItems.Size = new System.Drawing.Size(632, 370);
             this.listViewUserItems.TabIndex = 6;
             this.listViewUserItems.UseCompatibleStateImageBehavior = false;
             this.listViewUserItems.View = System.Windows.Forms.View.Details;
@@ -469,25 +471,25 @@
             this.panelUser.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelUser.Location = new System.Drawing.Point(241, 28);
             this.panelUser.Name = "panelUser";
-            this.panelUser.Size = new System.Drawing.Size(532, 88);
+            this.panelUser.Size = new System.Drawing.Size(632, 88);
             this.panelUser.TabIndex = 5;
             // 
             // textBoxPost
             // 
             this.textBoxPost.Enabled = false;
-            this.textBoxPost.Location = new System.Drawing.Point(355, 29);
+            this.textBoxPost.Location = new System.Drawing.Point(405, 29);
             this.textBoxPost.Name = "textBoxPost";
             this.textBoxPost.ReadOnly = true;
-            this.textBoxPost.Size = new System.Drawing.Size(172, 20);
+            this.textBoxPost.Size = new System.Drawing.Size(210, 20);
             this.textBoxPost.TabIndex = 19;
             // 
             // textBoxDep
             // 
             this.textBoxDep.Enabled = false;
-            this.textBoxDep.Location = new System.Drawing.Point(355, 3);
+            this.textBoxDep.Location = new System.Drawing.Point(405, 3);
             this.textBoxDep.Name = "textBoxDep";
             this.textBoxDep.ReadOnly = true;
-            this.textBoxDep.Size = new System.Drawing.Size(172, 20);
+            this.textBoxDep.Size = new System.Drawing.Size(210, 20);
             this.textBoxDep.TabIndex = 18;
             // 
             // textBoxOrg
@@ -496,13 +498,13 @@
             this.textBoxOrg.Location = new System.Drawing.Point(86, 29);
             this.textBoxOrg.Name = "textBoxOrg";
             this.textBoxOrg.ReadOnly = true;
-            this.textBoxOrg.Size = new System.Drawing.Size(172, 20);
+            this.textBoxOrg.Size = new System.Drawing.Size(210, 20);
             this.textBoxOrg.TabIndex = 17;
             // 
             // labelPost
             // 
             this.labelPost.AutoSize = true;
-            this.labelPost.Location = new System.Drawing.Point(281, 32);
+            this.labelPost.Location = new System.Drawing.Point(331, 32);
             this.labelPost.Name = "labelPost";
             this.labelPost.Size = new System.Drawing.Size(68, 13);
             this.labelPost.TabIndex = 16;
@@ -520,7 +522,7 @@
             // labelDep
             // 
             this.labelDep.AutoSize = true;
-            this.labelDep.Location = new System.Drawing.Point(259, 6);
+            this.labelDep.Location = new System.Drawing.Point(309, 6);
             this.labelDep.Name = "labelDep";
             this.labelDep.Size = new System.Drawing.Size(90, 13);
             this.labelDep.TabIndex = 12;
@@ -542,7 +544,7 @@
             this.textBoxUser.Location = new System.Drawing.Point(86, 3);
             this.textBoxUser.Name = "textBoxUser";
             this.textBoxUser.ReadOnly = true;
-            this.textBoxUser.Size = new System.Drawing.Size(172, 20);
+            this.textBoxUser.Size = new System.Drawing.Size(210, 20);
             this.textBoxUser.TabIndex = 1;
             // 
             // labelUser
@@ -559,7 +561,7 @@
             this.splitter.BackColor = System.Drawing.SystemColors.ControlLightLight;
             this.splitter.Location = new System.Drawing.Point(236, 28);
             this.splitter.Name = "splitter";
-            this.splitter.Size = new System.Drawing.Size(5, 358);
+            this.splitter.Size = new System.Drawing.Size(5, 458);
             this.splitter.TabIndex = 2;
             this.splitter.TabStop = false;
             // 
@@ -576,7 +578,7 @@
             this.listViewUsers.Location = new System.Drawing.Point(3, 28);
             this.listViewUsers.MultiSelect = false;
             this.listViewUsers.Name = "listViewUsers";
-            this.listViewUsers.Size = new System.Drawing.Size(233, 358);
+            this.listViewUsers.Size = new System.Drawing.Size(233, 458);
             this.listViewUsers.TabIndex = 0;
             this.listViewUsers.UseCompatibleStateImageBehavior = false;
             this.listViewUsers.View = System.Windows.Forms.View.Details;
@@ -601,7 +603,7 @@
             this.cmenuToInventory,
             this.cmenuDelUser});
             this.cmenuUsers.Name = "contextMenuStripUsers";
-            this.cmenuUsers.Size = new System.Drawing.Size(191, 114);
+            this.cmenuUsers.Size = new System.Drawing.Size(191, 92);
             // 
             // cmenuNewUser
             // 
@@ -653,7 +655,7 @@
             this.toolStripUsers.Location = new System.Drawing.Point(3, 3);
             this.toolStripUsers.Name = "toolStripUsers";
             this.toolStripUsers.RenderMode = System.Windows.Forms.ToolStripRenderMode.System;
-            this.toolStripUsers.Size = new System.Drawing.Size(770, 25);
+            this.toolStripUsers.Size = new System.Drawing.Size(870, 25);
             this.toolStripUsers.TabIndex = 0;
             this.toolStripUsers.Text = "toolStrip2";
             // 
@@ -707,7 +709,7 @@
             this.tabPageLog.Location = new System.Drawing.Point(4, 22);
             this.tabPageLog.Name = "tabPageLog";
             this.tabPageLog.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPageLog.Size = new System.Drawing.Size(776, 389);
+            this.tabPageLog.Size = new System.Drawing.Size(876, 489);
             this.tabPageLog.TabIndex = 3;
             this.tabPageLog.Text = "Журнал перемещений";
             this.tabPageLog.UseVisualStyleBackColor = true;
@@ -726,7 +728,7 @@
             this.listViewLog.GridLines = true;
             this.listViewLog.Location = new System.Drawing.Point(3, 28);
             this.listViewLog.Name = "listViewLog";
-            this.listViewLog.Size = new System.Drawing.Size(770, 358);
+            this.listViewLog.Size = new System.Drawing.Size(870, 458);
             this.listViewLog.TabIndex = 1;
             this.listViewLog.UseCompatibleStateImageBehavior = false;
             this.listViewLog.View = System.Windows.Forms.View.Details;
@@ -764,10 +766,12 @@
             // 
             this.toolStripLog.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
             this.toolStripLog.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolRefreshLog});
+            this.toolRefreshLog,
+            this.toolStripButtonFromUser,
+            this.toolStripButtonFromPlace});
             this.toolStripLog.Location = new System.Drawing.Point(3, 3);
             this.toolStripLog.Name = "toolStripLog";
-            this.toolStripLog.Size = new System.Drawing.Size(770, 25);
+            this.toolStripLog.Size = new System.Drawing.Size(870, 25);
             this.toolStripLog.TabIndex = 0;
             this.toolStripLog.Text = "toolStrip1";
             // 
@@ -780,14 +784,35 @@
             this.toolRefreshLog.Text = "Сформировать";
             this.toolRefreshLog.Click += new System.EventHandler(this.RefreshLog);
             // 
+            // toolStripButtonFromUser
+            // 
+            this.toolStripButtonFromUser.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonFromUser.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFromUser.Image")));
+            this.toolStripButtonFromUser.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonFromUser.Name = "toolStripButtonFromUser";
+            this.toolStripButtonFromUser.Size = new System.Drawing.Size(58, 22);
+            this.toolStripButtonFromUser.Text = "От кого?";
+            this.toolStripButtonFromUser.ToolTipText = "От кого?";
+            this.toolStripButtonFromUser.Click += new System.EventHandler(this.toolStripButtonFromUser_Click);
+            // 
+            // toolStripButtonFromPlace
+            // 
+            this.toolStripButtonFromPlace.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonFromPlace.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFromPlace.Image")));
+            this.toolStripButtonFromPlace.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonFromPlace.Name = "toolStripButtonFromPlace";
+            this.toolStripButtonFromPlace.Size = new System.Drawing.Size(54, 22);
+            this.toolStripButtonFromPlace.Text = "Откуда?";
+            this.toolStripButtonFromPlace.Click += new System.EventHandler(this.toolStripButtonFromPlace_Click);
+            // 
             // statusStrip
             // 
             this.statusStrip.BackColor = System.Drawing.Color.Transparent;
             this.statusStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.statusSelected});
-            this.statusStrip.Location = new System.Drawing.Point(0, 439);
+            this.statusStrip.Location = new System.Drawing.Point(0, 539);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(784, 22);
+            this.statusStrip.Size = new System.Drawing.Size(884, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "statusStrip";
             // 
@@ -801,13 +826,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(784, 461);
+            this.ClientSize = new System.Drawing.Size(884, 561);
             this.Controls.Add(this.tabPages);
             this.Controls.Add(this.menuStripMain);
             this.Controls.Add(this.statusStrip);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStripMain;
-            this.MinimumSize = new System.Drawing.Size(800, 500);
+            this.MinimumSize = new System.Drawing.Size(900, 600);
             this.Name = "FormMain";
             this.Text = "My Inventory";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FormMain_FormClosed);
@@ -894,7 +919,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuMisc;
         private System.Windows.Forms.ColumnHeader columnIPlace;
         private System.Windows.Forms.ToolStripMenuItem menuOrgData;
-        private System.Windows.Forms.ToolStripTextBox toolFindItem;
+        private System.Windows.Forms.ToolStripTextBox toolSearch;
         private System.Windows.Forms.ToolStripLabel toolFind;
         private System.Windows.Forms.ToolStripSeparator sep3;
         private System.Windows.Forms.ToolStripButton toolResetItem;
@@ -915,6 +940,8 @@
         private System.Windows.Forms.ColumnHeader columnLUser;
         private System.Windows.Forms.ColumnHeader columnLPlace;
         private System.Windows.Forms.ColumnHeader columnLComment;
+        private System.Windows.Forms.ToolStripButton toolStripButtonFromUser;
+        private System.Windows.Forms.ToolStripButton toolStripButtonFromPlace;
     }
 }
 

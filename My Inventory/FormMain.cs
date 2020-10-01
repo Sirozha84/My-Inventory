@@ -58,6 +58,20 @@ namespace My_Inventory
             Properties.Settings.Default.Save();
         }
 
+        //Обновление всех данных на форме
+        void RefreshData()
+        {
+            Data.Sort();
+
+            //Вкладка инвентаря
+            DrawItems();
+
+            //Вкладка сотрудников
+            listViewUsers.BeginUpdate();
+            listViewUsers.Items.Clear();
+            foreach (User u in Data.data.users) listViewUsers.Items.Add(u.GetListVievItem());
+            listViewUsers.EndUpdate();
+        }
 
         #region Меню Файл
         void PrintCard(object sender, EventArgs e)
@@ -159,15 +173,33 @@ namespace My_Inventory
         //Поиск
         private void FindTextChange(object sender, EventArgs e)
         {
-            toolResetItem.Enabled = toolFindItem.Text != "";
-            DrawItems(toolFindItem.Text.ToLower());
+            toolResetItem.Enabled = toolSearch.Text != "";
+            DrawItems();
         }
 
         //Отмена поиска
         private void ResetFindItem(object sender, EventArgs e)
         {
-            toolFindItem.Text = "";
+            toolSearch.Text = "";
             toolResetItem.Enabled = false;
+        }
+        
+        //Вывод только списка объектов (с учётом поиска)
+        void DrawItems()
+        {
+            string filter = toolSearch.Text;
+            listViewInventory.BeginUpdate();
+            listViewInventory.Items.Clear();
+            foreach (Item item in Data.data.items)
+            {
+                if (filter == "" ||
+                    (item.number.ToLower().Contains(filter) | item.name.ToLower().Contains(filter) |
+                    item.model.ToLower().Contains(filter) | item.user.ToLower().Contains(filter) |
+                    item.place.ToLower().Contains(filter) | item.discription.ToLower().Contains(filter)))
+                    listViewInventory.Items.Add(item.GetListItem());
+            }
+            listViewInventory.EndUpdate();
+            listViewInventory_SelectedIndexChanged(null, null);
         }
 
         //Изменение выделения объектов
@@ -202,6 +234,7 @@ namespace My_Inventory
                 RefreshData();
             }
         }
+
         //Редактирование сотрудника
         private void EditUser(object sender, EventArgs e)
         {
@@ -243,56 +276,6 @@ namespace My_Inventory
                 Item i = (Item)(item.Tag);
                 item.Selected = i.user == user.name;
             }
-        }
-        #endregion
-
-        #region Вкладка "Журнал перемещений"
-        //Формирование журнала перемещений
-        void RefreshLog(object sender, EventArgs e)
-        {
-            List<LogRecord> log = new List<LogRecord>();
-            foreach (Item item in Data.data.items)
-                foreach (Move move in item.history)
-                    log.Add(new LogRecord(item, move));
-            log.Sort((o1, o2) => o1.date.CompareTo(o2.date));
-            listViewLog.BeginUpdate();
-            listViewLog.Items.Clear();
-            foreach (LogRecord rec in log)
-                listViewLog.Items.Add(rec.GetListItem());
-            listViewLog.EndUpdate();
-        }
-        #endregion
-
-        //Обновление всех данных на форме
-        void RefreshData()
-        {
-            Data.Sort();
-            
-            //Вкладка инвентаря
-            DrawItems("");
-            
-            //Вкладка сотрудников
-            listViewUsers.BeginUpdate();
-            listViewUsers.Items.Clear();
-            foreach (User u in Data.data.users) listViewUsers.Items.Add(u.GetListVievItem());
-            listViewUsers.EndUpdate();
-        }
-        
-        //Вывод только списка объектов (с учётом поиска)
-        void DrawItems(string Filter)
-        {
-            listViewInventory.BeginUpdate();
-            listViewInventory.Items.Clear();
-            foreach (Item item in Data.data.items)
-            {
-                if (Filter == "" ||
-                    (item.number.ToLower().Contains(Filter) | item.name.ToLower().Contains(Filter) |
-                    item.model.ToLower().Contains(Filter) | item.user.ToLower().Contains(Filter) |
-                    item.place.ToLower().Contains(Filter) | item.discription.ToLower().Contains(Filter)))
-                    listViewInventory.Items.Add(item.GetListItem());
-            }
-            listViewInventory.EndUpdate();
-            listViewInventory_SelectedIndexChanged(null, null);
         }
 
         //Изменение выделения списка сотрудников
@@ -337,6 +320,40 @@ namespace My_Inventory
             toolStripButtonToInventory.Enabled = sel;
             cmenuToInventory.Enabled = sel;
         }
+        #endregion
 
+        #region Вкладка "Журнал перемещений"
+        //Формирование журнала перемещений
+        void RefreshLog(object sender, EventArgs e)
+        {
+            List<LogRecord> log = new List<LogRecord>();
+            foreach (Item item in Data.data.items)
+            {
+                string lastUser = "";
+                string lastPlace = "";
+                foreach (Move move in item.history)
+                {
+                    log.Add(new LogRecord(item, move, lastUser, lastPlace));
+                    if (toolStripButtonFromUser.Checked) lastUser = move.user;
+                    if (toolStripButtonFromPlace.Checked) lastPlace = move.place;
+                }
+            }
+            log.Sort((o1, o2) => o1.date.CompareTo(o2.date));
+            listViewLog.BeginUpdate();
+            listViewLog.Items.Clear();
+            foreach (LogRecord rec in log)
+                listViewLog.Items.Add(rec.GetListItem());
+            listViewLog.EndUpdate();
+        }
+        private void toolStripButtonFromUser_Click(object sender, EventArgs e)
+        {
+            toolStripButtonFromUser.Checked = !toolStripButtonFromUser.Checked;
+        }
+
+        private void toolStripButtonFromPlace_Click(object sender, EventArgs e)
+        {
+            toolStripButtonFromPlace.Checked = !toolStripButtonFromPlace.Checked;
+        }
+        #endregion
     }
 }

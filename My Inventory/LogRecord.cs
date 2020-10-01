@@ -16,13 +16,15 @@ namespace My_Inventory
         string place;
         string comment;
 
-        public LogRecord(Item item, Move move)
+        public LogRecord(Item item, Move move, string lastUser, string lastPlace)
         {
             date = move.date;
             num = item.number;
             name = item.name + " " + item.model;
             user = move.user;
+            if (lastUser != "") user = lastUser + " -> " + user;
             place = move.place;
+            if (lastPlace != "") place = lastPlace + " -> " + place;
             comment = move.comment;
         }
 
