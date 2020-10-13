@@ -9,7 +9,7 @@ namespace My_Inventory
         {
             InitializeComponent();
             labelName.Text = Application.ProductName;
-            labelVersion.Text = "Версия: " + Application.ProductVersion + " BETA!";
+            labelVersion.Text = "Версия: " + Application.ProductVersion;// + " BETA!";
             labelAutor.Text = "Автор программы: Сергей гордеев";
 
             Font fontR = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Regular);
