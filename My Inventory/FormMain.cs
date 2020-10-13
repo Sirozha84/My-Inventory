@@ -88,34 +88,8 @@ namespace My_Inventory
 
         private void Quit(object sender, EventArgs e) { Close(); }
         #endregion
-        
-        #region Меню Сервис
-        private void CompanyOptions(object sender, EventArgs e)
-        {
-            FormCompanyOptions form = new FormCompanyOptions();
-            form.ShowDialog();
-        }
-        #endregion
 
-        #region Меню Справка
-        private void WebSite(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(Program.Site);
-        }
-
-        private void ProgramPage(object sender, EventArgs e)
-        {
-            System.Diagnostics.Process.Start(Program.ProgramPage);
-        }
-
-        private void About(object sender, EventArgs e)
-        {
-            FormAbout form = new FormAbout();
-            form.ShowDialog();
-        }
-        #endregion
-
-        #region Вкладка "Инвентарь"
+        #region Меню и вкладка "Инвентарь"
         //Новый объект
         void NewItem(object sender, EventArgs e)
         {
@@ -130,7 +104,7 @@ namespace My_Inventory
         }
 
         //Редактирование объекта
-        private void EditItem(object sender, EventArgs e)
+        private void ItemOpen(object sender, EventArgs e)
         {
             if (listViewInventory.SelectedItems.Count < 1) return;
             Item item = (Item)listViewInventory.SelectedItems[0].Tag;
@@ -206,6 +180,7 @@ namespace My_Inventory
             }
             listViewInventory.EndUpdate();
             listViewInventory_SelectedIndexChanged(null, null);
+            listViewUsers_SelectedIndexChanged(null, null);
         }
 
         //Изменение выделения объектов
@@ -221,13 +196,18 @@ namespace My_Inventory
 
             //Изменение доступностей кнопок
             bool sel = listViewInventory.SelectedIndices.Count > 0;
+            menuItemsOpen.Enabled = sel;
+            cmenuItemsOpen.Enabled = sel;
+            menuItemsMove.Enabled = sel;
+            toolMoveItems.Enabled = sel;
+            cmenuItemsMove.Enabled = sel;
+            menuItemsDelete.Enabled = sel;
             toolDelItem.Enabled = sel;
-            cmenuMoveItems.Enabled = sel;
-            cmenuDelItem.Enabled = sel;
+            cmenuItemsDelete.Enabled = sel;
         }
         #endregion
 
-        #region Вкладка "Сотрудники"
+        #region Меню и вкладка "Сотрудники"
         //Новый сотрудник
         private void NewUser(object sender, EventArgs e) 
         {
@@ -246,9 +226,22 @@ namespace My_Inventory
         {
             if (listViewUsers.SelectedItems.Count < 1) return;
             User user = (User)listViewUsers.SelectedItems[0].Tag;
+            string oldName = user.name;
             FormUser form = new FormUser(user);
             if (form.ShowDialog() == DialogResult.OK)
             {
+                //Если изменилось имя, переименовываем все старые имена на новые
+                string newName = user.name;
+                if (oldName != newName)
+                {
+                    foreach (Item it in Data.data.items)
+                    {
+                        if (it.user == oldName) it.user = newName;
+                        foreach (Move mv in it.history)
+                            if (mv.user == oldName) mv.user = newName;
+                    }
+                }
+
                 Data.Save();
                 RefreshData();
             }
@@ -279,6 +272,15 @@ namespace My_Inventory
             }
         }
 
+        //Переход к истории
+        private void ToHistory(object sender, EventArgs e)
+        {
+            User user = (User)listViewUsers.SelectedItems[0].Tag;
+            toolUserList.Text = user.name;
+            tabPages.SelectedIndex = 3;
+            toolRefreshUserHistory_Click(null, null);
+        }
+
         //Изменение выделения списка сотрудников
         private void listViewUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -293,10 +295,7 @@ namespace My_Inventory
                 textBoxOrg.Text = user.organisation;
                 textBoxDep.Text = user.departament;
                 textBoxPost.Text = user.post;
-                Data.data.items.FindAll(o => o.user == user.name).ForEach(o =>
-                {
-                    listViewUserItems.Items.Add(o.GetListItemForUser());
-                });
+                Data.data.items.FindAll(o => o.user == user.name).ForEach(o => listViewUserItems.Items.Add(o.GetListItemForUser()));
             }
             else
             {
@@ -308,22 +307,31 @@ namespace My_Inventory
             listViewUserItems.EndUpdate();
 
             //Установка доступности кнопок
+            menuUsersOpen.Enabled = sel;
+            cmenuUsersOpen.Enabled = sel;
+            menuUserGoToInventory.Enabled = sel;
+            toolUsersGoToInventory.Enabled = sel;
+            cmenuUsersGoToInventory.Enabled = sel;
+            menuPrintCard.Enabled = sel;
+            cmenuUsersCard.Enabled = sel;
+            menuUsersGoToHistory.Enabled = sel;
+            toolUsersGoToHistory.Enabled = sel;
+            cmenuUsersGoToHistory.Enabled = sel;
+            menuUserDelete.Enabled = sel;
+            toolUsersDelete.Enabled = sel;
+            cmenuUsersDelete.Enabled = sel;
+            
             textBoxUser.Enabled = sel;
             textBoxOrg.Enabled = sel;
             textBoxPost.Enabled = sel;
             textBoxDep.Enabled = sel;
             listViewUserItems.Enabled = sel;
             toolStripButtonPrint.Enabled = sel;
-            toolStripButtonDelUser.Enabled = sel;
-            cmenuDelUser.Enabled = sel;
-            menuPrintCard.Enabled = sel;
-            cmenuPrintCard.Enabled = sel;
-            toolStripButtonToInventory.Enabled = sel;
-            cmenuToInventory.Enabled = sel;
+            toolUsersDelete.Enabled = sel;
         }
         #endregion
 
-        #region Вкладка "Журнал перемещений"
+        #region Меню и вкладка "Журнал перемещений"
         //Формирование журнала перемещений
         void RefreshLog(object sender, EventArgs e)
         {
@@ -357,7 +365,7 @@ namespace My_Inventory
         }
         #endregion
 
-        #region Вкладка "История сотрудника"
+        #region Меню и вкладка "История сотрудника"
         //Формирование отчёта "История сотрудноика"
         private void toolRefreshUserHistory_Click(object sender, EventArgs e)
         {
@@ -382,6 +390,32 @@ namespace My_Inventory
             foreach (LogRecord rec in log)
                 listViewUserHistory.Items.Add(rec.GetListItemUserHistory());
             listViewUserHistory.EndUpdate();
+        }
+        #endregion
+
+        #region Меню Сервис
+        private void CompanyOptions(object sender, EventArgs e)
+        {
+            FormCompanyOptions form = new FormCompanyOptions();
+            form.ShowDialog();
+        }
+        #endregion
+
+        #region Меню Справка
+        private void WebSite(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Program.Site);
+        }
+
+        private void ProgramPage(object sender, EventArgs e)
+        {
+            System.Diagnostics.Process.Start(Program.ProgramPage);
+        }
+
+        private void About(object sender, EventArgs e)
+        {
+            FormAbout form = new FormAbout();
+            form.ShowDialog();
         }
         #endregion
     }

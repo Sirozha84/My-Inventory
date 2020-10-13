@@ -215,11 +215,11 @@
             // 
             // buttonAddMove
             // 
-            this.buttonAddMove.Image = global::My_Inventory.Properties.Resources.add;
+            this.buttonAddMove.Image = global::My_Inventory.Properties.Resources.plus;
             this.buttonAddMove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.buttonAddMove.Location = new System.Drawing.Point(290, 12);
             this.buttonAddMove.Name = "buttonAddMove";
-            this.buttonAddMove.Size = new System.Drawing.Size(80, 23);
+            this.buttonAddMove.Size = new System.Drawing.Size(82, 23);
             this.buttonAddMove.TabIndex = 5;
             this.buttonAddMove.Text = "Добавить";
             this.buttonAddMove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
@@ -229,11 +229,14 @@
             // buttonDelMove
             // 
             this.buttonDelMove.Enabled = false;
-            this.buttonDelMove.Location = new System.Drawing.Point(457, 12);
+            this.buttonDelMove.Image = global::My_Inventory.Properties.Resources.delete;
+            this.buttonDelMove.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonDelMove.Location = new System.Drawing.Point(459, 12);
             this.buttonDelMove.Name = "buttonDelMove";
             this.buttonDelMove.Size = new System.Drawing.Size(75, 23);
             this.buttonDelMove.TabIndex = 7;
             this.buttonDelMove.Text = "Удалить";
+            this.buttonDelMove.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.buttonDelMove.UseVisualStyleBackColor = true;
             this.buttonDelMove.Click += new System.EventHandler(this.DelMove);
             // 
@@ -285,7 +288,7 @@
             // buttonChangeMove
             // 
             this.buttonChangeMove.Enabled = false;
-            this.buttonChangeMove.Location = new System.Drawing.Point(376, 12);
+            this.buttonChangeMove.Location = new System.Drawing.Point(378, 12);
             this.buttonChangeMove.Name = "buttonChangeMove";
             this.buttonChangeMove.Size = new System.Drawing.Size(75, 23);
             this.buttonChangeMove.TabIndex = 6;

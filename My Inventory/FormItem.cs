@@ -85,14 +85,15 @@ namespace My_Inventory
 
         private void OK(object sender, EventArgs e)
         {
-            if (item.number != textBoxNumber.Text && Data.data.items.Find(o => o.number == textBoxNumber.Text) != null)
+            string newNumber = textBoxNumber.Text;
+            if (item.number != newNumber && Data.data.items.Find(o => o.number == newNumber) != null)
             {
                 MessageBox.Show("В базе уже есть объект с таким номером. Измените инвентарный номер.");
                 cancel = true;
             }
             else
             {
-                item.number = textBoxNumber.Text;
+                item.number = newNumber;
                 item.name = textBoxName.Text;
                 item.model = textBoxModel.Text;
                 item.serial = textBoxSerial.Text;

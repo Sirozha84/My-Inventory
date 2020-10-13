@@ -117,6 +117,7 @@
             this.buttonCancel.TabIndex = 5;
             this.buttonCancel.Text = "Отмена";
             this.buttonCancel.UseVisualStyleBackColor = true;
+            this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
             // buttonOK
             // 
@@ -154,6 +155,7 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Новый сотрудник";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FormUser_FormClosing);
             this.ResumeLayout(false);
             this.PerformLayout();
 

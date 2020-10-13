@@ -13,6 +13,7 @@ namespace My_Inventory
     public partial class FormUser : Form
     {
         User user;
+        bool cancel;
         public FormUser(User user)
         {
             InitializeComponent();
@@ -48,11 +49,24 @@ namespace My_Inventory
 
         private void OK(object sender, EventArgs e)
         {
-            user.name = textBoxUser.Text;
-            user.organisation = comboBoxOrg.Text;
-            user.departament = comboBoxDep.Text;
-            user.post = comboBoxPost.Text;
-            DialogResult = DialogResult.OK;
+            string newName = textBoxUser.Text;
+            if (user.name != newName && Data.data.users.Find(o => o.name == newName) != null)
+            {
+                MessageBox.Show("В базе уже есть пользователь с таким именем. Измените имя пользователя.");
+                cancel = true;
+            }
+            else
+            {
+                user.name = newName;
+                user.organisation = comboBoxOrg.Text;
+                user.departament = comboBoxDep.Text;
+                user.post = comboBoxPost.Text;
+                DialogResult = DialogResult.OK;
+            }
         }
+
+        private void buttonCancel_Click(object sender, EventArgs e) { cancel = false; }
+
+        private void FormUser_FormClosing(object sender, FormClosingEventArgs e) { e.Cancel = cancel; }
     }
 }
