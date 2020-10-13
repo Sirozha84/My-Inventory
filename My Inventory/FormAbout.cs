@@ -16,9 +16,12 @@ namespace My_Inventory
             Font fontB = new Font(history.Font.FontFamily, history.Font.Size, FontStyle.Bold);
 
             history.SelectionFont = fontB;
-            history.AppendText("Версия 2.1 (01.10.2020)\n\n");
+            history.AppendText("Версия 2.1 (13.10.2020)\n\n");
             history.SelectionFont = fontR;
-            history.AppendText("В работе...\n\n");
+            history.AppendText("• Отчёт \" История сотрудника\"\n"+
+                "• В журнале перемещений можно включить отображение прежнего хозяина/положения\n"+
+                "• Исправлена ошибка сброса фильтра при обновлении данных\n"+
+                "• Исправлена ошибка записи серийного номера\n\n");
             history.SelectionFont = fontB;
             history.AppendText("Версия 2.0 (28.08.2020)\n\n");
             history.SelectionFont = fontR;

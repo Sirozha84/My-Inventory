@@ -107,6 +107,18 @@
             this.toolStripButtonFromPlace = new System.Windows.Forms.ToolStripButton();
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.statusSelected = new System.Windows.Forms.ToolStripStatusLabel();
+            this.tabPageUserHistory = new System.Windows.Forms.TabPage();
+            this.toolStripUserHistory = new System.Windows.Forms.ToolStrip();
+            this.toolRefreshUserHistory = new System.Windows.Forms.ToolStripButton();
+            this.listViewUserHistory = new System.Windows.Forms.ListView();
+            this.columnUHData = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnUHNum = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnUHName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnUHAction = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnUHPlace = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnUHComment = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.toolUserList = new System.Windows.Forms.ToolStripComboBox();
+            this.columnUHUser = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.menuStripMain.SuspendLayout();
             this.tabPages.SuspendLayout();
             this.tabPageInventory.SuspendLayout();
@@ -119,6 +131,8 @@
             this.tabPageLog.SuspendLayout();
             this.toolStripLog.SuspendLayout();
             this.statusStrip.SuspendLayout();
+            this.tabPageUserHistory.SuspendLayout();
+            this.toolStripUserHistory.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMain
@@ -223,6 +237,7 @@
             this.tabPages.Controls.Add(this.tabPageInventory);
             this.tabPages.Controls.Add(this.tabPageUsers);
             this.tabPages.Controls.Add(this.tabPageLog);
+            this.tabPages.Controls.Add(this.tabPageUserHistory);
             this.tabPages.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabPages.Location = new System.Drawing.Point(0, 24);
             this.tabPages.Name = "tabPages";
@@ -822,6 +837,98 @@
             this.statusSelected.Size = new System.Drawing.Size(122, 17);
             this.statusSelected.Text = "Выбрано элементов:";
             // 
+            // tabPageUserHistory
+            // 
+            this.tabPageUserHistory.Controls.Add(this.listViewUserHistory);
+            this.tabPageUserHistory.Controls.Add(this.toolStripUserHistory);
+            this.tabPageUserHistory.Location = new System.Drawing.Point(4, 22);
+            this.tabPageUserHistory.Name = "tabPageUserHistory";
+            this.tabPageUserHistory.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPageUserHistory.Size = new System.Drawing.Size(876, 489);
+            this.tabPageUserHistory.TabIndex = 4;
+            this.tabPageUserHistory.Text = "История сотрудника";
+            this.tabPageUserHistory.UseVisualStyleBackColor = true;
+            // 
+            // toolStripUserHistory
+            // 
+            this.toolStripUserHistory.GripStyle = System.Windows.Forms.ToolStripGripStyle.Hidden;
+            this.toolStripUserHistory.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolRefreshUserHistory,
+            this.toolUserList});
+            this.toolStripUserHistory.Location = new System.Drawing.Point(3, 3);
+            this.toolStripUserHistory.Name = "toolStripUserHistory";
+            this.toolStripUserHistory.Size = new System.Drawing.Size(870, 25);
+            this.toolStripUserHistory.TabIndex = 2;
+            this.toolStripUserHistory.Text = "toolStripUserHistory";
+            // 
+            // toolRefreshUserHistory
+            // 
+            this.toolRefreshUserHistory.Image = global::My_Inventory.Properties.Resources.update;
+            this.toolRefreshUserHistory.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolRefreshUserHistory.Name = "toolRefreshUserHistory";
+            this.toolRefreshUserHistory.Size = new System.Drawing.Size(111, 22);
+            this.toolRefreshUserHistory.Text = "Сформировать";
+            this.toolRefreshUserHistory.Click += new System.EventHandler(this.toolRefreshUserHistory_Click);
+            // 
+            // listViewUserHistory
+            // 
+            this.listViewUserHistory.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnUHData,
+            this.columnUHNum,
+            this.columnUHName,
+            this.columnUHAction,
+            this.columnUHUser,
+            this.columnUHPlace,
+            this.columnUHComment});
+            this.listViewUserHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.listViewUserHistory.FullRowSelect = true;
+            this.listViewUserHistory.GridLines = true;
+            this.listViewUserHistory.Location = new System.Drawing.Point(3, 28);
+            this.listViewUserHistory.Name = "listViewUserHistory";
+            this.listViewUserHistory.Size = new System.Drawing.Size(870, 458);
+            this.listViewUserHistory.TabIndex = 3;
+            this.listViewUserHistory.UseCompatibleStateImageBehavior = false;
+            this.listViewUserHistory.View = System.Windows.Forms.View.Details;
+            // 
+            // columnUHData
+            // 
+            this.columnUHData.Text = "Дата";
+            this.columnUHData.Width = 70;
+            // 
+            // columnUHNum
+            // 
+            this.columnUHNum.Text = "Инв Н.";
+            // 
+            // columnUHName
+            // 
+            this.columnUHName.Text = "Наименование";
+            this.columnUHName.Width = 150;
+            // 
+            // columnUHAction
+            // 
+            this.columnUHAction.Text = "Действие";
+            this.columnUHAction.Width = 100;
+            // 
+            // columnUHPlace
+            // 
+            this.columnUHPlace.Text = "Местоположение";
+            this.columnUHPlace.Width = 140;
+            // 
+            // columnUHComment
+            // 
+            this.columnUHComment.Text = "Комментарий";
+            this.columnUHComment.Width = 140;
+            // 
+            // toolUserList
+            // 
+            this.toolUserList.Name = "toolUserList";
+            this.toolUserList.Size = new System.Drawing.Size(200, 25);
+            // 
+            // columnUHUser
+            // 
+            this.columnUHUser.Text = "Сотрудник";
+            this.columnUHUser.Width = 160;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -858,6 +965,10 @@
             this.toolStripLog.PerformLayout();
             this.statusStrip.ResumeLayout(false);
             this.statusStrip.PerformLayout();
+            this.tabPageUserHistory.ResumeLayout(false);
+            this.tabPageUserHistory.PerformLayout();
+            this.toolStripUserHistory.ResumeLayout(false);
+            this.toolStripUserHistory.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -942,6 +1053,18 @@
         private System.Windows.Forms.ColumnHeader columnLComment;
         private System.Windows.Forms.ToolStripButton toolStripButtonFromUser;
         private System.Windows.Forms.ToolStripButton toolStripButtonFromPlace;
+        private System.Windows.Forms.TabPage tabPageUserHistory;
+        private System.Windows.Forms.ListView listViewUserHistory;
+        private System.Windows.Forms.ColumnHeader columnUHData;
+        private System.Windows.Forms.ColumnHeader columnUHNum;
+        private System.Windows.Forms.ColumnHeader columnUHName;
+        private System.Windows.Forms.ColumnHeader columnUHAction;
+        private System.Windows.Forms.ColumnHeader columnUHPlace;
+        private System.Windows.Forms.ColumnHeader columnUHComment;
+        private System.Windows.Forms.ToolStrip toolStripUserHistory;
+        private System.Windows.Forms.ToolStripButton toolRefreshUserHistory;
+        private System.Windows.Forms.ToolStripComboBox toolUserList;
+        private System.Windows.Forms.ColumnHeader columnUHUser;
     }
 }
 

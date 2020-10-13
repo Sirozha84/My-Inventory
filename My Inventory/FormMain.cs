@@ -71,6 +71,12 @@ namespace My_Inventory
             listViewUsers.Items.Clear();
             foreach (User u in Data.data.users) listViewUsers.Items.Add(u.GetListVievItem());
             listViewUsers.EndUpdate();
+
+            //Вкладка "История сотрудника"
+            toolUserList.BeginUpdate();
+            toolUserList.Items.Clear();
+            foreach (User u in Data.data.users) toolUserList.Items.Add(u.name);
+            toolUserList.EndUpdate();
         }
 
         #region Меню Файл
@@ -337,7 +343,7 @@ namespace My_Inventory
             listViewLog.BeginUpdate();
             listViewLog.Items.Clear();
             foreach (LogRecord rec in log)
-                listViewLog.Items.Add(rec.GetListItem());
+                listViewLog.Items.Add(rec.GetListItemLog());
             listViewLog.EndUpdate();
         }
         private void toolStripButtonFromUser_Click(object sender, EventArgs e)
@@ -348,6 +354,34 @@ namespace My_Inventory
         private void toolStripButtonFromPlace_Click(object sender, EventArgs e)
         {
             toolStripButtonFromPlace.Checked = !toolStripButtonFromPlace.Checked;
+        }
+        #endregion
+
+        #region Вкладка "История сотрудника"
+        //Формирование отчёта "История сотрудноика"
+        private void toolRefreshUserHistory_Click(object sender, EventArgs e)
+        {
+            string user = toolUserList.Text;
+            List<LogRecord> log = new List<LogRecord>();
+            foreach (Item item in Data.data.items)
+            {
+                string lastUser = "";
+                string lastPlace = "";
+                foreach (Move move in item.history)
+                {
+                    if (lastUser =="") lastUser = "Новый";
+                    if (move.user == user) log.Add(new LogRecord(item, move, 1, lastUser, lastPlace));
+                    if (lastUser == user) log.Add(new LogRecord(item, move, 2, move.user, move.place));
+                    lastUser = move.user;
+                    lastPlace = move.place;
+                }
+            }
+            log.Sort((o1, o2) => o1.date.CompareTo(o2.date));
+            listViewUserHistory.BeginUpdate();
+            listViewUserHistory.Items.Clear();
+            foreach (LogRecord rec in log)
+                listViewUserHistory.Items.Add(rec.GetListItemUserHistory());
+            listViewUserHistory.EndUpdate();
         }
         #endregion
     }
